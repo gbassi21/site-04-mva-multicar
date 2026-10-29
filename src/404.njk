@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+permalink: /404.html
+titulo: Página não encontrada
+eleventyExcludeFromCollections: true
+---
+<section class="faixa faixa--preta erro">
+  <div class="envoltorio erro__conteudo">
+    {{ tracos("erro__tracos") | safe }}
+    <h1 class="erro__titulo">Página não encontrada</h1>
+    <p>Este endereço não existe ou ainda não faz parte desta demonstração.</p>
+    <div class="erro__acoes">
+      <a class="botao botao--primario botao--grande" href="/#carros">{{ icone("car-front") | safe }}Ver os carros</a>
+      <a class="botao botao--contorno-claro" href="/">Ir para o início</a>
+    </div>
+  </div>
+</section>

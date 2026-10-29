@@ -1,77 +1,82 @@
 ---
 layout: layouts/base.njk
 ---
-<div class="envoltorio veiculo">
-  <nav class="trilha" aria-label="Trilha">
-    <ol>
-      <li><a href="/">Início</a></li>
-      <li><a href="/estoque/">Estoque</a></li>
-      <li aria-current="page">{{ nome }} {{ anoTexto }}</li>
-    </ol>
-  </nav>
-
-  <div class="veiculo__grade">
-    <section class="galeria" aria-label="Imagens do {{ nome }}" data-galeria>
-      <div class="galeria__palco">
-        <ul class="galeria__trilho" tabindex="0" aria-label="Imagens; use as setas do teclado para navegar">
-          {%- for img in imagens %}
-          <li class="galeria__slide" id="foto-{{ loop.index }}" aria-label="{{ loop.index }} de {{ imagens.length }}: {{ img.rotulo }}">
-            {{ fotoVeiculo(img.chave, img.alt, "(min-width: 1024px) 640px, 100vw", loop.first) | safe }}
-          </li>
-          {%- endfor %}
-        </ul>
-        <span class="etiqueta">Imagem ilustrativa</span>
-        <span class="galeria__contador" aria-hidden="true"><span data-contador>1</span>/{{ imagens.length }}</span>
-        <button class="galeria__seta galeria__seta--anterior" type="button" data-anterior aria-label="Imagem anterior">{{ icone("chevron-esquerda") | safe }}</button>
-        <button class="galeria__seta galeria__seta--proxima" type="button" data-proxima aria-label="Próxima imagem">{{ icone("chevron-direita") | safe }}</button>
-      </div>
-      <ol class="galeria__miniaturas" aria-label="Miniaturas">
-        {%- for img in imagens %}
-        <li><a class="galeria__miniatura" href="#foto-{{ loop.index }}" data-miniatura="{{ loop.index0 }}"{% if loop.first %} aria-current="true"{% endif %} aria-label="Ver imagem {{ loop.index }}: {{ img.rotulo }}">{{ fotoVeiculo(img.chave, "", "80px") | safe }}</a></li>
-        {%- endfor %}
+<div class="veiculo">
+  <div class="envoltorio">
+    <nav class="trilha" aria-label="Trilha">
+      <ol>
+        <li><a href="/">Início</a></li>
+        <li><a href="/estoque/">Estoque</a></li>
+        <li aria-current="page">{{ nome }} {{ anoTexto }}</li>
       </ol>
-    </section>
+    </nav>
 
-    <aside class="painel" aria-labelledby="titulo-veiculo">
-      {% if destaque %}<span class="selo selo--painel">Destaque</span>{% endif %}
-      <h1 class="painel__titulo" id="titulo-veiculo">{{ nome }}</h1>
-      <p class="painel__versao">{{ versao }}</p>
-      <ul class="chips" aria-label="Resumo">
-        <li>{{ anoTexto }}</li>
-        <li>{{ km | numero }} km</li>
-        {% if cambio %}<li>{{ cambio }}</li>{% endif %}
-        {% if combustivel %}<li>{{ combustivel }}</li>{% endif %}
-      </ul>
-      <p class="painel__preco">{{ preco | reais }}</p>
-      <p class="painel__nota">Valor de {{ loja.valoresEm }}, sujeito a alteração.</p>
-      <div class="painel__acoes">
-        <a class="botao botao--primario botao--largo" href="{{ wa(mensagens.interesse) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }} Falar no WhatsApp</a>
-        <a class="botao botao--secundario botao--largo" href="{{ wa(mensagens.financiar) }}" target="_blank" rel="noopener">Simular financiamento</a>
-        <a class="link-acao" href="{{ wa(mensagens.troca) }}" target="_blank" rel="noopener">Tenho um carro para dar na troca {{ icone("seta-direita") | safe }}</a>
-      </div>
-      <ul class="painel__confianca">
-        <li>{{ icone("ferramenta") | safe }}<span>Oficina do grupo ao lado da loja: <a href="/oficina/">{{ loja.oficina.nome }}</a>.</span></li>
-        <li>{{ icone("estrela") | safe }}<span>Loja com nota {{ loja.google.nota }} no Google ({{ loja.google.avaliacoes }} avaliações). <a href="{{ loja.google.link }}" target="_blank" rel="noopener">Ver no Google</a></span></li>
-      </ul>
-    </aside>
-
-    <section class="ficha" aria-labelledby="titulo-ficha">
-      <h2 class="ficha__titulo" id="titulo-ficha">Ficha técnica</h2>
-      <dl class="ficha__lista">
-        {%- for item in ficha %}
-        <div class="ficha__item">
-          <dt>{{ item.rotulo }}</dt>
-          {% if item.valor %}<dd>{{ item.valor }}{% if item.assumido %}<span class="ficha__marca" title="Deduzido pela versão; a confirmar com a loja">*</span>{% endif %}</dd>{% else %}<dd class="a-confirmar">a confirmar</dd>{% endif %}
+    <div class="veiculo__grade">
+      <section class="galeria" aria-label="Imagens do {{ nome }}" data-galeria>
+        <div class="galeria__palco">
+          <ul class="galeria__trilho" tabindex="0" aria-label="Imagens; use as setas do teclado para navegar">
+            {%- for img in imagens %}
+            <li class="galeria__slide" id="foto-{{ loop.index }}" aria-label="{{ loop.index }} de {{ imagens.length }}: {{ img.rotulo }}">
+              {{ fotoVeiculo(img.chave, img.alt, "(min-width: 1360px) 880px, (min-width: 1024px) 62vw, 100vw", loop.first) | safe }}
+            </li>
+            {%- endfor %}
+          </ul>
+          <span class="etiqueta">Imagem ilustrativa</span>
+          <span class="selo selo--tipo selo--galeria">{{ carroceriaNome }}</span>
+          <span class="galeria__contador" aria-hidden="true"><span data-contador>1</span>/{{ imagens.length }}</span>
+          <button class="galeria__seta galeria__seta--anterior" type="button" data-anterior aria-label="Imagem anterior">{{ icone("chevron-left") | safe }}</button>
+          <button class="galeria__seta galeria__seta--proxima" type="button" data-proxima aria-label="Próxima imagem">{{ icone("chevron-right") | safe }}</button>
         </div>
-        {%- endfor %}
-      </dl>
-      {% if assumidos and assumidos.length %}<p class="ficha__nota">* Deduzido pela versão; a confirmar com a loja.</p>{% endif %}
-      {% if content | trim %}<div class="ficha__descricao">{{ content | safe }}</div>{% endif %}
-    </section>
+        <ol class="galeria__miniaturas" aria-label="Miniaturas">
+          {%- for img in imagens %}
+          <li><a class="galeria__miniatura" href="#foto-{{ loop.index }}" data-miniatura="{{ loop.index0 }}"{% if loop.first %} aria-current="true"{% endif %} aria-label="Ver imagem {{ loop.index }}: {{ img.rotulo }}">{{ fotoVeiculo(img.chave, "", "96px") | safe }}</a></li>
+          {%- endfor %}
+        </ol>
+      </section>
+
+      <aside class="painel" aria-labelledby="titulo-veiculo">
+        {{ tracos("painel__tracos") | safe }}
+        {% if destaque %}<span class="selo selo--destaque selo--painel">Destaque</span>{% endif %}
+        <h1 class="painel__titulo" id="titulo-veiculo">{{ nome }}</h1>
+        <p class="painel__versao">{{ versao }}</p>
+        <ul class="dados dados--painel" aria-label="Resumo">
+          <li>{{ icone("calendar") | safe }}{{ anoTexto }}</li>
+          <li>{{ icone("gauge") | safe }}{{ km | numero }} km</li>
+          {% if cambio %}<li>{{ icone("cog") | safe }}{{ cambio }}</li>{% endif %}
+          {% if combustivel %}<li>{{ icone("fuel") | safe }}{{ combustivel }}</li>{% endif %}
+        </ul>
+        <p class="painel__preco">{{ preco | reais }}</p>
+        <p class="painel__nota">Valor de {{ loja.valoresEm }}, sujeito a alteração.</p>
+        <div class="painel__acoes">
+          <a class="botao botao--primario botao--grande botao--largo" href="{{ wa(mensagens.interesse) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}Falar no WhatsApp</a>
+          <a class="botao botao--secundario botao--largo" href="{{ wa(mensagens.financiar) }}" target="_blank" rel="noopener">{{ icone("landmark") | safe }}Simular financiamento</a>
+          <a class="link-acao" href="{{ wa(mensagens.troca) }}" target="_blank" rel="noopener">Tenho um carro para dar na troca{{ icone("arrow-right") | safe }}</a>
+        </div>
+        <ul class="painel__confianca">
+          <li>{{ icone("wrench") | safe }}<span>Oficina do grupo ao lado da loja: <a href="/oficina/">{{ loja.oficina.nome }}</a>.</span></li>
+          <li>{{ icone("star") | safe }}<span>Loja com nota {{ loja.google.nota }} no Google ({{ loja.google.avaliacoes }} avaliações). <a href="{{ loja.google.link }}" target="_blank" rel="noopener">Ver no Google</a></span></li>
+        </ul>
+      </aside>
+
+      <section class="ficha" aria-labelledby="titulo-ficha">
+        <h2 class="titulo-secao titulo-secao--menor" id="titulo-ficha">{{ tracos("titulo-secao__tracos") | safe }}<span class="titulo-secao__texto">Ficha técnica</span></h2>
+        <dl class="ficha__lista">
+          {%- for item in ficha %}
+          <div class="ficha__item">
+            {{ icone(item.icone, "ficha__icone") | safe }}
+            <dt>{{ item.rotulo }}</dt>
+            {% if item.valor %}<dd>{{ item.valor }}{% if item.assumido %}<span class="ficha__marca" title="Deduzido pela versão; a confirmar com a loja">*</span>{% endif %}</dd>{% else %}<dd class="a-confirmar">a confirmar</dd>{% endif %}
+          </div>
+          {%- endfor %}
+        </dl>
+        {% if ficha | selectattr("assumido") | length %}<p class="ficha__nota">* Deduzido pela versão; a confirmar com a loja.</p>{% endif %}
+        {% if content | trim %}<div class="ficha__descricao">{{ content | safe }}</div>{% endif %}
+      </section>
+    </div>
   </div>
 </div>
 
 <div class="barra-fixa">
   <p class="barra-fixa__info"><span>{{ nome }} {{ anoTexto }}</span><strong>{{ preco | reais }}</strong></p>
-  <a class="botao botao--primario" href="{{ wa(mensagens.interesse) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }} WhatsApp</a>
+  <a class="botao botao--primario" href="{{ wa(mensagens.interesse) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}WhatsApp</a>
 </div>

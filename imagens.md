@@ -6,7 +6,7 @@ Todas as imagens do site, existentes e faltantes. Direção visual em `specs/des
 
 1. Gere no ChatGPT com o **bloco de consistência** (§5) seguido do prompt do item.
 2. Salve como `imagens-ia/<nome>.png`, exatamente com o nome da tabela.
-3. Rode `npm run dev`: o build encontra o arquivo e troca o bloco "imagem a definir" pela imagem, já com a etiqueta "Imagem ilustrativa".
+3. Rode `npm run dev`: o build encontra o arquivo e troca o bloco de marca (vermelho, grafite ou preto, com ícone e traços do logo) pela imagem, já com a etiqueta "Imagem ilustrativa". O nome esperado de cada arquivo está num comentário do HTML, no lugar do bloco.
 4. Confira o enquadramento em 390 e 1440 px. Se o recorte cortar o assunto, ajuste o ponto de foco em `src/_data/ilustracoes.js` (campo `foco`).
 5. Mude o status abaixo para "ok" e registre em `memoria.md` se houver ajuste.
 
@@ -16,14 +16,14 @@ Pessoas fictícias (nunca apresentadas como a equipe ou os clientes da MVA), sem
 
 | Nº | Arquivo `imagens-ia/` | Seção (uso) | O que comunica | Tipo | Enquadramento | Proporção na tela | Gerar em | Área livre para texto | Status |
 |---|---|---|---|---|---|---|---|---|---|
-| I-01 | ia-hero-entrega.png | Início: hero | O momento da conquista: entrega das chaves com o laço vermelho no capô (ritual real da loja) | Dia a dia | Carro 3/4 com laço + mãos trocando a chave, sem rostos; assunto nos 50% centrais | 3:1 no computador, ~2:3 no celular (recorte do centro) | 3:2, 1536 × 1024 | Terço superior calmo (título e busca centralizados sobre véu escuro) | Falta: bloco na amostra |
-| I-02 | ia-card-avaliacao.png | Início: card "Venda ou troque" · topo de /vender-ou-trocar/ | Avaliação honesta do carro do cliente para troca | Dia a dia | Avaliador junto à roda, com tablet; assunto nos 55% da direita | ~1,9:1 (card) e 3:2 (página) | 3:2, 1536 × 1024 | 45% da esquerda | Falta: bloco na amostra |
-| I-03 | ia-card-financiamento.png | Início: card "Financiamento" · topo de /financiamento/ | Conversa clara, sem pressão, sobre financiamento | Dia a dia | Duas pessoas à mesa, papéis ilegíveis, caneta vermelha; direita | ~1,9:1 e 3:2 | 3:2, 1536 × 1024 | 45% da esquerda | Falta: bloco na amostra |
-| I-04 | ia-card-oficina.png | Início: card "Cuide do seu carro" · topo de /oficina/ | Oficina organizada e mecânico experiente ao lado da loja | Dia a dia | Mecânico sob o capô aberto; direita | ~1,9:1 e 3:2 | 3:2, 1536 × 1024 | 45% da esquerda | Falta: bloco na amostra |
-| I-05 | ia-oficina-alinhamento.png | Início: "Oficina ao lado" · /oficina/ | Alinhamento 3D com equipamento moderno | Dia a dia | Carro no elevador com alvos nas rodas, mãos ajustando | 3:4 (card em retrato) | 2:3, 1024 × 1536 | 25% de baixo (título sobre degradê) | Falta |
-| I-06 | ia-oficina-freios.png | Início: "Oficina ao lado" · /oficina/ | Cuidado com segurança: freios | Dia a dia | Close de disco e pinça, mãos com luva | 3:4 | 2:3, 1024 × 1536 | 25% de baixo | Falta |
-| I-07 | ia-oficina-oleo.png | Início: "Oficina ao lado" · /oficina/ | Manutenção de rotina: troca de óleo | Dia a dia | Mão despejando óleo de frasco sem rótulo | 3:4 | 2:3, 1024 × 1536 | 25% de baixo | Falta |
-| I-08 | ia-oficina-pneus.png | Início: "Oficina ao lado" · /oficina/ | Pneus e balanceamento | Dia a dia | Roda na balanceadora, mãos colocando o peso | 3:4 | 2:3, 1024 × 1536 | 25% de baixo | Falta |
+| I-01 | ia-hero-entrega.png | Início: hero (quadro grande à direita, sobre fundo preto) | O momento da conquista: entrega das chaves com o laço vermelho no capô (ritual real da loja) | Dia a dia | Carro 3/4 com laço + mãos trocando a chave, sem rostos; assunto central com folga nas bordas | 16:10 no computador, 3:2 no celular | 3:2, 1536 × 1024 | Canto inferior esquerdo sem nada importante (etiqueta de preço por cima) | Falta: até existir, o hero mostra a capa de estúdio da Ranger |
+| I-02 | ia-card-avaliacao.png | Início: card "Venda ou troque" · topo de /vender-ou-trocar/ | Avaliação honesta do carro do cliente para troca | Dia a dia | Avaliador junto à roda, com tablet; assunto nos 55% da direita | ~1,9:1 (card) e 3:2 (página) | 3:2, 1536 × 1024 | 45% da esquerda | Falta: bloco de marca na amostra |
+| I-03 | ia-card-financiamento.png | Início: card "Financiamento" · topo de /financiamento/ | Conversa clara, sem pressão, sobre financiamento | Dia a dia | Duas pessoas à mesa, papéis ilegíveis, caneta vermelha; direita | ~1,9:1 e 3:2 | 3:2, 1536 × 1024 | 45% da esquerda | Falta: bloco de marca na amostra |
+| I-04 | ia-card-oficina.png | Início: card "Cuide do seu carro" · topo de /oficina/ | Oficina organizada e mecânico experiente ao lado da loja | Dia a dia | Mecânico sob o capô aberto; direita | ~1,9:1 e 3:2 | 3:2, 1536 × 1024 | 45% da esquerda | Falta: bloco de marca na amostra |
+| I-05 | ia-oficina-alinhamento.png | /oficina/ (serviços; na home a faixa da oficina usa ícones) | Alinhamento 3D com equipamento moderno | Dia a dia | Carro no elevador com alvos nas rodas, mãos ajustando | 3:4 (card em retrato) | 2:3, 1024 × 1536 | 25% de baixo (título sobre degradê) | Falta |
+| I-06 | ia-oficina-freios.png | /oficina/ (serviços; na home a faixa da oficina usa ícones) | Cuidado com segurança: freios | Dia a dia | Close de disco e pinça, mãos com luva | 3:4 | 2:3, 1024 × 1536 | 25% de baixo | Falta |
+| I-07 | ia-oficina-oleo.png | /oficina/ (serviços; na home a faixa da oficina usa ícones) | Manutenção de rotina: troca de óleo | Dia a dia | Mão despejando óleo de frasco sem rótulo | 3:4 | 2:3, 1024 × 1536 | 25% de baixo | Falta |
+| I-08 | ia-oficina-pneus.png | /oficina/ (serviços; na home a faixa da oficina usa ícones) | Pneus e balanceamento | Dia a dia | Roda na balanceadora, mãos colocando o peso | 3:4 | 2:3, 1024 × 1536 | 25% de baixo | Falta |
 | I-09 | ia-assinatura-contrato.png | /financiamento/ "Como funciona" · /vender-ou-trocar/ | Negócio fechado com segurança | Dia a dia | Close de mãos assinando, caneta vermelha, chave | 3:2 ou 16:9 | 3:2, 1536 × 1024 | Terço esquerdo | Falta |
 | I-10 | ia-documentos-chaves.png | /vender-ou-trocar/ "O que levar" | Organização: documentos e chaves | Dia a dia | Vista de cima: pasta, folhas ilegíveis, duas chaves | 3:2 | 3:2, 1536 × 1024 | 35% da esquerda | Falta |
 | I-11 | ia-detalhe-placa.png | /vender-ou-trocar/ "Documentação e transferência" | Atenção aos detalhes e à documentação | Dia a dia | Traseira de carro prata, placa desfocada e ilegível | 3:2 | 3:2, 1536 × 1024 | Metade esquerda | Falta |
@@ -79,8 +79,9 @@ Nunca gerar nem alterar. Sempre com "Imagem ilustrativa". Formato conferido: 3:2
 | M-03 | `/favicon.svg` | Aba do navegador | Gerado no build |
 | M-04 | `/icone-180.png`, `/icone-512.png` | Atalho no celular | Gerado no build |
 | M-05 | `/og-mva.jpg` (1200 × 630) | Prévia do link no WhatsApp; logo sobre grafite, sem veículo | Gerado no build |
-| M-06 | Ícones de interface (`lib/icones.js`) | Busca, WhatsApp (balão genérico), setas, menu | Na amostra |
-| M-07 | Ícones de carroceria: Hatch, Sedã, SUV, Picape | "Explore por carroceria" | Site completo |
+| M-06 | Ícones de traço Lucide e glifos de WhatsApp e Instagram (`lib/icones/`, licenças em `licencas/`) | Menu, serviços, confiança, dados e ficha do veículo, contato, oficina, rodapé, WhatsApp flutuante | Na amostra v1 |
+| M-07 | Silhuetas de carroceria: Hatch, Sedã, SUV, Picape (`lib/icones.js`) | "Explore por tipo" | Na amostra v1 |
+| M-08 | Traços de velocidade (`tracos()` em `lib/icones.js`) | Hero, títulos, blocos de marca, faixa vermelha, cards, rodapé | Na amostra v1 |
 
 ## 5. Prompts para o ChatGPT
 
@@ -105,7 +106,7 @@ STRICT RULES: no readable text, letters or numbers anywhere (signs, screens, pap
 Follow the VISUAL CONSISTENCY BLOCK (photo).
 Output: landscape 3:2, 1536 × 1024 px. File name: ia-hero-entrega.png
 Scene: the hand-over of a car at a tidy used-car lot under a large white tensile canopy. A clean silver compact SUV in three-quarter front view, with a big glossy deep red (#B2251D) satin ribbon bow tied on the bonnet. In the foreground, slightly below the centre, two hands exchanging a car key: a salesperson's hand in a graphite sleeve and a customer's hand. Hands and forearms only, no faces. Two or three other generic cars softly out of focus in the background, smooth concrete floor.
-Composition: the car with the bow and the hands must sit inside the central 50% of the frame, because the image will be cropped to a wide 3:1 banner on desktop and to a narrow vertical strip on phones. The upper third is calm and bright (canopy and daylight, out of focus): a centred white headline and a search bar will be overlaid on a dark tint. Nothing important near the edges.
+Composition: the car with the bow and the hands fill the centre of the frame with comfortable margins on every side; the image is shown as a large framed picture next to the headline (cropped to 16:10 on desktop, full 3:2 on phones), with no text over it. Keep the lower-left corner free of important details, because a small price tag will overlap it. Bright background that contrasts with a black page.
 Mood: celebratory but understated, warm, trustworthy.
 ```
 
@@ -115,7 +116,7 @@ Mood: celebratory but understated, warm, trustworthy.
 Follow the VISUAL CONSISTENCY BLOCK (photo).
 Output: landscape 3:2, 1536 × 1024 px. File name: ia-card-avaliacao.png
 Scene: a car appraisal for a trade-in. A fictional appraiser (adult, graphite polo shirt without logos) crouches beside the front wheel of a generic grey hatchback, checking the tyre tread with one hand and holding a tablet with a blank, softly lit screen in the other. Under a white canopy, concrete floor, daylight.
-Composition: the person and the car fill the RIGHT 55% of the frame. The LEFT 45% is a calm, bright, almost empty area (soft out-of-focus light-grey wall or canopy) with no objects, because a white panel with a title and a short text will cover it. The image will be cropped to a short, wide card (about 1.9:1): keep the head and the tyre away from the top and bottom edges.
+Composition: the person and the car fill the RIGHT 55% of the frame. The LEFT 45% is a calm, bright, almost empty area (soft out-of-focus light-grey wall or canopy) with no objects, because a dark tint with a white title and a short text will cover it. The image will be cropped to a short, wide card (about 1.9:1): keep the head and the tyre away from the top and bottom edges.
 Mood: careful, honest, professional.
 ```
 

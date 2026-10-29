@@ -1,4 +1,4 @@
-// MVA Multicar: menu, movimento e galeria. JavaScript puro; o site funciona sem ele.
+// MVA Multicar: menu, filtros da vitrine, movimento e galeria. JavaScript puro; o site funciona sem ele.
 (() => {
   const movimento = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
@@ -21,29 +21,90 @@
     }
   });
 
-  // Movimento (specs/design.md §8): só anima o que entra na tela depois do carregamento;
-  // o que já está visível fica como está, para não atrasar a primeira tela.
-  if (movimento && "IntersectionObserver" in window) {
-    const alvos = [
-      ...[...document.querySelectorAll("[data-chegada]")].map((el) => [el, "a-chegar", "chegou"]),
-      ...[...document.querySelectorAll("[data-revelar]")].map((el) => [el, "a-revelar", "revelado"]),
-    ].filter(([el]) => el.getBoundingClientRect().top > window.innerHeight);
+  // Filtros da vitrine (specs/site.md §3.2): preço, carroceria, marca, ano e câmbio, com o estado na URL.
+  const filtros = document.querySelector("[data-filtros]");
+  if (filtros) {
+    const campos = ["carroceria", "marca", "ano", "cambio", "preco_max"];
+    const cards = [...document.querySelectorAll("[data-vitrine] [data-carroceria]")];
+    const resultado = filtros.querySelector("[data-resultado]");
+    const vazio = document.querySelector("[data-vazio]");
 
-    const final = new Map(alvos.map(([el, , classeFinal]) => [el, classeFinal]));
+    const aplicar = (gravarUrl = true) => {
+      const f = Object.fromEntries(new FormData(filtros));
+      let total = 0;
+      for (const card of cards) {
+        const d = card.dataset;
+        const passa =
+          (!f.carroceria || d.carroceria === f.carroceria) &&
+          (!f.marca || d.marca === f.marca) &&
+          (!f.ano || Number(d.ano) >= Number(f.ano)) &&
+          (!f.cambio || d.cambio === f.cambio) &&
+          (!f.preco_max || Number(d.preco) <= Number(f.preco_max));
+        card.closest("li").hidden = !passa;
+        if (passa) total++;
+      }
+      resultado.textContent = total === 1 ? "1 carro" : `${total} carros`;
+      vazio.hidden = total > 0;
+      if (gravarUrl) {
+        const params = new URLSearchParams();
+        for (const campo of campos) if (f[campo]) params.set(campo, f[campo]);
+        const busca = params.toString();
+        history.replaceState(null, "", `${location.pathname}${busca ? `?${busca}` : ""}${location.hash}`);
+      }
+    };
+
+    const marcar = (campo, valor) => {
+      const el = filtros.elements[campo];
+      if (!el) return;
+      if (el instanceof RadioNodeList) for (const opcao of el) opcao.checked = opcao.value === valor;
+      else el.value = valor;
+    };
+
+    const inicial = new URLSearchParams(location.search);
+    if (campos.some((campo) => inicial.has(campo))) {
+      for (const campo of campos) if (inicial.has(campo)) marcar(campo, inicial.get(campo));
+      aplicar(false);
+    }
+
+    filtros.addEventListener("change", () => aplicar());
+    filtros.addEventListener("submit", (e) => {
+      e.preventDefault();
+      aplicar();
+    });
+    filtros.addEventListener("reset", () => requestAnimationFrame(() => aplicar()));
+
+    // "Explore por tipo" filtra a vitrine sem recarregar a página.
+    for (const link of document.querySelectorAll("[data-tipo]")) {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        filtros.reset();
+        requestAnimationFrame(() => {
+          marcar("carroceria", link.dataset.tipo);
+          aplicar();
+          document.getElementById("carros")?.scrollIntoView({ behavior: movimento ? "smooth" : "auto" });
+        });
+      });
+    }
+  }
+
+  // Movimento (specs/design.md §8): os cards de veículo abaixo da primeira tela chegam ao aparecer;
+  // o que já está visível no carregamento fica como está.
+  if (movimento && "IntersectionObserver" in window) {
+    const alvos = [...document.querySelectorAll("[data-chegada]")].filter((el) => el.getBoundingClientRect().top > window.innerHeight);
     const observador = new IntersectionObserver(
       (entradas) => {
         entradas
           .filter((entrada) => entrada.isIntersecting)
           .forEach((entrada, i) => {
-            entrada.target.style.setProperty("--atraso", `${i * 80}ms`);
-            entrada.target.classList.add(final.get(entrada.target));
+            entrada.target.style.setProperty("--atraso", `${i * 90}ms`);
+            entrada.target.classList.add("chegou");
             observador.unobserve(entrada.target);
           });
       },
       { threshold: 0.35, rootMargin: "0px 0px -5% 0px" },
     );
-    for (const [el, classeInicial] of alvos) {
-      el.classList.add(classeInicial);
+    for (const el of alvos) {
+      el.classList.add("a-chegar");
       observador.observe(el);
     }
   }

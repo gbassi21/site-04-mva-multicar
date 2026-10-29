@@ -8,21 +8,36 @@
     "cep": "29175-585"
   },
   "whatsapp": { "numero": "5527997807040", "exibicao": "(27) 99780-7040" },
-  "horario": "8h às 18h (dias e sábado a confirmar)",
+  "horario": "8h às 18h (sábado a confirmar)",
   "google": {
     "nota": "4,2",
+    "valor": 4.2,
     "avaliacoes": 5,
     "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Multicar%20Av.%20Abido%20Saad%202551%20Jacara%C3%ADpe%20Serra%20ES"
   },
   "instagram": { "usuario": "@mva_multicar", "link": "https://www.instagram.com/mva_multicar/" },
   "valoresEm": "28/out/2026",
+  "notasEm": "29/out/2026",
   "oficina": {
     "nome": "MVA Centro Automotivo",
-    "endereco": "Av. Abido Saad, 2553 (ao lado da loja)",
+    "endereco": "Av. Abido Saad, 2553",
+    "referencia": "ao lado da loja",
+    "desde": 2017,
+    "horario": "Seg a sex, 8h às 18h",
     "whatsapp": { "numero": "5527999161157", "exibicao": "(27) 99916-1157" },
-    "servicos": "Mecânica geral, alinhamento 3D, balanceamento e pneus",
+    "servicos": [
+      { "nome": "Alinhamento 3D", "icone": "crosshair" },
+      { "nome": "Balanceamento", "icone": "scale" },
+      { "nome": "Pneus", "icone": "life-buoy" },
+      { "nome": "Freios", "icone": "disc-3" },
+      { "nome": "Injeção eletrônica", "icone": "cpu" },
+      { "nome": "Óleo e fluido de câmbio", "icone": "droplets" },
+      { "nome": "Suspensão", "icone": "arrow-up-down" },
+      { "nome": "Motor", "icone": "engine" }
+    ],
     "google": {
       "nota": "4,0",
+      "valor": 4.0,
       "avaliacoes": 127,
       "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Centro%20Automotivo%20Av.%20Abido%20Saad%202553%20Jacara%C3%ADpe%20Serra%20ES"
     },
@@ -30,8 +45,9 @@
   },
   "mensagens": {
     "geral": "Olá! Vim pelo site da MVA Multicar e quero mais informações.",
-    "avaliacao": "Olá! Quero avaliar meu carro para venda ou troca na MVA Multicar. Modelo, ano e km: ",
+    "avaliacao": "Olá! Quero avaliar meu carro para venda ou troca na MVA Multicar. Marca, modelo, ano e km: ",
     "financiamento": "Olá! Quero saber como funciona o financiamento na MVA Multicar.",
-    "oficina": "Olá! Vim pelo site e quero agendar um serviço na MVA Centro Automotivo. Serviço: "
+    "oficina": "Olá! Vim pelo site e quero agendar um serviço na MVA Centro Automotivo. Serviço: ",
+    "procura": "Olá! Não achei no site o carro que procuro. Procuro: "
   }
 }

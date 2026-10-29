@@ -6,7 +6,7 @@
   <title>{{ titulo }} · MVA Multicar (projeto de demonstração)</title>
   <meta name="description" content="{{ descricao or 'Seminovos e usados multimarcas em Jacaraípe, Serra (ES). Compra, venda, troca e financiamento.' }}">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#0C0C0E">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="{{ titulo }} · MVA Multicar (projeto de demonstração)">
@@ -14,7 +14,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/icone-180.png">
   <link rel="preload" href="/assets/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  {% if precarregar %}{{ precarregarIlustracao(precarregar) | safe }}{% endif %}
+  {% if precarregar %}{{ precarregarIlustracao(precarregar, "(min-width: 1024px) 56vw, 100vw") | safe }}{% endif %}
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | versao }}">
   <script src="{{ '/assets/js/site.js' | versao }}" defer></script>
@@ -27,5 +27,10 @@
     {{ content | safe }}
   </main>
   {% include "partials/rodape.njk" %}
+  {%- set daOficina = whatsappFlutuante == "oficina" %}
+  {%- set contatoFlutuante = loja.oficina.whatsapp if daOficina else loja.whatsapp %}
+  <a class="wa-flutuante" href="{{ wa(loja.mensagens.oficina if daOficina else loja.mensagens.geral, contatoFlutuante.numero) }}" target="_blank" rel="noopener" aria-label="WhatsApp {{ 'da oficina' if daOficina else 'da loja' }}: {{ contatoFlutuante.exibicao }}">
+    {{ icone("whatsapp") | safe }}
+  </a>
 </body>
 </html>

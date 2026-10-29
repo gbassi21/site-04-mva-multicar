@@ -8,9 +8,10 @@ Rebranding de demonstração, não oficial, em pt-BR, para a MVA Multicar (semin
 - "Projeto de demonstração" em todas as páginas; `noindex` (meta, `robots.txt`, cabeçalho). Nunca citar agência, criador ou marca terceira no site (rodapé, créditos, meta tags, comentários de código).
 - Stack fixa: Eleventy 3 + @11ty/eleventy-img, HTML, CSS e JavaScript puro mínimo. Sem frameworks nem bibliotecas de CSS, JS ou animação. Não instalar dependências sem autorização.
 - Dados só de `referencias/pedido-do-cliente.md`. Nada inventado: o que falta aparece "a confirmar" ou como EXEMPLO marcado. Sem depoimentos, taxas, garantias, prazos ou números inventados. Avaliações: só a nota real do Google (loja 4,2 com 5; oficina 4,0 com 127), com link.
-- WhatsApp da loja (27) 99780-7040 em venda, compra e troca; da oficina (27) 99916-1157 só nos serviços da oficina. Uma única cor de ação: o vermelho da marca.
-- Estoque: vitrine única, carros misturados, sem abas, grupos ou rótulos por faixa de valor; filtros por preço, carroceria e marca; selo "Destaque" opcional, sem relação com preço.
-- Imagens de veículos: só de `imagens-geradas/`, nunca geradas nem alteradas. Imagens ilustrativas: geradas pelo Paulo, salvas em `imagens-ia/`. Toda imagem leva "Imagem ilustrativa"; sem imagem, bloco "imagem a definir" no tamanho final. Não abrir as imagens uma a uma; conferir no site renderizado.
+- WhatsApp da loja (27) 99780-7040 em venda, compra e troca; da oficina (27) 99916-1157 só nos serviços da oficina. Glifo oficial do WhatsApp em todos os botões e botão flutuante em todas as páginas.
+- Identidade (v1): preto e vermelho dominam; uma única cor de ação, o vermelho #D7191F (#B2251D no hover); conteúdo até 1360 px; ícones de traço e glifos em SVG local (`lib/icones/`), licenças em `licencas/`.
+- Estoque: vitrine única, carros misturados, sem abas, grupos ou rótulos por faixa de valor; filtros por preço, carroceria, marca, ano e câmbio (km e combustível fora); ordem padrão ano mais novo primeiro; selo "Destaque" opcional, sem relação com preço.
+- Imagens de veículos: só de `imagens-geradas/`, nunca geradas nem alteradas, na vitrine, na página do veículo e, até `imagens-ia/ia-hero-entrega.png` existir, no hero. Imagens ilustrativas: geradas pelo Paulo, salvas em `imagens-ia/`. Toda imagem leva "Imagem ilustrativa"; sem imagem ilustrativa, bloco de marca no tamanho final (nome do arquivo só em comentário do HTML). Não abrir as imagens uma a uma; conferir no site renderizado.
 - Movimento moderado, respeitando `prefers-reduced-motion`; nunca esconder preço, ano, km, fotos ou WhatsApp; não atrasar a primeira tela.
 
 ## Comandos
@@ -40,7 +41,7 @@ Rebranding de demonstração, não oficial, em pt-BR, para a MVA Multicar (semin
 
 1. Pegue o nome e o prompt em `imagens.md` §2 e §5.
 2. Salve o PNG em `imagens-ia/<nome>.png`.
-3. `npm run dev`: o bloco "imagem a definir" vira a imagem, com a etiqueta. Ajuste o ponto de foco em `src/_data/ilustracoes.js` se o recorte cortar o assunto.
+3. `npm run dev`: o bloco de marca vira a imagem, com a etiqueta (no hero, a imagem substitui a capa da Ranger). Ajuste o ponto de foco em `src/_data/ilustracoes.js` se o recorte cortar o assunto.
 4. Mude o status em `imagens.md`.
 
 ## Como trabalhar

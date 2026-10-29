@@ -3,47 +3,54 @@
     <div class="rodape__grade">
       <div class="rodape__marca">
         <a class="logo logo--escuro" href="/" aria-label="MVA Multicar, página inicial">
-          {{ logotipo.logo("escuro", 26) | safe }}
+          {{ logotipo.logo("escuro", 30) | safe }}
           <span class="logo__divisor" aria-hidden="true"></span>
           <span class="logo__nome" aria-hidden="true">Multicar</span>
         </a>
-        <p>{{ loja.descricao }} em {{ loja.endereco.cidade }}. Compra, venda, troca e financiamento.</p>
+        <p>{{ loja.descricao }} em {{ loja.endereco.cidade }}. Compra, venda, troca e financiamento, com a oficina do grupo ao lado.</p>
+        <ul class="rodape__redes">
+          <li><a href="{{ loja.instagram.link }}" target="_blank" rel="noopener" aria-label="Instagram da loja {{ loja.instagram.usuario }}">{{ icone("instagram") | safe }}</a></li>
+          <li><a href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener" aria-label="WhatsApp da loja {{ loja.whatsapp.exibicao }}">{{ icone("whatsapp") | safe }}</a></li>
+        </ul>
       </div>
-      <div>
-        <h2 class="rodape__titulo">Loja</h2>
-        <address>
-          {{ loja.endereco.logradouro }}, {{ loja.endereco.bairro }}<br>
-          {{ loja.endereco.cidade }}, CEP {{ loja.endereco.cep }}<br>
-          {{ loja.horario }}
-        </address>
-        <p><a href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener">WhatsApp {{ loja.whatsapp.exibicao }}</a></p>
-        <p><a href="{{ loja.instagram.link }}" target="_blank" rel="noopener">Instagram {{ loja.instagram.usuario }}</a></p>
+
+      <div class="rodape__unidade">
+        <h2 class="rodape__titulo">Loja MVA Multicar</h2>
+        <ul class="rodape__dados">
+          <li>{{ icone("map-pin") | safe }}<span>{{ loja.endereco.logradouro }}, {{ loja.endereco.bairro }}, {{ loja.endereco.cidade }}, CEP {{ loja.endereco.cep }}</span></li>
+          <li>{{ icone("clock") | safe }}<span>{{ loja.horario }}</span></li>
+          <li>{{ icone("whatsapp") | safe }}<a href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener">{{ loja.whatsapp.exibicao }}</a></li>
+          <li>{{ icone("instagram") | safe }}<a href="{{ loja.instagram.link }}" target="_blank" rel="noopener">{{ loja.instagram.usuario }}</a></li>
+        </ul>
       </div>
-      <div>
-        <h2 class="rodape__titulo">Oficina</h2>
-        <address>
-          {{ loja.oficina.nome }}<br>
-          {{ loja.oficina.endereco }}
-        </address>
-        <p><a href="{{ wa(loja.mensagens.oficina, loja.oficina.whatsapp.numero) }}" target="_blank" rel="noopener">WhatsApp {{ loja.oficina.whatsapp.exibicao }}</a></p>
-        <p><a href="{{ loja.oficina.instagram.link }}" target="_blank" rel="noopener">Instagram {{ loja.oficina.instagram.usuario }}</a></p>
+
+      <div class="rodape__unidade">
+        <h2 class="rodape__titulo">Oficina {{ loja.oficina.nome }}</h2>
+        <ul class="rodape__dados">
+          <li>{{ icone("map-pin") | safe }}<span>{{ loja.oficina.endereco }}, {{ loja.oficina.referencia }}, {{ loja.endereco.cidade }}</span></li>
+          <li>{{ icone("clock") | safe }}<span>{{ loja.oficina.horario }}</span></li>
+          <li>{{ icone("whatsapp") | safe }}<a href="{{ wa(loja.mensagens.oficina, loja.oficina.whatsapp.numero) }}" target="_blank" rel="noopener">{{ loja.oficina.whatsapp.exibicao }}</a></li>
+          <li>{{ icone("instagram") | safe }}<a href="{{ loja.oficina.instagram.link }}" target="_blank" rel="noopener">{{ loja.oficina.instagram.usuario }}</a></li>
+        </ul>
       </div>
-      <nav aria-label="Rodapé">
+
+      <nav class="rodape__nav" aria-label="Rodapé">
         <h2 class="rodape__titulo">Site</h2>
         <ul class="rodape__links">
           <li><a href="/estoque/">Estoque</a></li>
           <li><a href="/vender-ou-trocar/">Vender ou trocar</a></li>
           <li><a href="/financiamento/">Financiamento</a></li>
+          <li><a href="/oficina/">Oficina</a></li>
           <li><a href="/sobre/">Sobre</a></li>
           <li><a href="/contato/">Contato</a></li>
           <li><a href="/privacidade/">Privacidade</a></li>
         </ul>
       </nav>
     </div>
+
     <div class="rodape__notas">
-      <p><strong>Projeto de demonstração.</strong> Não é o site oficial da MVA Multicar.</p>
-      <p>Imagens ilustrativas de demonstração; fotos reais no site final.</p>
-      <p>Valores de {{ loja.valoresEm }}, sujeitos a alteração.</p>
+      <p class="rodape__demo">{{ tracos("rodape__tracos") | safe }}<strong>Projeto de demonstração.</strong> Não é o site oficial da MVA Multicar.</p>
+      <p>Imagens ilustrativas de demonstração; fotos reais no site final. Valores de {{ loja.valoresEm }}, sujeitos a alteração.</p>
     </div>
   </div>
 </footer>

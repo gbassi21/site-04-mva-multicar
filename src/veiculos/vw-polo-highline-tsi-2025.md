@@ -1,7 +1,7 @@
 ---
 marca: Volkswagen
 modelo: Polo
-versao: Highline TSI 1.0 aut
+versao: Highline 1.0 TSI aut
 ano: 2025
 ano_fabricacao: 2024
 km: 47000

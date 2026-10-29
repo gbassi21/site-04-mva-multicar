@@ -1,7 +1,7 @@
 ---
 marca: Toyota
 modelo: Hilux
-versao: SRV 2.8 CD 4x4 aut
+versao: SRV 2.8 4x4 aut
 ano: 2022
 km: 66000
 preco: 214900
@@ -14,5 +14,5 @@ cabine: Dupla
 cor:
 destaque: false
 ordem:
-assumidos: [combustivel]
+assumidos: []
 ---

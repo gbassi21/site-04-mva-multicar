@@ -24,30 +24,29 @@ Regras permanentes: "Projeto de demonstração" em todas as páginas; `noindex` 
 
 ## 3. Páginas e seções, na ordem
 
-Todas as páginas: faixa "Projeto de demonstração" no topo, cabeçalho, conteúdo, rodapé com a nota "Imagens ilustrativas de demonstração; fotos reais no site final", "Valores de 28/out/2026, sujeitos a alteração" e "Projeto de demonstração. Não é o site oficial da MVA Multicar.".
+Todas as páginas: faixa "Projeto de demonstração" no topo, cabeçalho com 4 links (Estoque, Vender ou trocar, Oficina, Contato) e WhatsApp, botão flutuante de WhatsApp (número da loja; na oficina, o da oficina), conteúdo, rodapé com a nota "Imagens ilustrativas de demonstração; fotos reais no site final", "Valores de 28/out/2026, sujeitos a alteração" e "Projeto de demonstração. Não é o site oficial da MVA Multicar.".
 
-### 3.1 Início `/`
+### 3.1 Início `/` (construída na Amostra v1)
 
-1. **Hero** com imagem fixa (sem vídeo): título curto, subtítulo, busca por marca ou modelo (envia `?q=` para `/estoque/`) e pílulas Comprar (`/estoque/`), Vender (`/vender-ou-trocar/`), Trocar (`/vender-ou-trocar/#troca`).
-2. **Três cards de serviço**: Venda ou troque seu carro (`/vender-ou-trocar/`), Financiamento (`/financiamento/`), Cuide do seu carro (`/oficina/`).
-3. **Faixa cinza com três cartões**: "Vender ou trocar" (ilustração + pedido de avaliação no WhatsApp), "Vistos recentemente" (do navegador; some se vazio) e "Buscas rápidas" (pílulas por carroceria, marca e preço máximo, que abrem o estoque filtrado).
-4. **Carros à venda**: vitrine única com os carros misturados, na ordem padrão (§5.2), efeito do carro entrando, selo "Destaque" opcional; card final "Ver todo o estoque".
-5. **Por que a MVA**: três colunas com ícone e fatos reais (oficina do grupo ao lado, com a nota; compra, venda, troca e financiamento num lugar só; atendimento direto pelo WhatsApp).
-6. **Oficina ao lado**: quatro cards em retrato (alinhamento 3D, balanceamento e pneus, freios, troca de óleo; freios e óleo **a confirmar** dentro de "mecânica geral") e CTA para o WhatsApp da oficina.
-7. **Como funciona**, com abas Comprar / Vender: três passos cada.
-   - Comprar: escolha no estoque; fale no WhatsApp e agende a visita; feche e retire o carro (com o laço vermelho no capô).
-   - Vender: mande modelo, ano e km pelo WhatsApp; traga o carro para avaliação; receba a proposta de compra ou de troca.
-8. **Avaliações no Google** (substitui depoimentos): loja 4,2 com 5 avaliações; oficina 4,0 com 127; cada uma com link. Nenhum depoimento.
-9. **Explore por carroceria**: Hatch, Sedã, SUV, Picape (ícones desenhados em SVG).
-10. **Onde estamos**: as duas unidades lado a lado, horário, ilustração de mapa e link para o Google Maps.
-11. **Continue sua busca**: listas de links para o estoque filtrado (por preço, marca, carroceria).
+1. **Hero** preto: título curto, subtítulo, busca por marca ou modelo (envia `?q=` para `/estoque/`), pílulas Comprar (`/estoque/`), Vender (`/vender-ou-trocar/`), Trocar (`/vender-ou-trocar/#troca`); à direita, a imagem do hero (`ia-hero-entrega.png`) ou, até ela existir, a capa de estúdio do carro de `carroHero` com etiqueta de nome, preço e link.
+2. **Três cards de serviço**: "Quanto vale o seu carro?" (`/vender-ou-trocar/`), "Financiamento" (via banco, `/financiamento/`), "Cuide do seu carro" (oficina, `/oficina/`).
+3. **Faixa de confiança** (só fatos): oficina própria ao lado, desde 2017; troca e financiamento via banco; atendimento pelo WhatsApp.
+4. **Carros à venda** (`#carros`): vitrine única com os filtros de §3.2 (estado na URL também na home), ordem padrão, efeito do carro chegando, selo "Destaque" opcional, card final "Ver todo o estoque".
+5. **Explore por tipo**: Hatch, Sedã, SUV, Picape, com silhueta e quantidade; filtram a vitrine da home (no site completo, levam ao estoque filtrado).
+6. **Cuide do seu carro** (faixa preta, `#oficina`): MVA Centro Automotivo, endereço, horário (seg a sex, 8h às 18h), nota 4,0 com 127 avaliações e link, 8 serviços reais com ícone (cada um abre o WhatsApp da oficina com o serviço na mensagem), botão de WhatsApp e Instagram da oficina.
+7. **Como funciona** em 3 passos: escolha no site; financie ou dê seu carro na troca; retire com o laço vermelho.
+8. **Avaliações no Google**: loja 4,2 (5 avaliações) e oficina 4,0 (127), com link. Nenhum depoimento.
+9. **Faixa CTA vermelha**: "Quer vender ou trocar o seu carro?" → WhatsApp da loja com a mensagem de avaliação.
+10. **Rodapé preto completo**: logo, texto curto, Instagram e WhatsApp, as duas unidades (endereço, horário, WhatsApp, Instagram), links do site, "Projeto de demonstração", nota das imagens e data dos valores.
+
+Para o site completo, sugeridas em `referencias/solucoes-secoes-mva.md`: "Clássicos e raridades" (dois Fuscas 1995 e o Passat GTS 1987, com bloco "fotos em breve" até haver imagens), "Compre seguro na MVA" (4 cuidados contra golpes) e "Para lojistas: carros no repasse".
 
 ### 3.2 Estoque `/estoque/`
 
 Título com a contagem, filtros, ordenação, grade de cards e estado vazio ("Não achou? Conte o que procura no WhatsApp").
 
-- Filtros: **faixa de preço** (mínimo e máximo, opções geradas a partir do campo `preco`), **carroceria** (Hatch, Sedã, SUV, Picape) e **marca** (opções só com o que existe nos dados). Busca livre `q` (marca ou modelo) vinda do hero.
-- Estado na URL: `?q=&carroceria=&marca=&preco_min=&preco_max=&ordem=`. Recarregar ou compartilhar o link mantém o filtro.
+- Filtros: **preço até** (degraus gerados a partir do campo `preco`), **carroceria** (Hatch, Sedã, SUV, Picape), **marca**, **ano a partir de** e **câmbio** (opções só com o que existe nos dados). Km e combustível ficam fora (decisão de 29/10/2026). Busca livre `q` (marca ou modelo) vinda do hero.
+- Estado na URL: `?q=&carroceria=&marca=&ano=&cambio=&preco_max=&ordem=`. Recarregar ou compartilhar o link mantém o filtro.
 - Ordenação: padrão (§5.2), menor preço, maior preço, mais novo, menor km.
 - Sem JavaScript, a página mostra todos os carros na ordem padrão.
 
@@ -122,7 +121,7 @@ Cada veículo é um arquivo `src/veiculos/<pasta>.md` com o mesmo nome da pasta 
 ---
 marca: Ford
 modelo: Ranger
-versao: 3.2 Limited CD 4x4 aut      # texto da versão como no anúncio
+versao: 3.2 Limited 4x4 aut         # texto da versão como no pedido
 ano: 2018                           # ano-modelo (número)
 ano_fabricacao:                     # opcional; quando diferente, exibe "2024/2025"
 km: 160000
@@ -136,7 +135,7 @@ cabine: Dupla                       # opcional (picapes)
 cor:                                # vazio = "a confirmar"
 destaque: false                     # selo opcional, sem relação com preço
 ordem:                              # opcional, ordem definida pela loja
-assumidos: [combustivel]            # campos deduzidos, a conferir com a loja
+assumidos: []                       # campos deduzidos, a conferir com a loja
 ---
 Descrição opcional em texto corrido.
 ```
@@ -155,7 +154,7 @@ Os campos preenchidos por dedução técnica inequívoca ficam listados em `assu
 
 ## 7. Escopo
 
-**Amostra v0 (agora):** cabeçalho, hero, três cards de serviço, bloco "Carros à venda" com os veículos que já têm imagens (Ranger, Duster, Saveiro) e o topo da página do veículo (galeria, painel e ficha), com rodapé compacto e faixa de demonstração. Links para páginas ainda não construídas apontam para os caminhos finais.
+**Amostra v1 (agora):** home completa (§3.1), página do veículo (topo, ficha e barra fixa) e 404, com os veículos que já têm imagens (Ranger, Duster, Saveiro). Links para páginas ainda não construídas apontam para os caminhos finais e caem na 404.
 
 **Site completo (depois da aprovação):** todas as seções e páginas do §3.
 
@@ -163,7 +162,7 @@ Os campos preenchidos por dedução técnica inequívoca ficam listados em `assu
 
 ## 8. O que falta
 
-- 16 imagens ilustrativas (`imagens.md` §2) e as imagens padronizadas de 7 veículos (`imagens.md` §3).
+- 16 imagens ilustrativas (`imagens.md` §2) e as imagens padronizadas de 7 veículos (`imagens.md` §3; o Paulo padroniza).
 - Dados a confirmar com os donos (`memoria.md`, Pendências).
 - Aprovação da amostra (identidade, logo, hero, cards, efeito).
 
@@ -173,4 +172,4 @@ Os campos preenchidos por dedução técnica inequívoca ficam listados em `assu
 
 **Acessibilidade (WCAG 2.2 AA):** contrastes conferidos (`specs/design.md` §3); foco visível em tudo; link "Pular para o conteúdo"; landmarks (`header`, `nav`, `main`, `footer`); um `h1` por página; textos alternativos honestos ("imagem ilustrativa"); galeria operável por teclado; `prefers-reduced-motion` respeitado; nada essencial só na cor.
 
-**Desempenho:** LCP abaixo de 2,5 s em 4G; CLS abaixo de 0,1; imagens AVIF e WebP com `srcset`, dimensões declaradas e `loading="lazy"` fora da primeira tela; fonte local com `preload` e `font-display: swap`; CSS único; JavaScript próprio abaixo de 12 kB, carregado com `defer`; nenhuma biblioteca de CSS, JS ou animação.
+**Desempenho:** LCP abaixo de 2,5 s em 4G; CLS abaixo de 0,1; imagens AVIF e WebP com `srcset`, dimensões declaradas e `loading="lazy"` fora da primeira tela; fonte local com `preload` e `font-display: swap`; ícones em SVG embutido; CSS único; JavaScript próprio abaixo de 12 kB, carregado com `defer`; nenhuma biblioteca de CSS, JS ou animação.

@@ -2,8 +2,8 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import Image, { generateHTML } from "@11ty/eleventy-img";
-import icone from "./lib/icones.js";
-import { RAIZ_VEICULOS, arquivosDoVeiculo, formatoNumero, formatoReal, ordemPadrao, temCapa } from "./lib/veiculos.js";
+import { carroceria, icone, tracos } from "./lib/icones.js";
+import { RAIZ_VEICULOS, arquivosDoVeiculo, formatoNumero, formatoReal, opcoesFiltros, ordemPadrao, slug, temCapa } from "./lib/veiculos.js";
 import ilustracoes from "./src/_data/ilustracoes.js";
 import logotipo from "./src/_data/logotipo.js";
 
@@ -74,14 +74,16 @@ function atributos(alt, sizes, prioridade) {
   };
 }
 
-function aDefinir(arquivo, proporcao) {
-  return `<span class="a-definir"><span class="a-definir__rotulo">imagem a definir · ${arquivo} · ${proporcao}</span></span>`;
+// Enquanto a imagem não existe: bloco de design no tom da marca, com o ícone e os traços do logo.
+// O nome do arquivo esperado fica só no comentário do HTML.
+function blocoDeMarca(arquivo, proporcao, nomeIcone = "car-front", tom = "preto") {
+  return `<!-- imagem a definir: imagens-ia/${arquivo} (${proporcao}) --><span class="bloco bloco--${tom}" aria-hidden="true">${tracos("bloco__tracos")}${icone(nomeIcone, "bloco__icone")}</span>`;
 }
 
 // <picture> de uma imagem de veículo já processada (imagens-geradas/<pasta>/NN-nome.png).
 function fotoVeiculo(chave, alt, sizes = "100vw", prioridade = false) {
   const meta = fotos.get(chave);
-  if (!meta) return aDefinir(chave, "3:2");
+  if (!meta) return blocoDeMarca(chave, "3:2");
   return generateHTML(meta, atributos(alt, sizes, prioridade));
 }
 
@@ -90,9 +92,14 @@ function ilustracao(nome, sizes = "100vw", prioridade = false) {
   const item = ilustracoes[nome];
   if (!item) return "";
   const meta = fotos.get(`ia/${item.arquivo}`);
-  if (!meta) return aDefinir(item.arquivo, item.proporcao);
+  if (!meta) return blocoDeMarca(item.arquivo, item.proporcao, item.icone, item.tom);
   const html = generateHTML(meta, atributos(item.alt, sizes, prioridade)).replace("<img ", `<img style="object-position:${item.foco}" `);
   return `${html}<span class="etiqueta">Imagem ilustrativa</span>`;
+}
+
+function temIlustracao(nome) {
+  const item = ilustracoes[nome];
+  return Boolean(item && fotos.has(`ia/${item.arquivo}`));
 }
 
 // Pré-carrega a imagem ilustrativa da primeira tela, se ela já existir.
@@ -125,12 +132,20 @@ export default function (eleventyConfig) {
   eleventyConfig.addNunjucksGlobal("ilustracao", ilustracao);
   eleventyConfig.addNunjucksGlobal("precarregarIlustracao", precarregarIlustracao);
   eleventyConfig.addNunjucksGlobal("wa", linkWhatsApp);
+  eleventyConfig.addNunjucksGlobal("temIlustracao", temIlustracao);
   eleventyConfig.addNunjucksGlobal("icone", icone);
+  eleventyConfig.addNunjucksGlobal("carroceria", carroceria);
+  eleventyConfig.addNunjucksGlobal("tracos", tracos);
 
   eleventyConfig.addFilter("reais", (valor) => (valor || valor === 0 ? formatoReal.format(valor) : ""));
   eleventyConfig.addFilter("numero", (valor) => (valor || valor === 0 ? formatoNumero.format(valor) : ""));
   // Versão pelo conteúdo do arquivo: o navegador não mistura HTML novo com CSS ou JS antigo.
   eleventyConfig.addFilter("versao", (caminho) => `${caminho}?v=${crypto.createHash("md5").update(fs.readFileSync(`src${caminho}`)).digest("hex").slice(0, 8)}`);
+
+  eleventyConfig.addFilter("slug", slug);
+  eleventyConfig.addFilter("opcoesFiltros", opcoesFiltros);
+  eleventyConfig.addFilter("buscarVeiculo", (lista, pasta) => lista.find((v) => v.page.fileSlug === pasta));
+  eleventyConfig.addFilter("contarCarroceria", (lista, tipo) => lista.filter((v) => v.data.carroceria === tipo).length);
 
   eleventyConfig.addCollection("veiculos", (api) => {
     const todos = api.getFilteredByGlob("src/veiculos/*.md");

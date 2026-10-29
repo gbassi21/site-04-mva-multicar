@@ -33,18 +33,19 @@ export default {
     ficha: (d) => {
       const assumidos = new Set(d.assumidos || []);
       const itens = [
-        ["Ano", anoTexto(d)],
-        ["Quilometragem", `${formatoNumero.format(d.km)} km`],
-        ["Câmbio", d.cambio, "cambio"],
-        ["Combustível", d.combustivel, "combustivel"],
-        ["Motor", d.motor, "motor"],
-        ["Carroceria", CARROCERIAS[d.carroceria], "carroceria"],
+        ["Ano", anoTexto(d), "", "calendar"],
+        ["Quilometragem", `${formatoNumero.format(d.km)} km`, "", "gauge"],
+        ["Câmbio", d.cambio, "cambio", "cog"],
+        ["Combustível", d.combustivel, "combustivel", "fuel"],
+        ["Motor", d.motor, "motor", "engine"],
+        ["Carroceria", CARROCERIAS[d.carroceria], "carroceria", "car"],
       ];
-      if (d.tracao) itens.push(["Tração", d.tracao, "tracao"]);
-      if (d.carroceria === "picape") itens.push(["Cabine", d.cabine, "cabine"]);
-      itens.push(["Cor", d.cor, "cor"]);
-      return itens.map(([rotulo, valor, campo]) => ({
+      if (d.tracao) itens.push(["Tração", d.tracao, "tracao", "mountain"]);
+      if (d.carroceria === "picape") itens.push(["Cabine", d.cabine, "cabine", "users"]);
+      itens.push(["Cor", d.cor, "cor", "palette"]);
+      return itens.map(([rotulo, valor, campo, icone]) => ({
         rotulo,
+        icone,
         valor: valor ? String(valor) : "",
         assumido: Boolean(valor && campo && assumidos.has(campo)),
       }));
