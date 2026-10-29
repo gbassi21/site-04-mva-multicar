@@ -1,0 +1,37 @@
+{
+  "nome": "MVA Multicar",
+  "descricao": "Seminovos e usados multimarcas",
+  "endereco": {
+    "logradouro": "Av. Abido Saad, 2551",
+    "bairro": "Das Laranjeiras",
+    "cidade": "Jacaraípe, Serra (ES)",
+    "cep": "29175-585"
+  },
+  "whatsapp": { "numero": "5527997807040", "exibicao": "(27) 99780-7040" },
+  "horario": "8h às 18h (dias e sábado a confirmar)",
+  "google": {
+    "nota": "4,2",
+    "avaliacoes": 5,
+    "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Multicar%20Av.%20Abido%20Saad%202551%20Jacara%C3%ADpe%20Serra%20ES"
+  },
+  "instagram": { "usuario": "@mva_multicar", "link": "https://www.instagram.com/mva_multicar/" },
+  "valoresEm": "28/out/2026",
+  "oficina": {
+    "nome": "MVA Centro Automotivo",
+    "endereco": "Av. Abido Saad, 2553 (ao lado da loja)",
+    "whatsapp": { "numero": "5527999161157", "exibicao": "(27) 99916-1157" },
+    "servicos": "Mecânica geral, alinhamento 3D, balanceamento e pneus",
+    "google": {
+      "nota": "4,0",
+      "avaliacoes": 127,
+      "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Centro%20Automotivo%20Av.%20Abido%20Saad%202553%20Jacara%C3%ADpe%20Serra%20ES"
+    },
+    "instagram": { "usuario": "@mvacentroautomotivo", "link": "https://www.instagram.com/mvacentroautomotivo/" }
+  },
+  "mensagens": {
+    "geral": "Olá! Vim pelo site da MVA Multicar e quero mais informações.",
+    "avaliacao": "Olá! Quero avaliar meu carro para venda ou troca na MVA Multicar. Modelo, ano e km: ",
+    "financiamento": "Olá! Quero saber como funciona o financiamento na MVA Multicar.",
+    "oficina": "Olá! Vim pelo site e quero agendar um serviço na MVA Centro Automotivo. Serviço: "
+  }
+}

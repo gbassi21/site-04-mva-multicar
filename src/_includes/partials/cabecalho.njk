@@ -1,0 +1,33 @@
+{%- set itensMenu = [
+  { url: "/estoque/", nome: "Comprar" },
+  { url: "/vender-ou-trocar/", nome: "Vender ou trocar" },
+  { url: "/financiamento/", nome: "Financiamento" },
+  { url: "/oficina/", nome: "Oficina" },
+  { url: "/sobre/", nome: "Sobre" },
+  { url: "/contato/", nome: "Contato" }
+] -%}
+<header class="cabecalho" data-cabecalho>
+  <div class="envoltorio cabecalho__barra">
+    <a class="logo" href="/" aria-label="MVA Multicar, página inicial">
+      {{ logotipo.logo("claro", 28) | safe }}
+      <span class="logo__divisor" aria-hidden="true"></span>
+      <span class="logo__nome" aria-hidden="true">Multicar</span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <ul class="menu__lista">
+        {%- for item in itensMenu %}
+        <li><a class="menu__link" href="{{ item.url }}"{% if page.url and page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.nome }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <div class="cabecalho__acoes">
+      <a class="botao botao--primario botao--cabecalho" href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener">
+        {{ icone("whatsapp") | safe }}<span class="cabecalho__wa-texto">WhatsApp</span>
+      </a>
+      <button class="cabecalho__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu>
+        <span class="icone-abrir">{{ icone("menu") | safe }}</span><span class="icone-fechar">{{ icone("fechar") | safe }}</span>
+        <span class="vh">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>

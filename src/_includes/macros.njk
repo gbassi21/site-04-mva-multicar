@@ -1,0 +1,30 @@
+{% macro cardVeiculo(v) %}
+<article class="card-veiculo" data-chegada>
+  <div class="card-veiculo__quadro">
+    {{ fotoVeiculo(v.page.fileSlug + "/01-capa.png", v.data.nome + " " + v.data.anoTexto + " (imagem ilustrativa)", "(min-width: 1024px) 250px, (min-width: 768px) 46vw, 78vw") | safe }}
+    <span class="card-veiculo__tracos" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="etiqueta">Imagem ilustrativa</span>
+    {% if v.data.destaque %}<span class="selo">Destaque</span>{% endif %}
+  </div>
+  <div class="card-veiculo__corpo">
+    <h3 class="card-veiculo__nome"><a href="{{ v.url }}">{{ v.data.nome }}</a></h3>
+    <p class="card-veiculo__versao">{{ v.data.versao }}</p>
+    <p class="card-veiculo__meta">{{ v.data.anoTexto }} · {{ v.data.km | numero }} km</p>
+    <p class="card-veiculo__preco">{{ v.data.preco | reais }}</p>
+    <a class="botao botao--contorno botao--pequeno card-veiculo__wa" href="{{ wa(v.data.mensagens.interesse) }}" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp sobre o {{ v.data.nome }} {{ v.data.anoTexto }}">
+      {{ icone("whatsapp") | safe }}<span aria-hidden="true">Chamar no WhatsApp</span>
+    </a>
+  </div>
+</article>
+{% endmacro %}
+
+{% macro cardServico(url, imagem, titulo, texto, acao) %}
+<a class="card-servico" href="{{ url }}">
+  <span class="card-servico__imagem" aria-hidden="true">{{ ilustracao(imagem, "(min-width: 1024px) 340px, 100vw") | safe }}</span>
+  <span class="card-servico__texto">
+    <span class="card-servico__titulo">{{ titulo }}</span>
+    <span class="card-servico__descricao">{{ texto }}</span>
+    <span class="link-acao">{{ acao }} {{ icone("seta-direita") | safe }}</span>
+  </span>
+</a>
+{% endmacro %}

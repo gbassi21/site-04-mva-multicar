@@ -1,0 +1,9 @@
+node_modules/
+_site/
+.cache/
+.DS_Store
+# Fotos originais dos carros (fonte, fora do site)
+carros_originais/
+# Em imagens-geradas só entram as imagens com nome padrão (NN-nome.png)
+imagens-geradas/*/*
+!imagens-geradas/*/[0-9][0-9]-*.png

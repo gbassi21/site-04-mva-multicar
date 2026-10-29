@@ -1,0 +1,56 @@
+---
+layout: layouts/base.njk
+titulo: Seminovos e usados em Jacaraípe, Serra (ES)
+precarregar: hero-entrega
+---
+{% from "macros.njk" import cardVeiculo, cardServico %}
+
+<section class="hero" aria-labelledby="titulo-hero">
+  <div class="hero__fundo">{{ ilustracao("hero-entrega", "100vw", true) | safe }}</div>
+  <div class="envoltorio hero__conteudo">
+    <h1 class="hero__titulo" id="titulo-hero">Seu próximo carro, perto de casa</h1>
+    <p class="hero__sub">Seminovos e usados multimarcas em Jacaraípe, Serra (ES). Compra, venda, troca e financiamento.</p>
+    <form class="busca" action="/estoque/" method="get" role="search">
+      <label class="vh" for="busca-hero">Buscar por marca ou modelo</label>
+      <span class="busca__icone">{{ icone("busca") | safe }}</span>
+      <input class="busca__campo" id="busca-hero" name="q" type="search" placeholder="Marca ou modelo" autocomplete="off" enterkeyhint="search">
+      <button class="botao botao--primario busca__botao" type="submit">Buscar</button>
+    </form>
+    <nav class="hero__pilulas" aria-label="Atalhos">
+      <a class="pilula" href="/estoque/">Comprar</a>
+      <a class="pilula" href="/vender-ou-trocar/">Vender</a>
+      <a class="pilula" href="/vender-ou-trocar/#troca">Trocar</a>
+    </nav>
+  </div>
+</section>
+
+<section class="envoltorio servicos" aria-labelledby="titulo-servicos">
+  <h2 class="vh" id="titulo-servicos">Serviços</h2>
+  <ul class="servicos__lista">
+    <li>{{ cardServico("/vender-ou-trocar/", "card-avaliacao", "Venda ou troque seu carro", "Avaliamos seu carro para compra ou para entrar na troca.", "Pedir avaliação") }}</li>
+    <li>{{ cardServico("/financiamento/", "card-financiamento", "Financiamento", "Veja com a loja as condições para o carro que você escolheu.", "Como funciona") }}</li>
+    <li>{{ cardServico("/oficina/", "card-oficina", "Cuide do seu carro", "Oficina do grupo ao lado da loja: mecânica geral, alinhamento 3D e pneus.", "Conhecer a oficina") }}</li>
+  </ul>
+</section>
+
+<section class="envoltorio secao" aria-labelledby="titulo-vitrine">
+  <div class="secao__topo">
+    <div>
+      <h2 class="secao__titulo" id="titulo-vitrine" data-revelar>Carros à venda</h2>
+      <p class="secao__nota">Valores de {{ loja.valoresEm }}, sujeitos a alteração.</p>
+    </div>
+    <a class="link-acao secao__link" href="/estoque/">Ver todo o estoque {{ icone("seta-direita") | safe }}</a>
+  </div>
+  <ul class="vitrine">
+    {%- for v in collections.veiculos %}
+    <li class="vitrine__item">{{ cardVeiculo(v) }}</li>
+    {%- endfor %}
+    <li class="vitrine__item">
+      <a class="card-fim" href="/estoque/">
+        <span class="card-fim__titulo">Ver todo o estoque</span>
+        <span class="card-fim__texto">Hatch, sedã, SUV e picape, do popular ao premium.</span>
+        <span class="card-fim__seta">{{ icone("seta-direita") | safe }}</span>
+      </a>
+    </li>
+  </ul>
+</section>

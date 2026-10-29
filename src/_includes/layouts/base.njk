@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ titulo }} · MVA Multicar (projeto de demonstração)</title>
+  <meta name="description" content="{{ descricao or 'Seminovos e usados multimarcas em Jacaraípe, Serra (ES). Compra, venda, troca e financiamento.' }}">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="{{ titulo }} · MVA Multicar (projeto de demonstração)">
+  <meta property="og:image" content="/og-mva.jpg">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icone-180.png">
+  <link rel="preload" href="/assets/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  {% if precarregar %}{{ precarregarIlustracao(precarregar) | safe }}{% endif %}
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | versao }}">
+  <script src="{{ '/assets/js/site.js' | versao }}" defer></script>
+</head>
+<body{% if classeCorpo %} class="{{ classeCorpo }}"{% endif %}>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <p class="demo">Projeto de demonstração<span class="demo__resto">. Não é o site oficial da MVA Multicar</span><span class="demo__curto"> · não oficial</span></p>
+  {% include "partials/cabecalho.njk" %}
+  <main id="conteudo">
+    {{ content | safe }}
+  </main>
+  {% include "partials/rodape.njk" %}
+</body>
+</html>

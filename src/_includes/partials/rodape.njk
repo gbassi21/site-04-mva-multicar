@@ -1,0 +1,49 @@
+<footer class="rodape">
+  <div class="envoltorio">
+    <div class="rodape__grade">
+      <div class="rodape__marca">
+        <a class="logo logo--escuro" href="/" aria-label="MVA Multicar, página inicial">
+          {{ logotipo.logo("escuro", 26) | safe }}
+          <span class="logo__divisor" aria-hidden="true"></span>
+          <span class="logo__nome" aria-hidden="true">Multicar</span>
+        </a>
+        <p>{{ loja.descricao }} em {{ loja.endereco.cidade }}. Compra, venda, troca e financiamento.</p>
+      </div>
+      <div>
+        <h2 class="rodape__titulo">Loja</h2>
+        <address>
+          {{ loja.endereco.logradouro }}, {{ loja.endereco.bairro }}<br>
+          {{ loja.endereco.cidade }}, CEP {{ loja.endereco.cep }}<br>
+          {{ loja.horario }}
+        </address>
+        <p><a href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener">WhatsApp {{ loja.whatsapp.exibicao }}</a></p>
+        <p><a href="{{ loja.instagram.link }}" target="_blank" rel="noopener">Instagram {{ loja.instagram.usuario }}</a></p>
+      </div>
+      <div>
+        <h2 class="rodape__titulo">Oficina</h2>
+        <address>
+          {{ loja.oficina.nome }}<br>
+          {{ loja.oficina.endereco }}
+        </address>
+        <p><a href="{{ wa(loja.mensagens.oficina, loja.oficina.whatsapp.numero) }}" target="_blank" rel="noopener">WhatsApp {{ loja.oficina.whatsapp.exibicao }}</a></p>
+        <p><a href="{{ loja.oficina.instagram.link }}" target="_blank" rel="noopener">Instagram {{ loja.oficina.instagram.usuario }}</a></p>
+      </div>
+      <nav aria-label="Rodapé">
+        <h2 class="rodape__titulo">Site</h2>
+        <ul class="rodape__links">
+          <li><a href="/estoque/">Estoque</a></li>
+          <li><a href="/vender-ou-trocar/">Vender ou trocar</a></li>
+          <li><a href="/financiamento/">Financiamento</a></li>
+          <li><a href="/sobre/">Sobre</a></li>
+          <li><a href="/contato/">Contato</a></li>
+          <li><a href="/privacidade/">Privacidade</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="rodape__notas">
+      <p><strong>Projeto de demonstração.</strong> Não é o site oficial da MVA Multicar.</p>
+      <p>Imagens ilustrativas de demonstração; fotos reais no site final.</p>
+      <p>Valores de {{ loja.valoresEm }}, sujeitos a alteração.</p>
+    </div>
+  </div>
+</footer>
