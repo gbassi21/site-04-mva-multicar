@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { HtmlBasePlugin } from "@11ty/eleventy";
 import Image, { generateHTML } from "@11ty/eleventy-img";
 import { carroceria, icone, tracos } from "./lib/icones.js";
 import { RAIZ_VEICULOS, arquivosDoVeiculo, formatoNumero, formatoReal, opcoesFiltros, ordemPadrao, slug, temCapa } from "./lib/veiculos.js";
@@ -15,7 +16,6 @@ const fotos = new Map();
 
 const OPCOES_BASE = {
   formats: ["avif", "webp"],
-  outputDir: "./_site/img/",
   urlPath: "/img/",
   sharpAvifOptions: { quality: 52, effort: 4 },
   sharpWebpOptions: { quality: 78 },
@@ -27,7 +27,7 @@ const OPCOES_BASE = {
 const OPCOES_VEICULO = { ...OPCOES_BASE, widths: [320, 640, 960, 1536] };
 const OPCOES_IA = { ...OPCOES_BASE, widths: [480, 960, 1536] };
 
-async function processarImagens() {
+async function processarImagens(saida) {
   const tarefas = [];
   if (fs.existsSync(RAIZ_VEICULOS)) {
     for (const pasta of fs.readdirSync(RAIZ_VEICULOS)) {
@@ -42,23 +42,23 @@ async function processarImagens() {
       tarefas.push([`ia/${arquivo}`, `${RAIZ_IA}/${arquivo}`, OPCOES_IA]);
     }
   }
-  await Promise.all(tarefas.map(async ([chave, arquivo, opcoes]) => fotos.set(chave, await Image(arquivo, opcoes))));
+  await Promise.all(tarefas.map(async ([chave, arquivo, opcoes]) => fotos.set(chave, await Image(arquivo, { ...opcoes, outputDir: path.join(saida, "img") }))));
 }
 
 // Favicon, ícones de atalho e prévia de link, desenhados a partir do logo.
-async function gerarMarca() {
-  fs.mkdirSync("_site", { recursive: true });
-  fs.writeFileSync("_site/favicon.svg", logotipo.icone(64));
+async function gerarMarca(saida) {
+  fs.mkdirSync(saida, { recursive: true });
+  fs.writeFileSync(path.join(saida, "favicon.svg"), logotipo.icone(64));
   await Image(Buffer.from(logotipo.icone(512)), {
     formats: ["png"],
     widths: [180, 512],
-    outputDir: "./_site/",
+    outputDir: saida,
     filenameFormat: (id, src, width, format) => `icone-${width}.${format}`,
   });
   await Image(Buffer.from(logotipo.compartilhamento()), {
     formats: ["jpeg"],
     widths: [1200],
-    outputDir: "./_site/",
+    outputDir: saida,
     sharpJpegOptions: { quality: 82, mozjpeg: true },
     filenameFormat: () => "og-mva.jpg",
   });
@@ -116,8 +116,8 @@ function linkWhatsApp(texto, numero = loja.whatsapp.numero) {
 }
 
 export default function (eleventyConfig) {
-  eleventyConfig.on("eleventy.before", async () => {
-    await Promise.all([processarImagens(), gerarMarca()]);
+  eleventyConfig.on("eleventy.before", async ({ directories }) => {
+    await Promise.all([processarImagens(directories.output), gerarMarca(directories.output)]);
   });
 
   eleventyConfig.addPassthroughCopy("src/assets/css");
@@ -164,6 +164,9 @@ export default function (eleventyConfig) {
     }
     return todos.filter((v) => temCapa(v.page.fileSlug)).sort(ordemPadrao);
   });
+
+  // No GitHub Pages o site fica em /<repositório>/: o build de publicação passa --pathprefix e o plugin ajusta os links.
+  eleventyConfig.addPlugin(HtmlBasePlugin);
 
   return {
     dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },

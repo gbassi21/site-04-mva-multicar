@@ -77,6 +77,13 @@ Registro curto: data, decisão e motivo. Decisão substituída fica riscada com 
 - **Privacidade:** texto de demonstração marcado para revisão jurídica; CNPJ da loja "a confirmar".
 - "Clássicos e raridades" e "Compre seguro": ainda sem decisão do Paulo, não construídas.
 
+### 03/11/2026: GitHub e publicação (pedido do Paulo)
+
+- Repositório https://github.com/paulobreder/site-04-mva-multicar, criado privado e tornado público a pedido do Paulo; colaboradores ele mesmo convida.
+- Site no ar pelo GitHub Pages, como o exemplo que o Paulo mandou: https://paulobreder.github.io/site-04-mva-multicar/. Continua com a barra de demonstração e `noindex` na meta; `robots.txt` e `_headers` não valem numa subpasta do Pages.
+- Publicação manual com `npm run publicar` (branch `gh-pages`). A publicação automática por GitHub Actions ficou de fora porque o login do `gh` não tem a permissão `workflow`.
+- Caminhos: `HtmlBasePlugin` com `--pathprefix`, fontes com caminho relativo no CSS, imagens geradas na pasta de saída do build.
+
 ## Assumidos (a revisar)
 
 - ~~Catálogo = 10 veículos com pasta~~ e ~~ordem por ano~~: confirmados pelo Paulo na v1 (ver acima).

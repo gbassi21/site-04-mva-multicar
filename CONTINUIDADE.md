@@ -28,6 +28,11 @@ Atualizado em 29/10/2026.
 - **Imagens:** a primeira build processa todas as imagens (~40 s para 3 carros); as seguintes reaproveitam `_site/img/`.
 - **Git:** `carros_originais/` e arquivos fora do padrão em `imagens-geradas/` ficam fora do Git (`.gitignore`).
 
+## Publicação (03/11/2026)
+
+- Repositório público: https://github.com/paulobreder/site-04-mva-multicar
+- Site no ar: https://paulobreder.github.io/site-04-mva-multicar/ (atualizar com `npm run publicar`, depois de commitar).
+
 ## Estado em 03/11/2026 (nada commitado desde a Amostra v1)
 
 - **Site completo construído:** início, estoque, 3 páginas de veículo (com "Outros carros"), vender ou trocar, financiamento, oficina, sobre, contato, privacidade e 404. Conferido em 390 e 1440 px, sem rolagem horizontal e sem erros no console.

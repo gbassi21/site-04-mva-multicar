@@ -7,3 +7,4 @@ carros_originais/
 # Em imagens-geradas só entram as imagens com nome padrão (NN-nome.png)
 imagens-geradas/*/*
 !imagens-geradas/*/[0-9][0-9]-*.png
+.publicar/

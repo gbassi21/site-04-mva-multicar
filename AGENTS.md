@@ -18,6 +18,7 @@ Rebranding de demonstração, não oficial, em pt-BR, para a MVA Multicar (semin
 
 - `npm run dev`: servidor local em http://localhost:8080 (o primeiro build processa as imagens e demora).
 - `npm run build`: gera `_site/`.
+- `npm run publicar`: monta o site e envia para o branch `gh-pages`; ele fica em https://paulobreder.github.io/site-04-mva-multicar/ (público, `noindex`). Só com autorização do Paulo.
 
 ## Onde consultar, por tarefa
 
