@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+permalink: /contato/
+titulo: Contato e localização
+descricao: Endereço, horário e WhatsApp da loja MVA Multicar e da oficina MVA Centro Automotivo, lado a lado em Jacaraípe, Serra (ES).
+---
+{% from "macros.njk" import topoPagina, tituloSecao %}
+
+{{ topoPagina({ titulo: "Contato e localização", trilha: "Contato", lead: "Loja e oficina ficam lado a lado na Av. Abido Saad, em Jacaraípe, Serra (ES).", imagem: "ilustra-localizacao" }) }}
+
+<section class="faixa faixa--branca" aria-labelledby="titulo-unidades">
+  <div class="envoltorio">
+    {{ tituloSecao("titulo-unidades", "As duas unidades") }}
+    <ul class="unidades">
+      {%- for u in [
+        { nome: "Loja MVA Multicar", icone: "store", endereco: loja.endereco.logradouro + ", " + loja.endereco.bairro + ", " + loja.endereco.cidade + ", CEP " + loja.endereco.cep, horario: loja.horario, wa: loja.whatsapp, msg: loja.mensagens.geral, ig: loja.instagram, mapa: loja.mapa, assunto: "Compra, venda, troca e financiamento" },
+        { nome: "Oficina " + loja.oficina.nome, icone: "wrench", endereco: loja.oficina.endereco + ", " + loja.oficina.referencia + ", " + loja.endereco.cidade + ", CEP " + loja.oficina.cep, horario: loja.oficina.horario, wa: loja.oficina.whatsapp, msg: loja.mensagens.oficina, ig: loja.oficina.instagram, mapa: loja.oficina.mapa, assunto: "Serviços da oficina" }
+      ] %}
+      <li class="unidade">
+        <h3 class="unidade__titulo unidade__titulo--icone">{{ icone(u.icone) | safe }}{{ u.nome }}</h3>
+        <p class="unidade__assunto">{{ u.assunto }}</p>
+        <ul class="unidade__dados">
+          <li>{{ icone("map-pin") | safe }}<span>{{ u.endereco }}</span></li>
+          <li>{{ icone("clock") | safe }}<span>{{ u.horario }}</span></li>
+          <li>{{ icone("instagram") | safe }}<a href="{{ u.ig.link }}" target="_blank" rel="noopener">{{ u.ig.usuario }}</a></li>
+        </ul>
+        <div class="unidade__acoes">
+          <a class="botao botao--primario" href="{{ wa(u.msg, u.wa.numero) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}{{ u.wa.exibicao }}</a>
+          <a class="botao botao--secundario" href="{{ u.mapa }}" target="_blank" rel="noopener">{{ icone("navigation") | safe }}Como chegar</a>
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="faixa faixa--cinza" aria-labelledby="titulo-lojistas">
+  <div class="envoltorio">
+    <div class="lojistas">
+      {{ tracos("lojistas__tracos") | safe }}
+      <div>
+        <h2 class="lojistas__titulo" id="titulo-lojistas">{{ icone("handshake") | safe }}Lojista? Carros no repasse</h2>
+        <p>A MVA também anuncia carros no repasse para outras lojas. Fale direto com a loja pelo WhatsApp.</p>
+      </div>
+      <a class="botao botao--primario botao--grande" href="{{ wa(loja.mensagens.lojista) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}Falar sobre repasse</a>
+    </div>
+  </div>
+</section>

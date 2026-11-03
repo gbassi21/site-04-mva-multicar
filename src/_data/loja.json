@@ -7,7 +7,10 @@
     "cidade": "Jacaraípe, Serra (ES)",
     "cep": "29175-585"
   },
-  "whatsapp": { "numero": "5527997807040", "exibicao": "(27) 99780-7040" },
+  "whatsapp": {
+    "numero": "5527997807040",
+    "exibicao": "(27) 99780-7040"
+  },
   "horario": "8h às 18h (sábado a confirmar)",
   "google": {
     "nota": "4,2",
@@ -15,7 +18,11 @@
     "avaliacoes": 5,
     "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Multicar%20Av.%20Abido%20Saad%202551%20Jacara%C3%ADpe%20Serra%20ES"
   },
-  "instagram": { "usuario": "@mva_multicar", "link": "https://www.instagram.com/mva_multicar/" },
+  "instagram": {
+    "usuario": "@mva_multicar",
+    "link": "https://www.instagram.com/mva_multicar/",
+    "seguidores": "cerca de 9,3 mil"
+  },
   "valoresEm": "28/out/2026",
   "notasEm": "29/out/2026",
   "oficina": {
@@ -24,30 +31,76 @@
     "referencia": "ao lado da loja",
     "desde": 2017,
     "horario": "Seg a sex, 8h às 18h",
-    "whatsapp": { "numero": "5527999161157", "exibicao": "(27) 99916-1157" },
+    "whatsapp": {
+      "numero": "5527999161157",
+      "exibicao": "(27) 99916-1157"
+    },
     "servicos": [
-      { "nome": "Alinhamento 3D", "icone": "crosshair" },
-      { "nome": "Balanceamento", "icone": "scale" },
-      { "nome": "Pneus", "icone": "life-buoy" },
-      { "nome": "Freios", "icone": "disc-3" },
-      { "nome": "Injeção eletrônica", "icone": "cpu" },
-      { "nome": "Óleo e fluido de câmbio", "icone": "droplets" },
-      { "nome": "Suspensão", "icone": "arrow-up-down" },
-      { "nome": "Motor", "icone": "engine" }
+      {
+        "nome": "Alinhamento 3D",
+        "icone": "crosshair",
+        "imagem": "oficina-alinhamento"
+      },
+      {
+        "nome": "Balanceamento",
+        "icone": "scale"
+      },
+      {
+        "nome": "Pneus",
+        "icone": "life-buoy",
+        "imagem": "oficina-pneus"
+      },
+      {
+        "nome": "Freios",
+        "icone": "disc-3",
+        "imagem": "oficina-freios"
+      },
+      {
+        "nome": "Injeção eletrônica",
+        "icone": "cpu"
+      },
+      {
+        "nome": "Óleo e fluido de câmbio",
+        "icone": "droplets",
+        "imagem": "oficina-oleo"
+      },
+      {
+        "nome": "Suspensão",
+        "icone": "arrow-up-down"
+      },
+      {
+        "nome": "Motor",
+        "icone": "engine"
+      }
     ],
     "google": {
       "nota": "4,0",
       "valor": 4.0,
       "avaliacoes": 127,
-      "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Centro%20Automotivo%20Av.%20Abido%20Saad%202553%20Jacara%C3%ADpe%20Serra%20ES"
+      "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Centro%20Automotivo%20Av.%20Abido%20Saad%202553%20Jacara%C3%ADpe%20Serra%20ES",
+      "temas": [
+        "Preço",
+        "Orçamento",
+        "Confiança",
+        "Honestidade",
+        "Atendimento"
+      ]
     },
-    "instagram": { "usuario": "@mvacentroautomotivo", "link": "https://www.instagram.com/mvacentroautomotivo/" }
+    "instagram": {
+      "usuario": "@mvacentroautomotivo",
+      "link": "https://www.instagram.com/mvacentroautomotivo/",
+      "seguidores": "mais de 1,7 mil"
+    },
+    "mapa": "https://www.google.com/maps/dir/?api=1&destination=Av.%20Abido%20Saad%2C%202553%2C%20Jacara%C3%ADpe%2C%20Serra%20-%20ES%2C%2029175-585",
+    "cep": "29175-585"
   },
   "mensagens": {
     "geral": "Olá! Vim pelo site da MVA Multicar e quero mais informações.",
     "avaliacao": "Olá! Quero avaliar meu carro para venda ou troca na MVA Multicar. Marca, modelo, ano e km: ",
     "financiamento": "Olá! Quero saber como funciona o financiamento na MVA Multicar.",
     "oficina": "Olá! Vim pelo site e quero agendar um serviço na MVA Centro Automotivo. Serviço: ",
-    "procura": "Olá! Não achei no site o carro que procuro. Procuro: "
-  }
+    "procura": "Olá! Não achei no site o carro que procuro. Procuro: ",
+    "lojista": "Olá! Sou lojista e quero saber dos carros da MVA Multicar no repasse."
+  },
+  "mapa": "https://www.google.com/maps/dir/?api=1&destination=Av.%20Abido%20Saad%2C%202551%2C%20Jacara%C3%ADpe%2C%20Serra%20-%20ES%2C%2029175-585"
 }

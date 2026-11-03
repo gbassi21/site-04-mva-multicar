@@ -1,0 +1,92 @@
+---
+layout: layouts/base.njk
+permalink: /oficina/
+titulo: Oficina MVA Centro Automotivo
+descricao: MVA Centro Automotivo, a oficina do grupo MVA ao lado da loja em Jacaraípe, Serra (ES). Mecânica geral, alinhamento 3D, balanceamento e pneus.
+whatsappFlutuante: oficina
+---
+{% from "macros.njk" import topoPagina, tituloSecao %}
+{%- set of = loja.oficina %}
+
+{% call topoPagina({ titulo: "Oficina " + of.nome, trilha: "Oficina", lead: "A oficina do grupo MVA, ao lado da loja em Jacaraípe. Mecânica geral, alinhamento 3D, balanceamento, pneus e os serviços do dia a dia do seu carro.", imagem: "card-oficina" }) %}
+  <ul class="topo__dados">
+    <li>{{ icone("map-pin") | safe }}{{ of.endereco }}, {{ of.referencia }}</li>
+    <li>{{ icone("clock") | safe }}{{ of.horario }}</li>
+    <li>{{ icone("star") | safe }}<a href="{{ of.google.link }}" target="_blank" rel="noopener">Nota {{ of.google.nota }} no Google ({{ of.google.avaliacoes }} avaliações)</a></li>
+  </ul>
+  <div class="topo__acoes">
+    <a class="botao botao--primario botao--grande" href="{{ wa(loja.mensagens.oficina, of.whatsapp.numero) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}Agendar: {{ of.whatsapp.exibicao }}</a>
+  </div>
+{% endcall %}
+
+<section class="faixa faixa--branca" aria-labelledby="titulo-servicos-oficina">
+  <div class="envoltorio">
+    {{ tituloSecao("titulo-servicos-oficina", "Serviços", "Escolha o serviço e o WhatsApp da oficina abre com a mensagem pronta.") }}
+    <ul class="servicos-foto">
+      {%- for s in of.servicos %}{% if s.imagem %}
+      <li>
+        <a class="servico-foto" href="{{ wa(loja.mensagens.oficina + s.nome, of.whatsapp.numero) }}" target="_blank" rel="noopener">
+          <span class="servico-foto__imagem">{{ ilustracao(s.imagem, "(min-width: 1024px) 24vw, 46vw") | safe }}</span>
+          <span class="servico-foto__texto">
+            {{ icone(s.icone) | safe }}
+            <span class="servico-foto__nome">{{ s.nome }}</span>
+            <span class="servico-foto__acao">Agendar{{ icone("arrow-right") | safe }}</span>
+          </span>
+        </a>
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+    <ul class="servicos-lista">
+      {%- for s in of.servicos %}{% if not s.imagem %}
+      <li>
+        <a class="servico servico--claro" href="{{ wa(loja.mensagens.oficina + s.nome, of.whatsapp.numero) }}" target="_blank" rel="noopener">
+          {{ icone(s.icone, "servico__icone") | safe }}
+          <span class="servico__nome">{{ s.nome }}</span>
+          <span class="servico__acao">Agendar{{ icone("arrow-right") | safe }}</span>
+        </a>
+      </li>
+      {%- endif %}{% endfor %}
+      <li>
+        <a class="servico servico--claro" href="{{ wa(loja.mensagens.oficina + 'Mecânica geral', of.whatsapp.numero) }}" target="_blank" rel="noopener">
+          {{ icone("wrench", "servico__icone") | safe }}
+          <span class="servico__nome">Mecânica geral</span>
+          <span class="servico__acao">Agendar{{ icone("arrow-right") | safe }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="faixa faixa--preta" aria-labelledby="titulo-reputacao">
+  <div class="envoltorio dividido dividido--imagem">
+    <div class="dividido__texto">
+      <h2 class="titulo-secao titulo-secao--claro" id="titulo-reputacao">{{ tracos("titulo-secao__tracos") | safe }}<span class="titulo-secao__texto">O que dizem no Google</span></h2>
+      <p class="texto-claro">Nota {{ of.google.nota }} com {{ of.google.avaliacoes }} avaliações, desde {{ of.desde }} na mesma avenida da loja. Temas mais citados pelos clientes nas avaliações (consulta de {{ loja.notasEm }}):</p>
+      <ul class="temas">{% for t in of.google.temas %}<li>{{ t }}</li>{% endfor %}</ul>
+      <div class="topo__acoes">
+        <a class="botao botao--contorno-claro" href="{{ of.google.link }}" target="_blank" rel="noopener">{{ icone("external-link") | safe }}Ver avaliações no Google</a>
+        <a class="botao botao--contorno-claro" href="{{ of.instagram.link }}" target="_blank" rel="noopener">{{ icone("instagram") | safe }}{{ of.instagram.usuario }}</a>
+      </div>
+    </div>
+    <div class="unidade unidade--escura">
+      <h3 class="unidade__titulo">Onde fica</h3>
+      <ul class="unidade__dados">
+        <li>{{ icone("map-pin") | safe }}<span>{{ of.endereco }}, {{ of.referencia }}, {{ loja.endereco.cidade }}, CEP {{ of.cep }}</span></li>
+        <li>{{ icone("clock") | safe }}<span>{{ of.horario }}</span></li>
+        <li>{{ icone("whatsapp") | safe }}<a href="{{ wa(loja.mensagens.oficina, of.whatsapp.numero) }}" target="_blank" rel="noopener">{{ of.whatsapp.exibicao }}</a></li>
+      </ul>
+      <a class="link-acao link-acao--claro" href="{{ of.mapa }}" target="_blank" rel="noopener">Como chegar{{ icone("navigation") | safe }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="faixa faixa--vermelha cta" aria-labelledby="titulo-cta-oficina">
+  {{ tracos("cta__tracos") | safe }}
+  <div class="envoltorio cta__grade">
+    <div class="cta__texto">
+      <h2 class="cta__titulo" id="titulo-cta-oficina">Agende pelo WhatsApp da oficina</h2>
+      <p>Conte o serviço e o modelo do carro e combine o horário com a oficina.</p>
+    </div>
+    <a class="botao botao--branco botao--grande" href="{{ wa(loja.mensagens.oficina, of.whatsapp.numero) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}{{ of.whatsapp.exibicao }}</a>
+  </div>
+</section>

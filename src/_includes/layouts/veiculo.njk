@@ -1,6 +1,8 @@
 ---
 layout: layouts/base.njk
 ---
+{% from "macros.njk" import tituloSecao, cardVeiculo %}
+{%- set outros = collections.veiculos | parecidos(page.fileSlug) %}
 <div class="veiculo">
   <div class="envoltorio">
     <nav class="trilha" aria-label="Trilha">
@@ -75,6 +77,17 @@ layout: layouts/base.njk
     </div>
   </div>
 </div>
+
+{%- if outros.length %}
+<section class="faixa faixa--branca" aria-labelledby="titulo-parecidos">
+  <div class="envoltorio">
+    {{ tituloSecao("titulo-parecidos", "Outros carros", "", "/estoque/", "Ver todo o estoque") }}
+    <ul class="vitrine vitrine--grade vitrine--parecidos">
+      {%- for v in outros %}<li class="vitrine__item">{{ cardVeiculo(v) }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
 
 <div class="barra-fixa">
   <p class="barra-fixa__info"><span>{{ nome }} {{ anoTexto }}</span><strong>{{ preco | reais }}</strong></p>

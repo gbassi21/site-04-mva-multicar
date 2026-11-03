@@ -66,6 +66,17 @@ Registro curto: data, decisão e motivo. Decisão substituída fica riscada com 
 - **Dados do pedido corrigido aplicados:** Ranger "3.2 Limited 4x4 aut" com diesel declarado; Hilux "SRV 2.8 4x4 aut" com diesel declarado; "A3 Sedan 1.4 TFSI Prestige" (sedã declarado); Polo "Highline 1.0 TSI aut"; financiamento "via banco"; oficina seg a sex, 8h às 18h, e serviços (alinhamento 3D, balanceamento, pneus, freios, injeção eletrônica, óleo e fluido de câmbio automático, suspensão, motor).
 - **Página 404** criada (estava na lista de páginas), para os links de páginas ainda não construídas não caírem no erro do servidor.
 
+### 03/11/2026: páginas restantes (depois da aprovação da v1)
+
+- Construídas estoque, vender ou trocar, financiamento, oficina, sobre, contato, privacidade e "Outros carros" na página do veículo, no mesmo sistema visual da v1 (topo preto com trilha, passos numerados, faixas alternadas, blocos de marca).
+- **Formulários** montam a mensagem no navegador e abrem o WhatsApp; não pedem nome, telefone nem documento. Motivo: LGPD e "nada guardado no site".
+- **Financiamento:** sem simulador, taxas ou parcelas; aviso explícito de que as condições dependem do banco; financeiras parceiras "a confirmar".
+- **Oficina:** botão flutuante e todos os CTAs com o WhatsApp da oficina; temas das avaliações (preço, orçamento, confiança, honestidade, atendimento) vindos de `solucoes-secoes-mva.md`, com a data da consulta.
+- **Contato:** bloco "Lojista? Carros no repasse" (fato dos posts da loja), com o WhatsApp da loja.
+- **"Explore por tipo"** passou a levar a `/estoque/?carroceria=…` (antes filtrava a vitrine da home).
+- **Privacidade:** texto de demonstração marcado para revisão jurídica; CNPJ da loja "a confirmar".
+- "Clássicos e raridades" e "Compre seguro": ainda sem decisão do Paulo, não construídas.
+
 ## Assumidos (a revisar)
 
 - ~~Catálogo = 10 veículos com pasta~~ e ~~ordem por ano~~: confirmados pelo Paulo na v1 (ver acima).
@@ -82,7 +93,6 @@ Registro curto: data, decisão e motivo. Decisão substituída fica riscada com 
 - Condição especial na oficina para quem compra na loja (só mostrar se existir); se entrega em outros estados; autorização para fotos de entregas e do dono.
 - Se há garantia e laudo cautelar; financeiras parceiras; documentos pedidos na avaliação.
 - Se os carros vendidos passam por revisão na oficina do grupo antes da entrega.
-- Se a loja faz repasse para lojistas.
 - Quem atualiza o estoque; data de entrada de cada carro (para a ordem "mais recente").
 - Cor, câmbio (quando não está na versão), cabine da Saveiro e opcionais de cada veículo.
 - Link exato das fichas do Google da loja e da oficina.

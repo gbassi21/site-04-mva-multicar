@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+permalink: /sobre/
+titulo: Sobre a MVA
+descricao: O grupo MVA reúne a loja de seminovos e usados MVA Multicar e a oficina MVA Centro Automotivo, lado a lado em Jacaraípe, Serra (ES).
+---
+{% from "macros.njk" import topoPagina, tituloSecao, quadroIlustracao %}
+
+{{ topoPagina({ titulo: "Sobre a MVA", lead: "Duas frentes do mesmo grupo, lado a lado na Av. Abido Saad, em Jacaraípe, Serra (ES): a loja de seminovos e usados e a oficina.", imagem: "atendimento-loja" }) }}
+
+<section class="faixa faixa--branca" aria-labelledby="titulo-frentes">
+  <div class="envoltorio">
+    {{ tituloSecao("titulo-frentes", "Loja e oficina") }}
+    <ul class="unidades">
+      <li class="unidade">
+        <p class="unidade__marca">{{ logotipo.logo("claro", 26) | safe }}<span>Multicar</span></p>
+        <h3 class="unidade__titulo">Loja de seminovos e usados</h3>
+        <ul class="unidade__dados">
+          <li>{{ icone("car-front") | safe }}<span>Multimarcas, do popular ao premium</span></li>
+          <li>{{ icone("arrow-left-right") | safe }}<span>Compra, venda, troca e financiamento via banco</span></li>
+          <li>{{ icone("star") | safe }}<span>Nota {{ loja.google.nota }} no Google ({{ loja.google.avaliacoes }} avaliações)</span></li>
+          <li>{{ icone("instagram") | safe }}<span>{{ loja.instagram.usuario }}, {{ loja.instagram.seguidores }} seguidores</span></li>
+        </ul>
+        <a class="link-acao" href="/estoque/">Ver o estoque{{ icone("arrow-right") | safe }}</a>
+      </li>
+      <li class="unidade">
+        <p class="unidade__marca">{{ logotipo.logo("claro", 26) | safe }}<span>Centro Automotivo</span></p>
+        <h3 class="unidade__titulo">Oficina, desde {{ loja.oficina.desde }}</h3>
+        <ul class="unidade__dados">
+          <li>{{ icone("wrench") | safe }}<span>Mecânica geral, alinhamento 3D, balanceamento e pneus</span></li>
+          <li>{{ icone("map-pin") | safe }}<span>{{ loja.oficina.endereco }}, {{ loja.oficina.referencia }}</span></li>
+          <li>{{ icone("star") | safe }}<span>Nota {{ loja.oficina.google.nota }} no Google ({{ loja.oficina.google.avaliacoes }} avaliações)</span></li>
+          <li>{{ icone("instagram") | safe }}<span>{{ loja.oficina.instagram.usuario }}, {{ loja.oficina.instagram.seguidores }} seguidores</span></li>
+        </ul>
+        <a class="link-acao" href="/oficina/">Conhecer a oficina{{ icone("arrow-right") | safe }}</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="faixa faixa--preta" aria-labelledby="titulo-laco">
+  <div class="envoltorio dividido dividido--imagem">
+    <div class="dividido__texto">
+      <h2 class="titulo-secao titulo-secao--claro" id="titulo-laco">{{ tracos("titulo-secao__tracos") | safe }}<span class="titulo-secao__texto">O laço vermelho</span></h2>
+      <p class="texto-claro">Na entrega, o carro sai da loja com um laço vermelho no capô. É o ritual da MVA para marcar a chave na mão do novo dono.</p>
+      <div class="topo__acoes">
+        <a class="botao botao--primario botao--grande" href="/estoque/">{{ icone("car-front") | safe }}Escolher o meu</a>
+      </div>
+    </div>
+    {{ quadroIlustracao("hero-entrega") }}
+  </div>
+</section>
+
+<section class="faixa faixa--cinza" aria-labelledby="titulo-patio">
+  <div class="envoltorio dividido dividido--imagem">
+    {{ quadroIlustracao("patio-loja") }}
+    <div class="dividido__texto">
+      {{ tituloSecao("titulo-patio", "Venha ver de perto") }}
+      <p class="secao__sub">Os carros estão na loja, na {{ loja.endereco.logradouro }}, {{ loja.endereco.bairro }}, {{ loja.endereco.cidade }}. Horário: {{ loja.horario }}.</p>
+      <div class="topo__acoes topo__acoes--espaco">
+        <a class="botao botao--primario" href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}{{ loja.whatsapp.exibicao }}</a>
+        <a class="botao botao--secundario" href="/contato/">{{ icone("map-pin") | safe }}Contato e localização</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+permalink: /financiamento/
+titulo: Financiamento
+descricao: Financiamento via banco para seminovos e usados da MVA Multicar, em Jacaraípe, Serra (ES).
+---
+{% from "macros.njk" import topoPagina, tituloSecao, passos, quadroIlustracao %}
+
+{% call topoPagina({ titulo: "Financiamento", lead: "Financiamento via banco para o carro que você escolher no estoque. Comece pelo WhatsApp e tire as dúvidas com a loja.", imagem: "card-financiamento" }) %}
+  <div class="topo__acoes">
+    <a class="botao botao--primario botao--grande" href="#simular">{{ icone("whatsapp") | safe }}Quero financiar</a>
+    <a class="botao botao--contorno-claro" href="/estoque/">{{ icone("car-front") | safe }}Ver o estoque</a>
+  </div>
+{% endcall %}
+
+<section class="faixa faixa--branca" aria-labelledby="titulo-como-financiar">
+  <div class="envoltorio">
+    {{ tituloSecao("titulo-como-financiar", "Como funciona", "Do carro escolhido à chave na mão.") }}
+    {{ passos([
+      { icone: "car-front", titulo: "Escolha o carro", texto: "No estoque do site ou direto na loja, na " + loja.endereco.logradouro + "." },
+      { icone: "message-circle", titulo: "Fale com a loja", texto: "Pelo WhatsApp, conte o carro, a entrada que pretende dar e se tem carro para a troca." },
+      { icone: "landmark", titulo: "Análise do banco", texto: "O crédito é analisado pelo banco. Financeiras parceiras: a confirmar com a loja." },
+      { icone: "key-round", titulo: "Assine e retire", texto: "Com o crédito aprovado, é assinar o contrato e retirar o carro com o laço vermelho." }
+    ]) }}
+  </div>
+</section>
+
+<section class="faixa faixa--cinza" id="simular" aria-labelledby="titulo-simular">
+  <div class="envoltorio dividido">
+    <div class="dividido__texto">
+      {{ tituloSecao("titulo-simular", "Comece pelo WhatsApp", "Preencha e o WhatsApp abre com a mensagem pronta para a loja.") }}
+      <div class="aviso">
+        {{ icone("info") | safe }}
+        <p>Não mostramos taxas nem parcelas aqui: as condições dependem da análise do banco e são passadas pela loja.</p>
+      </div>
+      <div class="aviso">
+        {{ icone("lock") | safe }}
+        <p>O site não guarda o que você escreve: os dados só vão na mensagem que você envia. <a href="/privacidade/">Privacidade</a></p>
+      </div>
+      {{ quadroIlustracao("assinatura-contrato", "(min-width: 1024px) 34vw, 100vw", "dividido__imagem") }}
+    </div>
+
+    <form class="formulario" action="https://wa.me/{{ loja.whatsapp.numero }}" method="get" target="_blank" data-form-whatsapp data-numero="{{ loja.whatsapp.numero }}" data-abertura="{{ loja.mensagens.financiamento }}">
+      <input type="hidden" name="text" value="{{ loja.mensagens.financiamento }}">
+      <label class="campo">
+        <span class="campo__rotulo">Carro de interesse</span>
+        <select data-rotulo="Carro de interesse">
+          <option value="">Ainda não escolhi</option>
+          {%- for v in collections.veiculos %}<option>{{ v.data.nome }} {{ v.data.versao }} {{ v.data.anoTexto }} ({{ v.data.preco | reais }})</option>{% endfor %}
+        </select>
+      </label>
+      <fieldset class="campo campo--opcoes" data-rotulo="Carro na troca">
+        <legend class="campo__rotulo">Vai dar um carro na troca?</legend>
+        <div class="opcoes">
+          <label class="chip"><input type="radio" name="troca" value="sim"><span>Sim</span></label>
+          <label class="chip"><input type="radio" name="troca" value="não"><span>Não</span></label>
+        </div>
+      </fieldset>
+      <label class="campo"><span class="campo__rotulo">Entrada que pretende dar (opcional)</span><input type="text" inputmode="numeric" data-rotulo="Entrada" autocomplete="off" placeholder="Ex.: R$ 15.000"></label>
+      <label class="campo"><span class="campo__rotulo">Observações (opcional)</span><textarea data-rotulo="Observações" placeholder="Ex.: prefiro parcelas menores"></textarea></label>
+      <button class="botao botao--primario botao--grande botao--largo" type="submit">{{ icone("whatsapp") | safe }}Enviar pelo WhatsApp</button>
+    </form>
+  </div>
+</section>

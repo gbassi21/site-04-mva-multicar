@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+permalink: /estoque/
+titulo: Estoque de seminovos e usados
+descricao: Seminovos e usados multimarcas à venda em Jacaraípe, Serra (ES). Filtre por preço, carroceria, marca, ano e câmbio.
+---
+{% from "macros.njk" import topoPagina %}
+{%- set veiculos = collections.veiculos %}
+{%- set modoEstoque = true %}
+
+{% call topoPagina({ titulo: "Estoque", lead: "Seminovos e usados multimarcas à venda em Jacaraípe, Serra (ES). Valores de " + loja.valoresEm + ", sujeitos a alteração." }) %}
+  <ul class="topo__dados">
+    <li>{{ icone("car-front") | safe }}{{ veiculos.length }} {{ "carro" if veiculos.length == 1 else "carros" }} à venda</li>
+    <li>{{ icone("map-pin") | safe }}{{ loja.endereco.logradouro }}</li>
+    <li>{{ icone("whatsapp") | safe }}<a href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener">{{ loja.whatsapp.exibicao }}</a></li>
+  </ul>
+{% endcall %}
+
+<section class="faixa faixa--cinza faixa--estoque" id="carros" aria-label="Carros à venda">
+  <div class="envoltorio">
+    {% include "partials/vitrine.njk" %}
+  </div>
+</section>

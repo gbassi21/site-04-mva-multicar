@@ -1,0 +1,87 @@
+{#- Vitrine filtrável (specs/site.md §3.2). Espera: veiculos, modoEstoque (true na página de estoque). -#}
+{%- from "macros.njk" import cardVeiculo -%}
+{%- set filtros = veiculos | opcoesFiltros %}
+{%- set tipos = [
+  { valor: "hatch", nome: "Hatch" },
+  { valor: "seda", nome: "Sedã" },
+  { valor: "suv", nome: "SUV" },
+  { valor: "picape", nome: "Picape" }
+] %}
+<form class="filtros{% if modoEstoque %} filtros--estoque{% endif %}" id="filtros-vitrine" action="/estoque/" method="get" data-filtros aria-label="Filtrar carros">
+  {%- if modoEstoque %}
+  <label class="campo campo--busca">
+    <span class="campo__rotulo">Buscar por marca ou modelo</span>
+    <span class="campo__busca">{{ icone("search") | safe }}<input type="search" name="q" placeholder="Ex.: Ranger, Volkswagen" autocomplete="off" enterkeyhint="search"></span>
+  </label>
+  {%- endif %}
+  <fieldset class="filtros__tipos">
+    <legend class="vh">Carroceria</legend>
+    <label class="chip"><input type="radio" name="carroceria" value="" checked><span>Todos<small>{{ veiculos.length }}</small></span></label>
+    {%- for t in tipos %}
+    {%- set qtd = veiculos | contarCarroceria(t.valor) %}
+    <label class="chip{% if not qtd %} chip--vazio{% endif %}"><input type="radio" name="carroceria" value="{{ t.valor }}"><span>{{ t.nome }}<small>{{ qtd }}</small></span></label>
+    {%- endfor %}
+  </fieldset>
+  <div class="filtros__campos">
+    <label class="campo">
+      <span class="campo__rotulo">Marca</span>
+      <select name="marca"><option value="">Todas</option>{% for m in filtros.marcas %}<option value="{{ m.valor }}">{{ m.nome }}</option>{% endfor %}</select>
+    </label>
+    <label class="campo">
+      <span class="campo__rotulo">Ano a partir de</span>
+      <select name="ano"><option value="">Qualquer</option>{% for a in filtros.anos %}<option value="{{ a }}">{{ a }}</option>{% endfor %}</select>
+    </label>
+    <label class="campo">
+      <span class="campo__rotulo">Câmbio</span>
+      <select name="cambio"><option value="">Qualquer</option>{% for c in filtros.cambios %}<option value="{{ c.valor }}">{{ c.nome }}</option>{% endfor %}</select>
+    </label>
+    <label class="campo">
+      <span class="campo__rotulo">Preço até</span>
+      <select name="preco_max"><option value="">Qualquer</option>{% for p in filtros.precos %}<option value="{{ p }}">{{ p | reais }}</option>{% endfor %}</select>
+    </label>
+    {%- if modoEstoque %}
+    <label class="campo">
+      <span class="campo__rotulo">Ordenar por</span>
+      <select name="ordem">
+        <option value="">Mais novos primeiro</option>
+        <option value="menor-preco">Menor preço</option>
+        <option value="maior-preco">Maior preço</option>
+        <option value="menor-km">Menor km</option>
+      </select>
+    </label>
+    {%- endif %}
+    <button class="botao botao--secundario filtros__enviar" type="submit">Filtrar</button>
+    <button class="filtros__limpar" type="reset">{{ icone("rotate-ccw") | safe }}Limpar</button>
+  </div>
+  <p class="filtros__resultado" aria-live="polite" data-resultado>{{ veiculos.length }} {{ "carro" if veiculos.length == 1 else "carros" }}</p>
+</form>
+
+<ul class="vitrine{% if modoEstoque %} vitrine--grade{% endif %}" data-vitrine>
+  {%- for v in veiculos %}
+  <li class="vitrine__item" data-posicao="{{ loop.index0 }}">{{ cardVeiculo(v) }}</li>
+  {%- endfor %}
+  <li class="vitrine__item vitrine__item--fim">
+    {%- if modoEstoque %}
+    <a class="card-fim" href="{{ wa(loja.mensagens.procura) }}" target="_blank" rel="noopener">
+      {{ tracos("card-fim__tracos") | safe }}
+      <span class="card-fim__titulo">Não achou o carro que procura?</span>
+      <span class="card-fim__texto">Conte para a loja pelo WhatsApp o modelo, o ano e quanto quer investir.</span>
+      <span class="card-fim__seta">{{ icone("whatsapp") | safe }}</span>
+    </a>
+    {%- else %}
+    <a class="card-fim" href="/estoque/">
+      {{ tracos("card-fim__tracos") | safe }}
+      <span class="card-fim__titulo">Ver todo o estoque</span>
+      <span class="card-fim__texto">Hatch, sedã, SUV e picape, do popular ao premium.</span>
+      <span class="card-fim__seta">{{ icone("arrow-right") | safe }}</span>
+    </a>
+    {%- endif %}
+  </li>
+</ul>
+<div class="vitrine__vazia" data-vazio hidden>
+  <p><strong>Nenhum carro com esses filtros.</strong> Mude os filtros ou conte para a loja o que você procura.</p>
+  <div class="vitrine__vazia-acoes">
+    <button class="botao botao--secundario" type="reset" form="filtros-vitrine">{{ icone("rotate-ccw") | safe }}Limpar filtros</button>
+    <a class="botao botao--primario" href="{{ wa(loja.mensagens.procura) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}Contar o que procuro</a>
+  </div>
+</div>

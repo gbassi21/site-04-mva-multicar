@@ -145,6 +145,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("slug", slug);
   eleventyConfig.addFilter("opcoesFiltros", opcoesFiltros);
   eleventyConfig.addFilter("buscarVeiculo", (lista, pasta) => lista.find((v) => v.page.fileSlug === pasta));
+  // Texto sem acentos e em minúsculas, para a busca da vitrine.
+  eleventyConfig.addFilter("textoBusca", (texto) => slug(texto).replace(/-/g, " "));
+  // Até 3 outros carros: mesma carroceria primeiro, depois os de preço mais próximo.
+  eleventyConfig.addFilter("parecidos", (lista, atual, limite = 3) => {
+    const outros = lista.filter((v) => v.page.fileSlug !== atual);
+    const base = lista.find((v) => v.page.fileSlug === atual)?.data;
+    if (!base) return outros.slice(0, limite);
+    const distancia = (v) => (v.data.carroceria === base.carroceria ? 0 : 1e9) + Math.abs(v.data.preco - base.preco);
+    return [...outros].sort((a, b) => distancia(a) - distancia(b)).slice(0, limite);
+  });
   eleventyConfig.addFilter("contarCarroceria", (lista, tipo) => lista.filter((v) => v.data.carroceria === tipo).length);
 
   eleventyConfig.addCollection("veiculos", (api) => {

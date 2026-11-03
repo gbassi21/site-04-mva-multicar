@@ -154,7 +154,9 @@ Os campos preenchidos por dedução técnica inequívoca ficam listados em `assu
 
 ## 7. Escopo
 
-**Amostra v1 (agora):** home completa (§3.1), página do veículo (topo, ficha e barra fixa) e 404, com os veículos que já têm imagens (Ranger, Duster, Saveiro). Links para páginas ainda não construídas apontam para os caminhos finais e caem na 404.
+**Construído (03/11/2026):** todas as páginas do §3: início, estoque (busca, 5 filtros, ordenação, estado na URL), página do veículo (com "Outros carros"), vender ou trocar, financiamento, oficina, sobre, contato e localização, privacidade e 404, com os veículos que já têm imagens (Ranger, Duster, Saveiro). Formulários montam a mensagem e abrem o WhatsApp (`data-form-whatsapp`); sem JavaScript, abrem o WhatsApp com a mensagem inicial.
+
+**Fora por enquanto (aguardando decisão do Paulo):** "Clássicos e raridades" e "Compre seguro na MVA".
 
 **Site completo (depois da aprovação):** todas as seções e páginas do §3.
 

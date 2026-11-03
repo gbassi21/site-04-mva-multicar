@@ -9,7 +9,7 @@
 {% endmacro %}
 
 {% macro cardVeiculo(v) %}
-<article class="card-veiculo" data-chegada data-carroceria="{{ v.data.carroceria }}" data-marca="{{ v.data.marca | slug }}" data-ano="{{ v.data.ano }}" data-cambio="{{ v.data.cambio | slug }}" data-preco="{{ v.data.preco }}">
+<article class="card-veiculo" data-chegada data-carroceria="{{ v.data.carroceria }}" data-marca="{{ v.data.marca | slug }}" data-ano="{{ v.data.ano }}" data-cambio="{{ v.data.cambio | slug }}" data-preco="{{ v.data.preco }}" data-km="{{ v.data.km }}" data-busca="{{ [v.data.marca, v.data.modelo, v.data.versao, v.data.anoTexto] | join(' ') | textoBusca }}">
   <div class="card-veiculo__quadro">
     {{ fotoVeiculo(v.page.fileSlug + "/01-capa.png", v.data.nome + " " + v.data.anoTexto + " (imagem ilustrativa)", "(min-width: 1360px) 330px, (min-width: 1024px) 24vw, (min-width: 768px) 46vw, 82vw") | safe }}
     <span class="card-veiculo__tracos" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -43,4 +43,44 @@
     <span class="card-servico__acao">{{ c.acao }}{{ icone("arrow-right") | safe }}</span>
   </span>
 </a>
+{% endmacro %}
+
+{#- Topo das páginas internas: faixa preta com trilha, título, texto e, se houver, a imagem ilustrativa à direita.
+    Use com {% call topoPagina({...}) %} ... {% endcall %} para acrescentar botões ou dados abaixo do texto. -#}
+{% macro topoPagina(t) %}
+<section class="topo{% if not t.imagem %} topo--simples{% endif %}" aria-labelledby="titulo-pagina">
+  <div class="envoltorio topo__grade">
+    <div class="topo__texto">
+      <nav class="trilha trilha--clara" aria-label="Trilha">
+        <ol><li><a href="/">Início</a></li><li aria-current="page">{{ t.trilha or t.titulo }}</li></ol>
+      </nav>
+      <h1 class="topo__titulo" id="titulo-pagina">{{ t.titulo }}</h1>
+      {% if t.lead %}<p class="topo__lead">{{ t.lead }}</p>{% endif %}
+      {% if caller %}<div class="topo__extra">{{ caller() }}</div>{% endif %}
+    </div>
+    {%- if t.imagem %}
+    <div class="topo__imagem">
+      {{ tracos("topo__tracos") | safe }}
+      <div class="topo__quadro">{{ ilustracao(t.imagem, "(min-width: 1024px) 40vw, 100vw", true) | safe }}</div>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+{% endmacro %}
+
+{% macro passos(lista) %}
+<ol class="passos passos--{{ lista.length }}">
+  {%- for p in lista %}
+  <li class="passo">
+    <span class="passo__numero" aria-hidden="true">{{ loop.index }}</span>
+    {{ icone(p.icone, "passo__icone") | safe }}
+    <h3 class="passo__titulo">{{ p.titulo }}</h3>
+    <p>{{ p.texto }}</p>
+  </li>
+  {%- endfor %}
+</ol>
+{% endmacro %}
+
+{% macro quadroIlustracao(nome, sizes = "(min-width: 1024px) 40vw, 100vw", classe = "") %}
+<div class="quadro-ia {{ classe }}">{{ ilustracao(nome, sizes) | safe }}</div>
 {% endmacro %}

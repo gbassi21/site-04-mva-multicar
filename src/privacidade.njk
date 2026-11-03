@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+permalink: /privacidade/
+titulo: Privacidade
+descricao: Como o site da MVA Multicar trata dados pessoais, de acordo com a LGPD.
+---
+{% from "macros.njk" import topoPagina %}
+
+{{ topoPagina({ titulo: "Privacidade", lead: "Como este site trata os seus dados, de acordo com a Lei Geral de Proteção de Dados (Lei 13.709/2018)." }) }}
+
+<section class="faixa faixa--branca">
+  <div class="envoltorio prosa">
+    <p class="aviso">{{ icone("info") | safe }}<span>Texto de demonstração, atualizado em 29/out/2026. Revisar com a assessoria jurídica da loja antes de publicar.</span></p>
+
+    <h2>Quem é o responsável</h2>
+    <p>MVA Multicar, {{ loja.endereco.logradouro }}, {{ loja.endereco.bairro }}, {{ loja.endereco.cidade }}, CEP {{ loja.endereco.cep }}. CNPJ: <span class="a-confirmar">a confirmar</span>. Contato sobre privacidade: WhatsApp <a href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener">{{ loja.whatsapp.exibicao }}</a>.</p>
+
+    <h2>Que dados o site coleta</h2>
+    <p>Nenhum dado é guardado pelo site. Os formulários (avaliação do seu carro, financiamento) só montam uma mensagem no seu navegador e abrem o WhatsApp; você decide se envia. O que você mandar pelo WhatsApp é usado pela loja apenas para responder ao seu pedido, e a conversa segue também as regras de privacidade do próprio WhatsApp.</p>
+
+    <h2>Cookies e ferramentas de terceiros</h2>
+    <p>O site não usa cookies de rastreamento nem ferramentas de análise ou publicidade. Fontes, imagens e ícones são servidos pelo próprio site.</p>
+
+    <h2>Links externos</h2>
+    <p>Os links para WhatsApp, Instagram e Google Maps levam a serviços de outras empresas, com políticas de privacidade próprias.</p>
+
+    <h2>Seus direitos</h2>
+    <p>Pela LGPD, você pode pedir confirmação de que a loja trata seus dados, acesso, correção, eliminação e informações sobre compartilhamento, entre outros direitos (art. 18). Faça o pedido pelo WhatsApp da loja.</p>
+  </div>
+</section>

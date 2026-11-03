@@ -1,0 +1,83 @@
+---
+layout: layouts/base.njk
+permalink: /vender-ou-trocar/
+titulo: Vender ou trocar seu carro
+descricao: A MVA Multicar compra seu carro ou aceita na troca. Mande marca, modelo, ano e km pelo WhatsApp e traga o carro para avaliação.
+---
+{% from "macros.njk" import topoPagina, tituloSecao, passos, quadroIlustracao %}
+
+{% call topoPagina({ titulo: "Vender ou trocar seu carro", lead: "A MVA compra o seu carro ou aceita na troca por outro do estoque. Mande os dados pelo WhatsApp e traga o carro para avaliação.", imagem: "card-avaliacao" }) %}
+  <div class="topo__acoes">
+    <a class="botao botao--primario botao--grande" href="#avaliar">{{ icone("whatsapp") | safe }}Pedir avaliação</a>
+    <a class="botao botao--contorno-claro" href="/estoque/">{{ icone("car-front") | safe }}Ver carros para troca</a>
+  </div>
+{% endcall %}
+
+<section class="faixa faixa--branca" aria-labelledby="titulo-como-vender">
+  <div class="envoltorio">
+    {{ tituloSecao("titulo-como-vender", "Como funciona", "Três passos, do primeiro contato à proposta.") }}
+    {{ passos([
+      { icone: "camera", titulo: "Mande os dados", texto: "Marca, modelo, ano, km e fotos do seu carro, direto no WhatsApp da loja." },
+      { icone: "map-pin", titulo: "Traga para avaliação", texto: "A avaliação é feita na loja, na " + loja.endereco.logradouro + ", em Jacaraípe." },
+      { icone: "handshake", titulo: "Receba a proposta", texto: "Proposta de compra do seu carro ou o valor dele na troca por outro do estoque." }
+    ]) }}
+  </div>
+</section>
+
+<section class="faixa faixa--cinza" id="avaliar" aria-labelledby="titulo-avaliar">
+  <div class="envoltorio dividido">
+    <div class="dividido__texto">
+      {{ tituloSecao("titulo-avaliar", "Peça a avaliação", "Preencha e o WhatsApp abre com a mensagem pronta. As fotos você manda direto na conversa.") }}
+      <div class="aviso">
+        {{ icone("lock") | safe }}
+        <p>O site não guarda o que você escreve aqui: os dados só vão na mensagem que você envia pelo WhatsApp. <a href="/privacidade/">Privacidade</a></p>
+      </div>
+      <h3 class="subtitulo">O que levar no dia</h3>
+      <ul class="lista-icones">
+        <li>{{ icone("file-text") | safe }}<span>Documento do carro</span></li>
+        <li>{{ icone("key-round") | safe }}<span>Chave e chave reserva</span></li>
+        <li>{{ icone("list-checks") | safe }}<span>Manual e comprovantes de revisão, se tiver</span></li>
+      </ul>
+      <p class="nota-confirmar">Lista sugerida; a confirmar com a loja.</p>
+    </div>
+
+    <form class="formulario" action="https://wa.me/{{ loja.whatsapp.numero }}" method="get" target="_blank" data-form-whatsapp data-numero="{{ loja.whatsapp.numero }}" data-abertura="Olá! Quero avaliar meu carro na MVA Multicar.">
+      <input type="hidden" name="text" value="Olá! Quero avaliar meu carro na MVA Multicar.">
+      <div class="formulario__grade">
+        <label class="campo"><span class="campo__rotulo">Marca</span><input type="text" data-rotulo="Marca" required autocomplete="off" placeholder="Ex.: Volkswagen"></label>
+        <label class="campo"><span class="campo__rotulo">Modelo e versão</span><input type="text" data-rotulo="Modelo" required autocomplete="off" placeholder="Ex.: Gol 1.0"></label>
+        <label class="campo"><span class="campo__rotulo">Ano</span><input type="text" inputmode="numeric" data-rotulo="Ano" required autocomplete="off" placeholder="Ex.: 2019"></label>
+        <label class="campo"><span class="campo__rotulo">Quilometragem</span><input type="text" inputmode="numeric" data-rotulo="Km" required autocomplete="off" placeholder="Ex.: 80.000"></label>
+      </div>
+      <fieldset class="campo campo--opcoes" data-rotulo="Quero">
+        <legend class="campo__rotulo">O que você quer?</legend>
+        <div class="opcoes">
+          <label class="chip"><input type="radio" name="intencao" value="vender meu carro" required><span>Vender meu carro</span></label>
+          <label class="chip"><input type="radio" name="intencao" value="trocar por outro carro"><span>Trocar por outro</span></label>
+        </div>
+      </fieldset>
+      <label class="campo">
+        <span class="campo__rotulo">Carro de interesse no estoque (opcional)</span>
+        <select data-rotulo="Carro de interesse">
+          <option value="">Ainda não escolhi</option>
+          {%- for v in collections.veiculos %}<option>{{ v.data.nome }} {{ v.data.versao }} {{ v.data.anoTexto }}</option>{% endfor %}
+        </select>
+      </label>
+      <button class="botao botao--primario botao--grande botao--largo" type="submit">{{ icone("whatsapp") | safe }}Enviar pelo WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<section class="faixa faixa--preta" id="troca" aria-labelledby="titulo-troca">
+  <div class="envoltorio dividido dividido--imagem">
+    <div class="dividido__texto">
+      <h2 class="titulo-secao titulo-secao--claro" id="titulo-troca">{{ tracos("titulo-secao__tracos") | safe }}<span class="titulo-secao__texto">Troca: seu carro entra no negócio</span></h2>
+      <p class="texto-claro">Escolha um carro do estoque e use o seu como parte do pagamento. A loja aceita troca e também financiamento via banco.</p>
+      <div class="topo__acoes">
+        <a class="botao botao--primario botao--grande" href="/estoque/">{{ icone("car-front") | safe }}Escolher no estoque</a>
+        <a class="botao botao--contorno-claro" href="/financiamento/">{{ icone("landmark") | safe }}Financiamento</a>
+      </div>
+    </div>
+    {{ quadroIlustracao("assinatura-contrato") }}
+  </div>
+</section>

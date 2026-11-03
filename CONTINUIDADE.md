@@ -23,8 +23,12 @@ Atualizado em 29/10/2026.
 
 - **Estoque:** vitrine única, sem abas, grupos ou rótulos por faixa de valor; nenhum campo de grupo nos dados. Selo "Destaque" opcional, sem relação com preço.
 - **Hero:** usa a capa da Ranger (`carroHero` no topo de `src/index.njk`) só até `imagens-ia/ia-hero-entrega.png` existir; depois a imagem do dia a dia entra sozinha e a etiqueta de preço some.
-- **"Explore por tipo"** filtra a vitrine da própria home (`/?carroceria=…#carros`). Quando a página de estoque existir, trocar os links para `/estoque/?carroceria=…`.
-- **Links para páginas não construídas** caem na 404 (que explica isso e leva aos carros).
+- **"Explore por tipo"** leva a `/estoque/?carroceria=…`.
 - **Pasta do Fastback:** há um arquivo "Emblema Abarth em destaque na traseira branca" (Abarth é outra versão; cor diferente das demais). Conferir ao padronizar.
 - **Imagens:** a primeira build processa todas as imagens (~40 s para 3 carros); as seguintes reaproveitam `_site/img/`.
 - **Git:** `carros_originais/` e arquivos fora do padrão em `imagens-geradas/` ficam fora do Git (`.gitignore`).
+
+## Estado em 03/11/2026 (nada commitado desde a Amostra v1)
+
+- **Site completo construído:** início, estoque, 3 páginas de veículo (com "Outros carros"), vender ou trocar, financiamento, oficina, sobre, contato, privacidade e 404. Conferido em 390 e 1440 px, sem rolagem horizontal e sem erros no console.
+- **Próximo passo:** Paulo revisa o site completo e autoriza o commit; decide sobre "Clássicos e raridades" e "Compre seguro"; gera as imagens ilustrativas; padroniza as 7 pastas de veículos. Na entrega: painel de edição (Decap ou Sveltia).
