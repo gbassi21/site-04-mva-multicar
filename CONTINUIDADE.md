@@ -5,7 +5,8 @@ Atualizado em 10/11/2026.
 ## Estado em 10/11/2026 (leia primeiro)
 
 - Todas as mudanças de 03 a 05/11 (seções abaixo) estão no commit `0544d87`, enviado em 10/11/2026 para **https://github.com/gbassi21/site-04-mva-multicar** (remoto `gbassi21`; o `main` local acompanha esse remoto). O repositório do Paulo (`origin`, paulobreder) **não recebeu**: a conta gbassi21 continuou sem permissão de escrita lá (erro 403). Para levar ao do Paulo: ele mesmo faz `git pull https://github.com/gbassi21/site-04-mva-multicar main` e `git push`, ou libera o acesso.
-- **O site no ar (GitHub Pages) ainda é o de 03/11:** falta rodar `npm run build` e `npm run publicar` numa máquina com Node (nesta, o Node está bloqueado por política de grupo). O primeiro build processa as 117 fotos novas e demora.
+- **Site no ar com as mudanças:** https://gbassi21.github.io/site-04-mva-multicar/ (branch `gh-pages` do repositório gbassi21, publicado em 10/11/2026). É a cópia de teste (o `gh-pages` de 03/11 com o CSS/JS novos e o HTML ajustado por script), não um build do Eleventy: as fotos dos 9 carros de exemplo estão em JPG reduzido (`img-teste/`). Ao rodar o build com Node, publicar por cima com `npm run publicar` (apontando para o repositório certo).
+- **O site do Paulo (paulobreder.github.io) ainda é o de 03/11:** falta rodar `npm run build` e `npm run publicar` numa máquina com Node (nesta, o Node está bloqueado por política de grupo). O primeiro build processa as 117 fotos novas e demora.
 - Nada disso passou por um build do Eleventy: foi conferido numa cópia do `gh-pages` com o CSS/JS novos e o HTML ajustado por script. No primeiro build, conferir: `temFoto` e `botaoFavorito` (`macros.njk`), `<dialog>` de favoritos e script de tema (`base.njk`), classes do logo (`logotipo.js`), depoimentos (`index.njk`), carros de exemplo e rótulos das fotos novas (`lib/veiculos.js`).
 
 ## Estado atual
