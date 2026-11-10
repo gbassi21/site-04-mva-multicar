@@ -1,6 +1,7 @@
 {%- set itensMenu = [
   { url: "/estoque/", nome: "Estoque", icone: "car-front" },
   { url: "/vender-ou-trocar/", nome: "Vender ou trocar", icone: "arrow-left-right" },
+  { url: "/financiamento/", nome: "Financiamento", icone: "landmark" },
   { url: "/oficina/", nome: "Oficina", icone: "wrench" },
   { url: "/contato/", nome: "Contato", icone: "map-pin" }
 ] -%}
@@ -16,9 +17,17 @@
         {%- for item in itensMenu %}
         <li><a class="menu__link" href="{{ item.url }}"{% if page.url and page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ icone(item.icone) | safe }}<span>{{ item.nome }}</span></a></li>
         {%- endfor %}
+        <li class="menu__item-tema"><button class="menu__link menu__tema" type="button" data-alternar-tema aria-label="Mudar para o tema escuro"><span class="botao-tema__sol">{{ icone("sun") | safe }}</span><span class="botao-tema__lua">{{ icone("moon") | safe }}</span><span data-texto-tema>Mudar para o tema escuro</span></button></li>
       </ul>
     </nav>
     <div class="cabecalho__acoes">
+      {#- Sol no tema claro, lua no escuro; o clique troca e guarda a escolha (só com JavaScript). -#}
+      <button class="botao-tema" type="button" data-alternar-tema aria-label="Mudar para o tema escuro">
+        <span class="botao-tema__sol">{{ icone("sun") | safe }}</span><span class="botao-tema__lua">{{ icone("moon") | safe }}</span>
+      </button>
+      <button class="cabecalho__favoritos" type="button" data-abrir-favoritos aria-haspopup="dialog" aria-label="Carros salvos">
+        {{ icone("heart") | safe }}<span class="cabecalho__contador" data-contador-favoritos hidden></span>
+      </button>
       <a class="botao botao--primario botao--cabecalho" href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener" aria-label="WhatsApp da loja: {{ loja.whatsapp.exibicao }}">
         {{ icone("whatsapp") | safe }}<span class="cabecalho__wa-texto" aria-hidden="true">{{ loja.whatsapp.exibicao }}</span>
       </a>

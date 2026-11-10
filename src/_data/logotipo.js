@@ -11,7 +11,7 @@ const CORES = {
 
 function desenho(variante) {
   const cor = CORES[variante] || CORES.claro;
-  return `<g transform="${INCLINACAO}"><path fill="${cor.tracos}" d="${TRACOS}"/><path fill="${cor.m}" d="${M}"/><path fill="${cor.va}" fill-rule="evenodd" d="${VA}"/></g>`;
+  return `<g transform="${INCLINACAO}"><path class="logo__tracos" fill="${cor.tracos}" d="${TRACOS}"/><path class="logo__m" fill="${cor.m}" d="${M}"/><path class="logo__va" fill="${cor.va}" fill-rule="evenodd" d="${VA}"/></g>`;
 }
 
 // "MVA" com os traços; o nome da divisão (MULTICAR, CENTRO AUTOMOTIVO) vai em texto ao lado.

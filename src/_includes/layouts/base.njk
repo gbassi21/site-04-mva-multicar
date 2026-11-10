@@ -6,6 +6,7 @@
   <title>{{ titulo }} · MVA Multicar (projeto de demonstração)</title>
   <meta name="description" content="{{ descricao or 'Seminovos e usados multimarcas em Jacaraípe, Serra (ES). Compra, venda, troca e financiamento.' }}">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#0C0C0E">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
@@ -15,7 +16,8 @@
   <link rel="apple-touch-icon" href="/icone-180.png">
   <link rel="preload" href="/assets/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   {% if precarregar %}{{ precarregarIlustracao(precarregar, "(min-width: 1024px) 56vw, 100vw") | safe }}{% endif %}
-  <script>document.documentElement.classList.add("js")</script>
+  {#- Tema antes do primeiro desenho (sem piscar): a escolha guardada pelo botão sol/lua ou a do aparelho. -#}
+  <script>(function (d) { var t; try { t = localStorage.getItem("mva-tema"); } catch (e) {} d.classList.add("js"); d.dataset.tema = t === "claro" || t === "escuro" ? t : matchMedia("(prefers-color-scheme: dark)").matches ? "escuro" : "claro"; })(document.documentElement)</script>
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | versao }}">
   <script src="{{ '/assets/js/site.js' | versao }}" defer></script>
 </head>
@@ -27,6 +29,21 @@
     {{ content | safe }}
   </main>
   {% include "partials/rodape.njk" %}
+  <dialog class="favoritos" data-favoritos data-numero="{{ loja.whatsapp.numero }}" aria-labelledby="titulo-favoritos">
+    <div class="favoritos__topo">
+      <h2 class="favoritos__titulo" id="titulo-favoritos">{{ icone("heart") | safe }}Carros salvos</h2>
+      <button class="favoritos__fechar" type="button" data-fechar-favoritos aria-label="Fechar">{{ icone("x") | safe }}</button>
+    </div>
+    <ul class="favoritos__lista" data-lista-favoritos></ul>
+    <div class="favoritos__vazio" data-favoritos-vazio>
+      <p><strong>Nenhum carro salvo ainda.</strong> Toque no coração de um carro para guardar aqui e comparar depois.</p>
+      <a class="botao botao--secundario" href="/estoque/">{{ icone("car-front") | safe }}Ver o estoque</a>
+    </div>
+    <div class="favoritos__rodape" data-favoritos-rodape>
+      <a class="botao botao--primario botao--largo" href="{{ wa(loja.mensagens.geral) }}" target="_blank" rel="noopener" data-favoritos-wa>{{ icone("whatsapp") | safe }}Perguntar sobre estes carros</a>
+      <p class="favoritos__nota">Ficam salvos só neste navegador. Preços de quando você salvou; confirme com a loja.</p>
+    </div>
+  </dialog>
   {%- set daOficina = whatsappFlutuante == "oficina" %}
   {%- set contatoFlutuante = loja.oficina.whatsapp if daOficina else loja.whatsapp %}
   <a class="wa-flutuante" href="{{ wa(loja.mensagens.oficina if daOficina else loja.mensagens.geral, contatoFlutuante.numero) }}" target="_blank" rel="noopener" aria-label="WhatsApp {{ 'da oficina' if daOficina else 'da loja' }}: {{ contatoFlutuante.exibicao }}">

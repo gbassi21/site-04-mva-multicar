@@ -15,7 +15,7 @@ descricao: A MVA Multicar compra seu carro ou aceita na troca. Mande marca, mode
 
 <section class="faixa faixa--branca" aria-labelledby="titulo-como-vender">
   <div class="envoltorio">
-    {{ tituloSecao("titulo-como-vender", "Como funciona", "Três passos, do primeiro contato à proposta.") }}
+    {{ tituloSecao("titulo-como-vender", "Como funciona") }}
     {{ passos([
       { icone: "camera", titulo: "Mande os dados", texto: "Marca, modelo, ano, km e fotos do seu carro, direto no WhatsApp da loja." },
       { icone: "map-pin", titulo: "Traga para avaliação", texto: "A avaliação é feita na loja, na " + loja.endereco.logradouro + ", em Jacaraípe." },
@@ -27,7 +27,7 @@ descricao: A MVA Multicar compra seu carro ou aceita na troca. Mande marca, mode
 <section class="faixa faixa--cinza" id="avaliar" aria-labelledby="titulo-avaliar">
   <div class="envoltorio dividido">
     <div class="dividido__texto">
-      {{ tituloSecao("titulo-avaliar", "Peça a avaliação", "Preencha e o WhatsApp abre com a mensagem pronta. As fotos você manda direto na conversa.") }}
+      {{ tituloSecao("titulo-avaliar", "Peça a avaliação", "As fotos você manda direto na conversa do WhatsApp.") }}
       <div class="aviso">
         {{ icone("lock") | safe }}
         <p>O site não guarda o que você escreve aqui: os dados só vão na mensagem que você envia pelo WhatsApp. <a href="/privacidade/">Privacidade</a></p>

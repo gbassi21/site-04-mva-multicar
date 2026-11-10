@@ -9,7 +9,7 @@ Histórico: a v0 (29/10/2026) usava conteúdo de 1040 px, vermelho #B2251D e fun
 | Item | Referência | MVA (v1) |
 |---|---|---|
 | Conteúdo | ~1360 px, começa a 33 px da borda | Até 1360 px, margem 32 px (24 em tablet, 16 no celular) |
-| Cabeçalho | 84 px, branco, logo + 6 links | 76 px (64 no celular), branco, fixo, logo + 4 links com ícone + WhatsApp |
+| Cabeçalho | 84 px, branco, logo + 6 links | 76 px (64 no celular), branco, fixo, logo + 5 links (Estoque, Vender ou trocar, Financiamento, Oficina, Contato) + WhatsApp; ícones dos links só a partir de 1366 px |
 | Hero | Foto escurecida ~520 px, texto centralizado | Fundo preto, texto à esquerda, imagem grande à direita sangrando até a borda |
 | Título do hero | 40 px / 700 | 64 px / 800 (40 no celular) |
 | Título de seção (H2) | 28 px / 700, à esquerda, link de ação à direita | 36 px / 800, traços do logo à esquerda e sublinhado vermelho; link à direita |
@@ -45,6 +45,23 @@ Contraste pela fórmula WCAG 2.x, conferido em 29/10/2026.
 
 Texto sobre a faixa vermelha: sempre branco puro (tons rosados ficam abaixo de 4,5:1).
 
+### 3.1 Modo escuro e contraste aumentado (03/11/2026)
+
+Por padrão o site segue a aparência do aparelho (`prefers-color-scheme`). **Botão sol/lua** no cabeçalho a partir de 1024 px, antes dos favoritos (44 px, ícones `sun` e `moon` do Lucide); abaixo de 1024 px vira a última linha do menu ☰ ("Mudar para o tema escuro" / "claro", com o ícone do tema atual), para o cabeçalho não acumular ícones: mostra o sol no tema claro e a lua no escuro; o clique troca o tema (esmaecimento curto, com o ícone girando) e guarda a escolha neste navegador (`localStorage`, `mva-tema`). Sem escolha guardada, acompanha o aparelho, inclusive se ele mudar com a página aberta. O tema é aplicado por um script no `<head>`, antes do primeiro desenho, em `html[data-tema]`; sem JavaScript, não há botão e o site segue o aparelho. Preto e vermelho continuam dominando; só os neutros trocam, nos mesmos tokens:
+
+| Token | Claro | Escuro |
+|---|---|---|
+| `--branco` (superfícies: cards, seções brancas, painéis) | #FFFFFF | #1C1D21 |
+| `--cinza` (seções cinza; base, mais escura que as superfícies) | #F2F2F4 | #121215 |
+| `--texto` / `--texto-2` / `--texto-3` | #1D1E22 / #55585F / #6B6E76 | #ECECEF / #B4B6BC / #9C9EA5 |
+| `--borda` / `--borda-forte` / `--borda-campo` | #E4E4E8 / #CFCFD5 / #8E9097 | #2E2F35 / #46474E / #74767E |
+| `--acento` (vermelho como texto e ícone) | #D7191F | #FF3B41 |
+
+- `--preto`, `--vermelho` e o texto branco sobre eles não mudam. O fundo de estúdio das fotos (`--estudio`) também não: as fotos não são alteradas.
+- No escuro, o "VA" do logo fica prata e o M e os traços ficam #E0484B; o chip escolhido e as etiquetas de filtro invertem para branco com texto preto (o preto sumiria no fundo escuro).
+- `prefers-contrast: more`: textos secundários viram texto principal e as bordas escurecem.
+- Contraste conferido nas 10 páginas, nos dois modos, com um script WCAG (texto ≥ 4,5:1; grande ≥ 3:1): nenhuma falha.
+
 ## 4. Tipografia
 
 Inter (variável, OFL 1.1, local, `licencas/OFL-Inter.txt`), neogrotesca neutra no espírito da Helvetica. Pesos: 400 corpo, 600 rótulos, 700 botões, 800 títulos e preços, 900 números grandes.
@@ -73,15 +90,17 @@ Inter (variável, OFL 1.1, local, `licencas/OFL-Inter.txt`), neogrotesca neutra 
 
 - **Cards:** cantos 16 px, borda 1 px, sem sombra em repouso; no hover, borda mais escura e sombra leve (0 10px 30px rgba(12,12,14,.08)).
 - **Card de serviço:** fundo de cor da marca (vermelho, grafite, preto), texto branco, ícone num quadrado translúcido, título de 2 linhas, texto curto, ação com seta. Com a imagem real, ela cobre o card com véu escuro à esquerda.
-- **Card de veículo:** foto 3:2 sem corte; selo vermelho de carroceria (canto superior esquerdo, cortado em diagonal como os traços); selo "Destaque" preto opcional; etiqueta "Imagem ilustrativa"; nome, versão, dados com ícone (ano, km, câmbio quando conhecido), preço e botão "Chamar no WhatsApp" vermelho na largura do card.
+- **Card de veículo:** foto 3:2 sem corte; selo vermelho de carroceria (canto superior esquerdo, cortado em diagonal como os traços); selo "Destaque" preto opcional; etiqueta "Imagem ilustrativa"; nome, versão, dados com ícone (ano, km, câmbio quando conhecido), preço e botão "Chamar no WhatsApp" **secundário** (contorno, glifo no vermelho de acento) na largura do card. Desde 03/11/2026 (HIG: uma ou duas ações em destaque por tela), o vermelho cheio fica para a ação principal de cada tela.
 - **Card "Ver todo o estoque":** preto, traços vermelhos, seta num círculo vermelho.
 - **Botões:** primário vermelho com texto branco (48 px; 56 px no tamanho grande; cantos 12 px; peso 700); secundário branco com borda; branco com texto vermelho na faixa vermelha; contorno claro sobre preto. Foco: contorno 3 px vermelho (branco sobre fundos escuros).
 - **Busca do hero:** pílula branca, lupa, botão "Buscar" vermelho. Pílulas Comprar / Vender / Trocar em contorno branco com ícone vermelho.
 - **Filtros da vitrine:** painel branco; chips de carroceria (ativo preto com contador vermelho; tipos sem carro ficam ocultos até serem escolhidos pelo "Explore por tipo"); selects de marca, ano a partir de, câmbio e preço até; "Limpar"; contagem ao vivo.
 - **Selos:** paralelogramo vermelho (mesma inclinação dos traços).
 - **Faixa de confiança:** bloco único com 3 itens divididos por linhas, ícone branco em paralelogramo vermelho.
-- **Avaliações:** card com borda superior vermelha, nota grande, estrelas preenchidas na proporção da nota, quantidade e link.
+- **Avaliações:** card com borda superior vermelha, nota grande, estrelas preenchidas na proporção da nota, quantidade e link "Ver todas no Google".
+- **Comentários do Google (03/11/2026):** com a chave em `loja.googleMaps.chave`, a seção busca no Google Maps (Maps JavaScript API, biblioteca `places`), quando chega perto da tela, a nota, a quantidade e os comentários de cada unidade; mostra até 3 de **5 estrelas com texto** (`comentariosPorUnidade`), cada um num bloco cinza com foto, nome com link para o perfil, quando, estrelas e o texto inteiro. Nota e quantidade passam a ser as atuais. Abaixo, a fonte: "Comentários de 5 estrelas do Google Maps, carregados ao vivo. A nota acima considera todas as avaliações." Sem chave, sem resposta ou sem comentário de 5 estrelas, fica só a nota. Depoimentos fixos: só os autorizados pelos autores (`loja.depoimentos`, origem em `referencias/pedido-do-cliente.md`), no mesmo bloco, com a inicial do nome num círculo grafite, "no Google Maps", 5 estrelas e o texto exato; a fonte diz "Avaliações de 5 estrelas publicadas no Google Maps, reproduzidas com autorização dos autores. A nota acima considera todas as avaliações." Quando os comentários ao vivo chegam, tomam o lugar dos fixos daquela unidade.
 - **WhatsApp flutuante:** círculo vermelho de 60 px com o glifo do WhatsApp, canto inferior direito, em todas as páginas; na página do veículo, no celular, sobe acima da barra fixa. Usa o número da loja; a página da oficina usará `whatsappFlutuante: oficina`.
+- **Favoritos (03/11/2026):** coração num círculo branco translúcido no canto superior direito do card e da galeria (salvo: vermelho preenchido, com pulinho); no cabeçalho, coração com contador vermelho (escondido em 0). Ele abre um painel de 420 px pela direita (largura total no celular), com foto, nome, versão, preço, "Remover" (a linha desliza para fora), "Perguntar sobre estes carros" no WhatsApp da loja com a lista e a nota "Ficam salvos só neste navegador". Lista vazia: explica e leva ao estoque. Só com JavaScript; a lista fica no `localStorage` (`mva-favoritos`), nada é enviado.
 - **Faixa de demonstração:** preta, 13 px, no topo de todas as páginas; no celular, "Projeto de demonstração · não oficial".
 
 ## 7. Ícones e imagens
@@ -101,11 +120,33 @@ CSS e JavaScript puro; nenhuma biblioteca. Um momento orquestrado na abertura e 
 - **Interação:** hover em cards e botões (cor, seta que anda 3–6 px, silhueta que avança); rolagem suave da galeria e do "Explore por tipo".
 - `prefers-reduced-motion: reduce`: nenhuma animação nem rolagem suave. Sem JavaScript: tudo aparece no lugar.
 
+### 8.0 Revisão pelo Apple HIG (03/11/2026)
+
+Referência: repositório `ebuntario/apple-hig` (resumo das Human Interface Guidelines). Aplicado ao site, sem mudar a identidade:
+
+- **Mantido por decisão:** fonte Inter (o HIG prefere a do sistema; a Inter é próxima da SF e é a identidade) e o menu ☰ no celular (barra de abas é padrão de app, não de site).
+- **Alvos de toque de 44 × 44 px** no celular: etiquetas de filtro, corações, "Remover", link do logo, links "Ver…", trilha, links do rodapé e dos contatos. Links dentro de frases ficam como texto.
+- **Áreas seguras** (`env(safe-area-inset-*)`) no WhatsApp flutuante, na barra fixa e no painel de favoritos.
+- **Hierarquia de botões:** uma ou duas ações vermelhas por tela; cards com botão secundário.
+- **Aparência:** modo escuro automático, botão sol/lua (pedido depois da revisão; o HIG desaconselha um botão próprio, mas o site respeita o aparelho até a pessoa escolher) e contraste aumentado (§3.1); cabeçalho de vidro com transparência reduzida respeitada (§8.1).
+
+### 8.1 Acabamento de interação (03/11/2026)
+
+Adaptado do "prompt mestre" de e-commerce, só no que cabe numa loja de carros e não contradiz o §8 (nada de "surgir" por seção):
+
+- **Resposta no toque:** botões afundam para `scale(.97)` no clique (chips, setas e menu `.94`; WhatsApp flutuante `.9`), em 80 ms.
+- **Cabeçalho de vidro:** depois de 8 px de rolagem, fundo branco 86% com desfoque de 14 px e sombra leve; com `prefers-reduced-transparency`, branco sólido.
+- **Troca de página:** esmaecimento de 0,22 s (`@view-transition`); cabeçalho e WhatsApp flutuante ficam parados.
+- **Menu do celular:** desce 8 px aparecendo; os 4 links entram em sequência (40 ms).
+- **Card de veículo (só com mouse):** sobe 3 px e a capa dá lugar à foto `02-frente` (esmaecimento de 0,45 s); a capa continua no HTML e no leitor de tela.
+- **Galeria (computador):** lupa de 2× que segue o mouse.
+- **Filtros:** etiquetas pretas dos filtros ativos com × (cada uma remove o seu filtro; entram com pulinho); o contador de cada carroceria considera os outros filtros e fica apagado quando zeraria o resultado; a contagem "N carros" sobe 6 px ao mudar.
+
 ## 9. Celular e computador
 
 | | Celular (até 767 px) | Computador (1024 px ou mais) |
 |---|---|---|
-| Cabeçalho | 64 px; logo, WhatsApp só com glifo, menu em painel com ícones | 76 px; 4 links com ícone, botão com o número do WhatsApp |
+| Cabeçalho | 64 px; logo, coração dos favoritos, WhatsApp só com glifo, menu ☰ em painel com ícones e, por último, a linha "Mudar para o tema escuro/claro" | 76 px; 5 links (com ícone a partir de 1366 px), botão sol/lua, coração, botão do WhatsApp (com o número a partir de 1200 px) |
 | Hero | Texto, busca e pílulas; imagem de borda a borda abaixo; etiqueta de preço sob a imagem | Texto à esquerda (5/12), imagem à direita (7/12) sangrando até a borda |
 | Serviços | Carrossel com a ponta do próximo | 3 colunas |
 | Filtros | Chips roláveis; selects em 2 × 2 | Chips e contagem numa linha; 4 selects + limpar |

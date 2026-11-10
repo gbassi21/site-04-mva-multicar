@@ -35,7 +35,7 @@ Todas as páginas: faixa "Projeto de demonstração" no topo, cabeçalho com 4 l
 5. **Explore por tipo**: Hatch, Sedã, SUV, Picape, com silhueta e quantidade; filtram a vitrine da home (no site completo, levam ao estoque filtrado).
 6. **Cuide do seu carro** (faixa preta, `#oficina`): MVA Centro Automotivo, endereço, horário (seg a sex, 8h às 18h), nota 4,0 com 127 avaliações e link, 8 serviços reais com ícone (cada um abre o WhatsApp da oficina com o serviço na mensagem), botão de WhatsApp e Instagram da oficina.
 7. **Como funciona** em 3 passos: escolha no site; financie ou dê seu carro na troca; retire com o laço vermelho.
-8. **Avaliações no Google**: loja 4,2 (5 avaliações) e oficina 4,0 (127), com link. Nenhum depoimento.
+8. **Avaliações no Google**: loja 4,2 (5 avaliações) e oficina 4,0 (127), com link. Com a chave da API (`loja.googleMaps.chave`), até 3 comentários de 5 estrelas por unidade, ao vivo do Google Maps (03/11/2026, a pedido). Sem chave, os depoimentos autorizados de `loja.depoimentos` (texto exato do Google, com autorização dos autores; hoje 2 da loja e 2 da oficina, para as colunas terem a mesma altura); nenhum depoimento inventado.
 9. **Faixa CTA vermelha**: "Quer vender ou trocar o seu carro?" → WhatsApp da loja com a mensagem de avaliação.
 10. **Rodapé preto completo**: logo, texto curto, Instagram e WhatsApp, as duas unidades (endereço, horário, WhatsApp, Instagram), links do site, "Projeto de demonstração", nota das imagens e data dos valores.
 
@@ -119,6 +119,7 @@ Cada veículo é um arquivo `src/veiculos/<pasta>.md` com o mesmo nome da pasta 
 
 ```yaml
 ---
+exemplo: false                      # true = carro FICTÍCIO (dados inventados): aviso na página e na mensagem
 marca: Ford
 modelo: Ranger
 versao: 3.2 Limited 4x4 aut         # texto da versão como no pedido
@@ -141,6 +142,8 @@ Descrição opcional em texto corrido.
 ```
 
 Os campos preenchidos por dedução técnica inequívoca ficam listados em `assumidos` (ver `memoria.md`). Nada de opcionais, histórico, garantia ou laudo sem confirmação.
+
+**Carros de exemplo (`exemplo: true`, desde 05/11/2026):** fictícios, com km, preço, câmbio, motor e cor inventados; as fotos são ilustrativas. Aparecem misturados na vitrine (mesma ordem e filtros), sem selo no card nem na galeria (retirado a pedido em 05/11/2026); na página, no lugar de "Valor de…", o aviso "Anúncio de exemplo. Carro fictício, com preço, km e ficha inventados para demonstrar o site; as fotos são ilustrativas."; as mensagens de WhatsApp começam com "(Anúncio de EXEMPLO do site de demonstração, carro fictício.)". Hoje: os 9 de `imagens.md` §3.2 marcados "Exemplo". Antes de o site virar oficial, saem ou viram carros reais.
 
 ## 6. Funcionalidades
 

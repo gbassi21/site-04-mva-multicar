@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
-{% from "macros.njk" import tituloSecao, cardVeiculo %}
+{% from "macros.njk" import tituloSecao, cardVeiculo, botaoFavorito %}
 {%- set outros = collections.veiculos | parecidos(page.fileSlug) %}
 <div class="veiculo">
   <div class="envoltorio">
@@ -25,6 +25,7 @@ layout: layouts/base.njk
           </ul>
           <span class="etiqueta">Imagem ilustrativa</span>
           <span class="selo selo--tipo selo--galeria">{{ carroceriaNome }}</span>
+          {{ botaoFavorito(page.fileSlug, nome + " " + anoTexto, versao, preco | reais, "favoritar--galeria") }}
           <span class="galeria__contador" aria-hidden="true"><span data-contador>1</span>/{{ imagens.length }}</span>
           <button class="galeria__seta galeria__seta--anterior" type="button" data-anterior aria-label="Imagem anterior">{{ icone("chevron-left") | safe }}</button>
           <button class="galeria__seta galeria__seta--proxima" type="button" data-proxima aria-label="Próxima imagem">{{ icone("chevron-right") | safe }}</button>
@@ -48,7 +49,11 @@ layout: layouts/base.njk
           {% if combustivel %}<li>{{ icone("fuel") | safe }}{{ combustivel }}</li>{% endif %}
         </ul>
         <p class="painel__preco">{{ preco | reais }}</p>
+        {%- if exemplo %}
+        <p class="aviso aviso--exemplo">{{ icone("info") | safe }}<span><strong>Anúncio de exemplo.</strong> Carro fictício, com preço, km e ficha inventados para demonstrar o site; as fotos são ilustrativas.</span></p>
+        {%- else %}
         <p class="painel__nota">Valor de {{ loja.valoresEm }}, sujeito a alteração.</p>
+        {%- endif %}
         <div class="painel__acoes">
           <a class="botao botao--primario botao--grande botao--largo" href="{{ wa(mensagens.interesse) }}" target="_blank" rel="noopener">{{ icone("whatsapp") | safe }}Falar no WhatsApp</a>
           <a class="botao botao--secundario botao--largo" href="{{ wa(mensagens.financiar) }}" target="_blank" rel="noopener">{{ icone("landmark") | safe }}Simular financiamento</a>

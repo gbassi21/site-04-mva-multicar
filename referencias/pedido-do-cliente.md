@@ -50,3 +50,15 @@ Outros fatos do estoque (22 carros na Mobiauto): faixa de R$ 35.900 a R$ 214.900
 
 ## Pendências para confirmar com os donos
 CNPJ e ano de início da loja; horário de sábado; garantia e laudo cautelar; financeiras parceiras; condição para quem compra na loja usar a oficina; se entrega em outros estados; quem atualiza o estoque; logo em alta resolução; autorização de fotos de entregas e do dono; domínio e e-mail.
+
+## Depoimentos autorizados (03/11/2026)
+Avaliações de 5 estrelas publicadas no Google Maps sobre a **loja**, enviadas em print no pedido de 03/11/2026, com a informação de que os autores aprovaram a publicação no site. Texto exatamente como no Google, sem correções. A loja guarda o comprovante de cada aprovação; quem pedir sai do site.
+
+- **Leidiane Vargas** (loja, 5 estrelas; "7 meses atrás" em 03/11/2026): "Quero agradecer pelo excelente atendimento que recebi na compra do meu carro. A equipe foi muito educada, atenciosa e transparente em todo o processo. Isso me passou muita confiança e tornou a experiência ainda melhor. Estou muito feliz com minha compra e com certeza recomendo a loja!"
+- **Reinaldo Ameno** (loja, 5 estrelas; "um ano atrás" em 03/11/2026): "Site bem detalhado , bem específico , vou amanhã cedo na agência , conhece lá e tentar fechar negócio ..!!"
+
+Avaliações de 5 estrelas sobre a **oficina**, enviadas em print no mesmo dia, também com aprovação informada dos autores (quebras de linha como no original, marcadas com " / "):
+
+- **Rodrigo G.Ramos** (oficina, 5 estrelas; "4 meses atrás" em 03/11/2026): "Excelência no atendimento. / Profissionais de qualidade. / Aqui tudo se resolve."
+- **Carla souza** (fora do site desde 04/11/2026, a pedido, para igualar loja e oficina com 2 cada; oficina, 5 estrelas; "um ano atrás" em 03/11/2026): "Primeira vez que deixo meu carro na oficina e entregam no mesmo dia.. / Parabéns pelo excelente trabalho.."
+- **Luciano Walder - Serra - ES** (oficina, 5 estrelas; "3 anos atrás" em 03/11/2026): "Oficina mecânica de respeito! Resolveu meus problemas com profissionalismo e honestidade! Não são mercenários e não sai condenando tudo que vem na frente! O carro está redondo! Consigo confiar neles e hj em dia isso eh difícil!"

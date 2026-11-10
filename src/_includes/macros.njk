@@ -8,14 +8,23 @@
 </div>
 {% endmacro %}
 
+{#- Coração de favorito (só com JavaScript; a lista fica no navegador). O link e a foto o JS lê do card ou da galeria. -#}
+{% macro botaoFavorito(id, nome, versao, preco, classe = "") %}
+<button class="favoritar {{ classe }}" type="button" data-favorito="{{ id }}" data-nome="{{ nome }}" data-versao="{{ versao }}" data-preco="{{ preco }}" aria-pressed="false" aria-label="Salvar {{ nome }} nos favoritos">{{ icone("heart") | safe }}</button>
+{% endmacro %}
+
 {% macro cardVeiculo(v) %}
 <article class="card-veiculo" data-chegada data-carroceria="{{ v.data.carroceria }}" data-marca="{{ v.data.marca | slug }}" data-ano="{{ v.data.ano }}" data-cambio="{{ v.data.cambio | slug }}" data-preco="{{ v.data.preco }}" data-km="{{ v.data.km }}" data-busca="{{ [v.data.marca, v.data.modelo, v.data.versao, v.data.anoTexto] | join(' ') | textoBusca }}">
   <div class="card-veiculo__quadro">
-    {{ fotoVeiculo(v.page.fileSlug + "/01-capa.png", v.data.nome + " " + v.data.anoTexto + " (imagem ilustrativa)", "(min-width: 1360px) 330px, (min-width: 1024px) 24vw, (min-width: 768px) 46vw, 82vw") | safe }}
+    {%- set tamanhosCard = "(min-width: 1360px) 330px, (min-width: 1024px) 24vw, (min-width: 768px) 46vw, 82vw" %}
+    {{ fotoVeiculo(v.page.fileSlug + "/01-capa.png", v.data.nome + " " + v.data.anoTexto + " (imagem ilustrativa)", tamanhosCard) | safe }}
+    {#- Segunda foto (frente), revelada no hover em dispositivos com mouse. -#}
+    {% if temFoto(v.page.fileSlug + "/02-frente.png") %}<span class="card-veiculo__alt" aria-hidden="true">{{ fotoVeiculo(v.page.fileSlug + "/02-frente.png", "", tamanhosCard) | safe }}</span>{% endif %}
     <span class="card-veiculo__tracos" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="etiqueta">Imagem ilustrativa</span>
     <span class="selo selo--tipo">{{ v.data.carroceriaNome }}</span>
     {% if v.data.destaque %}<span class="selo selo--destaque">Destaque</span>{% endif %}
+    {{ botaoFavorito(v.page.fileSlug, v.data.nome + " " + v.data.anoTexto, v.data.versao, v.data.preco | reais) }}
   </div>
   <div class="card-veiculo__corpo">
     <h3 class="card-veiculo__nome"><a href="{{ v.url }}">{{ v.data.nome }}</a></h3>
@@ -26,7 +35,7 @@
       {% if v.data.cambio %}<li>{{ icone("cog") | safe }}{{ v.data.cambio }}</li>{% endif %}
     </ul>
     <p class="card-veiculo__preco">{{ v.data.preco | reais }}</p>
-    <a class="botao botao--primario card-veiculo__wa" href="{{ wa(v.data.mensagens.interesse) }}" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp sobre o {{ v.data.nome }} {{ v.data.anoTexto }}">
+    <a class="botao botao--secundario card-veiculo__wa" href="{{ wa(v.data.mensagens.interesse) }}" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp sobre o {{ v.data.nome }} {{ v.data.anoTexto }}">
       {{ icone("whatsapp") | safe }}<span aria-hidden="true">Chamar no WhatsApp</span>
     </a>
   </div>

@@ -24,11 +24,15 @@ export default {
           alt: `${nome(d)} ${anoTexto(d)}: ${rotulo.toLowerCase()} (imagem ilustrativa)`,
         };
       }),
-    mensagens: (d) => ({
-      interesse: `Olá! Tenho interesse no ${anuncio(d)}, anunciado por ${formatoReal.format(d.preco)} no site da MVA Multicar. Ainda está disponível?`,
-      financiar: `Olá! Quero simular o financiamento do ${anuncio(d)} (${formatoReal.format(d.preco)}).`,
-      troca: `Olá! Quero dar meu carro na troca pelo ${anuncio(d)}. Meu carro é: `,
-    }),
+    // Carro de exemplo (fictício): a mensagem avisa a loja, que não tem esse carro.
+    mensagens: (d) => {
+      const aviso = d.exemplo ? "(Anúncio de EXEMPLO do site de demonstração, carro fictício.) " : "";
+      return {
+        interesse: `${aviso}Olá! Tenho interesse no ${anuncio(d)}, anunciado por ${formatoReal.format(d.preco)} no site da MVA Multicar. Ainda está disponível?`,
+        financiar: `${aviso}Olá! Quero simular o financiamento do ${anuncio(d)} (${formatoReal.format(d.preco)}).`,
+        troca: `${aviso}Olá! Quero dar meu carro na troca pelo ${anuncio(d)}. Meu carro é: `,
+      };
+    },
     // Campo vazio aparece "a confirmar"; campo deduzido (lista "assumidos") ganha asterisco.
     ficha: (d) => {
       const assumidos = new Set(d.assumidos || []);

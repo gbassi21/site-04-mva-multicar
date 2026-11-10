@@ -58,7 +58,7 @@ carroHero: ford-ranger-limited-2018
   <div class="envoltorio">
     <h2 class="vh" id="titulo-servicos">Serviços</h2>
     <ul class="servicos">
-      <li>{{ cardServico({ url: "/vender-ou-trocar/", imagem: "card-avaliacao", tom: "vermelho", icone: "hand-coins", titulo: "Quanto vale o seu carro?", texto: "Mande marca, modelo, ano e km pelo WhatsApp e receba a avaliação para venda ou troca.", acao: "Avaliar meu carro" }) }}</li>
+      <li>{{ cardServico({ url: "/vender-ou-trocar/", imagem: "card-avaliacao", tom: "vermelho", icone: "hand-coins", titulo: "Quanto vale o seu carro?", texto: "Avaliação para venda ou troca, pelo WhatsApp.", acao: "Avaliar meu carro" }) }}</li>
       <li>{{ cardServico({ url: "/financiamento/", imagem: "card-financiamento", tom: "grafite", icone: "landmark", titulo: "Financiamento", texto: "Financiamento via banco para o carro que você escolher. Tire as dúvidas pelo WhatsApp.", acao: "Como funciona" }) }}</li>
       <li>{{ cardServico({ url: "/oficina/", imagem: "card-oficina", tom: "preto", icone: "wrench", titulo: "Cuide do seu carro", texto: "A oficina MVA Centro Automotivo fica ao lado da loja: mecânica geral, alinhamento 3D e pneus.", acao: "Conhecer a oficina" }) }}</li>
     </ul>
@@ -68,14 +68,12 @@ carroHero: ford-ranger-limited-2018
         <span class="confianca__icone">{{ icone("wrench") | safe }}</span>
         <div>
           <h3 class="confianca__titulo">Oficina própria ao lado, desde {{ loja.oficina.desde }}</h3>
-          <p>A {{ loja.oficina.nome }} fica na mesma avenida, no número 2553.</p>
         </div>
       </li>
       <li class="confianca__item">
         <span class="confianca__icone">{{ icone("arrow-left-right") | safe }}</span>
         <div>
-          <h3 class="confianca__titulo">Troca e financiamento</h3>
-          <p>Seu carro pode entrar na troca, e o financiamento é feito via banco.</p>
+          <h3 class="confianca__titulo">Seu carro entra na troca</h3>
         </div>
       </li>
       <li class="confianca__item">
@@ -148,7 +146,6 @@ carroHero: ford-ranger-limited-2018
   <div class="envoltorio como">
     <div class="como__intro">
       <h2 class="titulo-secao" id="titulo-como">{{ tracos("titulo-secao__tracos") | safe }}<span class="titulo-secao__texto">Como funciona</span></h2>
-      <p class="como__lead">Do site à chave na mão, em três passos.</p>
       <a class="link-acao" href="/estoque/">Ver os carros{{ icone("arrow-right") | safe }}</a>
     </div>
     <ol class="passos">
@@ -174,28 +171,46 @@ carroHero: ford-ranger-limited-2018
   </div>
 </section>
 
-<section class="faixa faixa--branca" aria-labelledby="titulo-avaliacoes">
+{#- Avaliações (specs/site.md, specs/design.md §6): a nota real de cada unidade, sempre visível, e, se houver
+    chave da API do Google em loja.googleMaps.chave, os comentários de 5 estrelas com texto, carregados ao vivo
+    do Google Maps quando a seção aparece. Sem chave, ou se o Google não responder, fica só a nota. -#}
+<section class="faixa faixa--branca" aria-labelledby="titulo-avaliacoes" data-comentarios-google{% if loja.googleMaps.chave %} data-chave="{{ loja.googleMaps.chave }}"{% endif %} data-por-unidade="{{ loja.googleMaps.comentariosPorUnidade }}">
   <div class="envoltorio">
     {{ tituloSecao("titulo-avaliacoes", "Avaliações no Google", "Notas reais da loja e da oficina, consultadas em " + loja.notasEm + ".") }}
     <ul class="avaliacoes">
       {%- for u in [
-        { nome: "Loja MVA Multicar", icone: "store", g: loja.google },
-        { nome: "Oficina MVA Centro Automotivo", icone: "wrench", g: loja.oficina.google }
+        { chave: "loja", nome: "Loja MVA Multicar", icone: "store", g: loja.google, busca: loja.googleMaps.buscaLoja },
+        { chave: "oficina", nome: "Oficina MVA Centro Automotivo", icone: "wrench", g: loja.oficina.google, busca: loja.googleMaps.buscaOficina }
       ] %}
-      <li class="avaliacao">
+      <li class="avaliacao" data-lugar="{{ u.busca }}">
         <p class="avaliacao__unidade">{{ icone(u.icone) | safe }}{{ u.nome }}</p>
         <div class="avaliacao__nota">
-          <span class="avaliacao__numero">{{ u.g.nota }}</span>
-          <span class="estrelas" style="--nota: {{ u.g.valor }}" role="img" aria-label="Nota {{ u.g.nota }} de 5">
+          <span class="avaliacao__numero" data-nota>{{ u.g.nota }}</span>
+          <span class="estrelas" style="--nota: {{ u.g.valor }}" role="img" aria-label="Nota {{ u.g.nota }} de 5" data-estrelas>
             <span class="estrelas__base">{% for i in range(5) %}{{ icone("star", "estrela") | safe }}{% endfor %}</span>
             <span class="estrelas__cheias">{% for i in range(5) %}{{ icone("star", "estrela") | safe }}{% endfor %}</span>
           </span>
         </div>
-        <p class="avaliacao__qtd">{{ u.g.avaliacoes }} avaliações no Google</p>
-        <a class="link-acao" href="{{ u.g.link }}" target="_blank" rel="noopener">Ver no Google{{ icone("external-link") | safe }}</a>
+        <p class="avaliacao__qtd"><span data-qtd>{{ u.g.avaliacoes }}</span> avaliações no Google</p>
+        {#- Depoimentos autorizados (referencias/pedido-do-cliente.md); os comentários ao vivo, se vierem, tomam o lugar deles. -#}
+        {%- set depoimentos = loja.depoimentos | selectattr("unidade", "equalto", u.chave) | list %}
+        <ul class="comentarios" data-lista-comentarios aria-label="Comentários de 5 estrelas sobre a {{ u.nome }}"{% if not depoimentos.length %} hidden{% endif %}>
+          {%- for d in depoimentos %}
+          <li class="comentario">
+            <div class="comentario__topo"><span class="comentario__inicial" aria-hidden="true">{{ d.nome | first }}</span><span class="comentario__quem"><span class="comentario__autor">{{ d.nome }}</span><span class="comentario__quando">no Google Maps</span></span></div>
+            <span class="estrelas estrelas--pequenas" style="--nota: 5" role="img" aria-label="5 de 5 estrelas">
+              <span class="estrelas__base">{% for i in range(5) %}{{ icone("star", "estrela") | safe }}{% endfor %}</span>
+              <span class="estrelas__cheias">{% for i in range(5) %}{{ icone("star", "estrela") | safe }}{% endfor %}</span>
+            </span>
+            <p class="comentario__texto">{{ d.texto }}</p>
+          </li>
+          {%- endfor %}
+        </ul>
+        <a class="link-acao" href="{{ u.g.link }}" target="_blank" rel="noopener" data-link-google>Ver todas no Google{{ icone("external-link") | safe }}</a>
       </li>
       {%- endfor %}
     </ul>
+    <p class="comentarios__fonte" data-fonte-comentarios{% if not loja.depoimentos.length %} hidden{% endif %}>Avaliações de 5 estrelas publicadas no Google Maps, reproduzidas com autorização dos autores. A nota acima considera todas as avaliações.</p>
   </div>
 </section>
 

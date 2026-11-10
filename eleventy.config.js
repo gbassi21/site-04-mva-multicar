@@ -133,6 +133,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addNunjucksGlobal("precarregarIlustracao", precarregarIlustracao);
   eleventyConfig.addNunjucksGlobal("wa", linkWhatsApp);
   eleventyConfig.addNunjucksGlobal("temIlustracao", temIlustracao);
+  eleventyConfig.addNunjucksGlobal("temFoto", (chave) => fotos.has(chave));
   eleventyConfig.addNunjucksGlobal("icone", icone);
   eleventyConfig.addNunjucksGlobal("carroceria", carroceria);
   eleventyConfig.addNunjucksGlobal("tracos", tracos);

@@ -18,13 +18,41 @@
     "avaliacoes": 5,
     "link": "https://www.google.com/maps/search/?api=1&query=MVA%20Multicar%20Av.%20Abido%20Saad%202551%20Jacara%C3%ADpe%20Serra%20ES"
   },
+  "googleMaps": {
+    "chave": "",
+    "comentariosPorUnidade": 3,
+    "buscaLoja": "MVA Multicar, Av. Abido Saad, 2551, Serra - ES",
+    "buscaOficina": "MVA Centro Automotivo, Av. Abido Saad, 2553, Serra - ES"
+  },
+  "depoimentos": [
+    {
+      "unidade": "loja",
+      "nome": "Leidiane Vargas",
+      "texto": "Quero agradecer pelo excelente atendimento que recebi na compra do meu carro. A equipe foi muito educada, atenciosa e transparente em todo o processo. Isso me passou muita confiança e tornou a experiência ainda melhor. Estou muito feliz com minha compra e com certeza recomendo a loja!"
+    },
+    {
+      "unidade": "loja",
+      "nome": "Reinaldo Ameno",
+      "texto": "Site bem detalhado , bem específico , vou amanhã cedo na agência , conhece lá e tentar fechar negócio ..!!"
+    },
+    {
+      "unidade": "oficina",
+      "nome": "Rodrigo G.Ramos",
+      "texto": "Excelência no atendimento.\nProfissionais de qualidade.\nAqui tudo se resolve."
+    },
+    {
+      "unidade": "oficina",
+      "nome": "Luciano Walder - Serra - ES",
+      "texto": "Oficina mecânica de respeito! Resolveu meus problemas com profissionalismo e honestidade! Não são mercenários e não sai condenando tudo que vem na frente! O carro está redondo! Consigo confiar neles e hj em dia isso eh difícil!"
+    }
+  ],
   "instagram": {
     "usuario": "@mva_multicar",
     "link": "https://www.instagram.com/mva_multicar/",
     "seguidores": "cerca de 9,3 mil"
   },
   "valoresEm": "28/out/2026",
-  "notasEm": "29/out/2026",
+  "notasEm": "03/nov/2026",
   "oficina": {
     "nome": "MVA Centro Automotivo",
     "endereco": "Av. Abido Saad, 2553",

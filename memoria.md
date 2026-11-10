@@ -84,6 +84,58 @@ Registro curto: data, decisão e motivo. Decisão substituída fica riscada com 
 - Publicação manual com `npm run publicar` (branch `gh-pages`). A publicação automática por GitHub Actions ficou de fora porque o login do `gh` não tem a permissão `workflow`.
 - Caminhos: `HtmlBasePlugin` com `--pathprefix`, fontes com caminho relativo no CSS, imagens geradas na pasta de saída do build.
 
+### 03/11/2026: acabamento de interação a partir do "prompt mestre"
+
+- Pedido: usar o prompt mestre de e-commerce (Drive, `PROMPT-MESTRE.md`) para melhorar o site. Entrou só o que cabe numa loja de carros e não contradiz decisões registradas; detalhes em `specs/design.md` §8.1.
+- **Ficou de fora por contradizer o projeto:** revelação ao rolar em todas as seções (o §8 diz "nada de surgir em cada seção"); sacola, checkout, clube de fidelidade, recompra, avaliações de usuário, faixa de vantagens com frete/parcelas e mascotes (seriam dados ou serviços inventados); fonte e cores do modelo (identidade v1 mantida).
+- **Favoritos:** acrescentados no mesmo dia, a pedido (coração no card e na galeria, contador no cabeçalho, painel com a lista e WhatsApp com os carros salvos); `specs/design.md` §6. Não guardam nada fora do navegador e o preço exibido é o do momento em que o carro foi salvo (atualizado quando o carro aparece de novo na página). Ícone `heart` do Lucide copiado para `lib/icones/linha/`.
+- **Fica para decisão do Paulo:** mega menu e busca ao digitar no cabeçalho.
+
+### 03/11/2026: revisão pelo Apple HIG
+
+- Pedido: usar o repositório `ebuntario/apple-hig` como referência para revisar e reformular o site. Escolhas feitas no pedido (opções recomendadas): **manter a Inter**, **modo escuro automático**, **botão do WhatsApp secundário nos cards**, **manter o menu ☰**.
+- **Substitui:** botão "Chamar no WhatsApp" vermelho cheio em todo card (`specs/design.md` §6, v1); site só com aparência clara.
+- Detalhes em `specs/design.md` §3.1 e §8.0. Logo: os caminhos do SVG ganharam classes (`logo__m`, `logo__va`, `logo__tracos`) para o CSS trocar as cores no escuro.
+
+### 03/11/2026: botão de tema sol/lua (pedido)
+
+- Botão no cabeçalho: sol no tema claro, lua no escuro; troca e guarda a escolha no navegador. **Substitui** "sem botão de troca" da revisão pelo HIG, que desaconselha aparência própria do site; o padrão continua sendo seguir o aparelho. Detalhes em `specs/design.md` §3.1. Os tokens do escuro valem para `html[data-tema="escuro"]` e, sem JavaScript, para `prefers-color-scheme: dark` (bloco repetido no CSS).
+
+### 03/11/2026: comentários do Google Maps (pedido)
+
+- Pedido: trocar a seção de avaliações por comentários reais do Google Maps, só os de 5 estrelas falando bem. **Substitui** "sem depoimentos; avaliações: só a nota" (`AGENTS.md`, `specs/site.md` §8), com autorização no pedido.
+- Como ficou: comentários **carregados ao vivo pela API oficial do Google**, não copiados para o site (o texto é de quem escreveu, e copiar fere os termos do Google). Filtro: 5 estrelas e com texto. A **nota real continua visível**, para não sugerir que todas as avaliações são 5 estrelas.
+- Consulta em 03/11/2026: loja 4,2 (5 avaliações) e oficina 4,0 (127), as duas com comentários de 5 estrelas com texto. O Google entrega no máximo 5 comentários por lugar, escolhidos por ele; a loja pode mostrar só 1 ou 2.
+- **Pendente:** criar a chave da Maps JavaScript API + Places API (New) no Google Cloud, restrita aos endereços do site, e colocá-la em `src/_data/loja.json` → `googleMaps.chave`. Conferir nas regras do Google Maps Platform se o filtro por nota é permitido e manter o crédito ao Google e o link para cada autor. A página de privacidade já cita o serviço do Google.
+
+### 03/11/2026: depoimentos autorizados (pedido)
+
+- Dois comentários de 5 estrelas da **loja** (Leidiane Vargas e Reinaldo Ameno), enviados em print, com a informação de que os autores aprovaram a publicação. Texto exato, sem correção, em `referencias/pedido-do-cliente.md` e `loja.depoimentos`. A loja guarda os comprovantes; quem pedir sai do site.
+- O do Reinaldo elogia o site antigo e a intenção de visitar a loja (não uma compra); entrou porque foi pedido. Avaliar com o Paulo se fica.
+- Oficina: dois comentários no site (Rodrigo G.Ramos e Luciano Walder - Serra - ES). O da Carla souza saiu em 04/11/2026, a pedido, para as duas colunas ficarem do mesmo tamanho (curto + longo dos dois lados; iguais em 1440 px); continua registrado em `referencias/pedido-do-cliente.md`. Todos foram enviados em print em 03/11, com aprovação informada; texto exato, com as quebras de linha do original (`white-space: pre-line`).
+
+### 04/11/2026: cabeçalho mais limpo no celular e tablet (pedido)
+
+- Pedido: o cabeçalho estava com "muita poluição visual" (logo, lua, coração, WhatsApp com número e ☰ lado a lado em ~520 px).
+- Abaixo de 1024 px: o botão do WhatsApp volta a ser só o glifo (o número aparecia a partir de 480 px, contra o §9 do design) e o botão de tema vai para dentro do menu ☰. Fica: logo, coração (tem contador), WhatsApp e ☰. A partir de 1024 px, nada muda.
+
+### 05/11/2026: revisão de usabilidade (Steve Krug) e correção do cabeçalho
+
+- Revisão pela skill web-usability-designer ("Não me faça pensar"). Correção aplicada: entre 1024 e 1199 px o cabeçalho passava da tela (o botão de tema somado ao número do WhatsApp); agora o número só aparece a partir de 1200 px. Aplicado em seguida, a pedido:
+  - **Financiamento no menu principal** (5 links). Para caber numa linha, os ícones dos links saem entre 1024 e 1365 px. Substitui "4 links com ícone" (`specs/design.md` §1 e §9).
+  - **Texto vazio cortado:** subtítulos dos "Como funciona" (início, financiamento, vender ou trocar) e "Preencha e o WhatsApp abre…" (o botão "Enviar pelo WhatsApp" já diz isso); em vender ou trocar ficou só "As fotos você manda direto na conversa do WhatsApp."
+  - **Repetições da home:** card "Quanto vale o seu carro?" encurtado (o texto era igual ao da faixa vermelha final); faixa de confiança sem os textos que repetiam a oficina e o financiamento ("Oficina própria ao lado, desde 2017", "Seu carro entra na troca", "Atendimento pelo WhatsApp" + número).
+  - **Um botão vermelho por bloco:** "Falar sobre repasse" (Contato) passou a secundário. "Escolher no estoque" (Vender ou trocar) continua vermelho: é a única ação da faixa preta da troca.
+- Ficam para o Paulo: "Cuide do seu carro" e "O laço vermelho" como títulos; filtros completos na home; o depoimento do Reinaldo.
+
+### 05/11/2026: 9 carros de exemplo (pedido)
+
+- Pedido: adicionar 9 modelos fictícios com as fotos do ZIP `MVA_Imagens_Carros.zip` e "inventar as outras informações". A regra do projeto ("nada inventado") permite isso só como **EXEMPLO marcado**, então: campo `exemplo: true`, selo "Exemplo" no card e na galeria, aviso na página do carro e aviso no início da mensagem de WhatsApp (a loja real não tem esses carros).
+- Da tabela do pedido: modelo, ano, carroceria e cor. **Inventados** (valores plausíveis de mercado, sem pesquisa): versão/motor, km, preço e câmbio; combustível Flex em todos; Strada com cabine dupla.
+- Fotos copiadas sem alteração para `imagens-geradas/<pasta>/` (117 PNGs, ~260 MB; idênticas às do ZIP). Aumentam bastante o repositório no próximo commit.
+- Ficam fora do site, como antes, os 7 carros reais sem fotos padronizadas.
+- **Mesmo dia, a pedido:** saiu o selo "Exemplo" do card e da galeria. Ficaram o aviso na página do carro e o aviso no início da mensagem de WhatsApp, para os dados inventados continuarem marcados (regra "nada inventado, só EXEMPLO marcado") e a loja real não receber pedido de carro que não existe. Tirar também esses avisos faria preços e km inventados parecerem anúncios reais: só com decisão do Paulo.
+
 ## Assumidos (a revisar)
 
 - ~~Catálogo = 10 veículos com pasta~~ e ~~ordem por ano~~: confirmados pelo Paulo na v1 (ver acima).

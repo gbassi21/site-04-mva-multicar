@@ -69,6 +69,17 @@ Nunca gerar nem alterar. Sempre com "Imagem ilustrativa". Formato conferido: 3:2
 | toyota-hilux-srv-2022 | 14 arquivos com nomes descritivos | Aguardando nomes padrão |
 | toyota-corolla-cross-xre-2024 | Só um .zip | Aguardando extração e nomes padrão |
 | vw-polo-highline-tsi-2025 | Só um .zip | Aguardando extração e nomes padrão |
+| chevrolet-onix-lt-2020 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| hyundai-hb20-comfort-2019 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| volkswagen-polo-msi-2020 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| fiat-argo-drive-2021 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| toyota-corolla-xei-2020 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| honda-civic-exl-2018 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| chevrolet-tracker-lt-2021 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| jeep-renegade-longitude-2019 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+| fiat-strada-freedom-2022 | 13/13 (ZIP de 05/11/2026) | **Exemplo** fictício |
+
+Os 9 do ZIP usam três nomes novos, já reconhecidos em `lib/veiculos.js`: `04-traseira-tres-quartos` (Traseira 3/4), `06-traseira-elevada` (Traseira vista de cima; Caçamba vista de cima nas picapes) e `13-bancos` (Bancos).
 
 ## 4. Marca e ícones (feitos em código)
 
