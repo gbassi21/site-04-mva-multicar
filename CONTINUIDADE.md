@@ -4,7 +4,7 @@ Atualizado em 10/11/2026.
 
 ## Estado em 10/11/2026 (leia primeiro)
 
-- Todas as mudanças de 03 a 05/11 (seções abaixo) foram **commitadas e enviadas ao `main`** do GitHub em 10/11/2026, com autorização do Paulo.
+- Todas as mudanças de 03 a 05/11 (seções abaixo) estão no commit local `0544d87` (10/11/2026, autorizado pelo Paulo). **O envio ao GitHub falhou:** a conta `gbassi21`, conectada nesta máquina, não tem permissão de escrita no repositório (erro 403). Falta o Paulo dar acesso a ela (ou enviar de outra máquina) e rodar `git push origin main`.
 - **O site no ar (GitHub Pages) ainda é o de 03/11:** falta rodar `npm run build` e `npm run publicar` numa máquina com Node (nesta, o Node está bloqueado por política de grupo). O primeiro build processa as 117 fotos novas e demora.
 - Nada disso passou por um build do Eleventy: foi conferido numa cópia do `gh-pages` com o CSS/JS novos e o HTML ajustado por script. No primeiro build, conferir: `temFoto` e `botaoFavorito` (`macros.njk`), `<dialog>` de favoritos e script de tema (`base.njk`), classes do logo (`logotipo.js`), depoimentos (`index.njk`), carros de exemplo e rótulos das fotos novas (`lib/veiculos.js`).
 
