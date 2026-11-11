@@ -7,12 +7,7 @@ carroHero: ford-ranger-limited-2018
 {% from "macros.njk" import tituloSecao, cardServico %}
 {%- set veiculos = collections.veiculos %}
 {%- set carro = veiculos | buscarVeiculo(carroHero) %}
-{%- set tipos = [
-  { valor: "hatch", nome: "Hatch" },
-  { valor: "seda", nome: "Sedã" },
-  { valor: "suv", nome: "SUV" },
-  { valor: "picape", nome: "Picape" }
-] %}
+{%- set marcas = (veiculos | opcoesFiltros).marcas %}
 
 <section class="hero" aria-labelledby="titulo-hero">
   <div class="envoltorio hero__grade">
@@ -97,15 +92,14 @@ carroHero: ford-ranger-limited-2018
 
 <section class="faixa faixa--branca" aria-labelledby="titulo-tipos">
   <div class="envoltorio">
-    {{ tituloSecao("titulo-tipos", "Explore por tipo") }}
+    {{ tituloSecao("titulo-tipos", "Explore por marca") }}
     <ul class="tipos">
-      {%- for t in tipos %}
-      {%- set qtd = veiculos | contarCarroceria(t.valor) %}
+      {%- for m in marcas %}
       <li>
-        <a class="tipo" href="/estoque/?carroceria={{ t.valor }}">
-          {{ carroceria(t.valor, "tipo__silhueta") | safe }}
-          <span class="tipo__nome">{{ t.nome }}</span>
-          {% if qtd %}<span class="tipo__qtd">{{ qtd }} {{ "carro" if qtd == 1 else "carros" }}</span>{% endif %}
+        <a class="tipo" href="/estoque/?marca={{ m.valor }}">
+          <span class="tipo__nome">{{ m.nome }}</span>
+          <span class="tipo__qtd">{{ m.qtd }} {{ "carro" if m.qtd == 1 else "carros" }}</span>
+          {{ icone("arrow-right", "tipo__seta") | safe }}
         </a>
       </li>
       {%- endfor %}

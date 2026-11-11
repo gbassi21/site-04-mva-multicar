@@ -1,12 +1,6 @@
 {#- Vitrine filtrável (specs/site.md §3.2). Espera: veiculos, modoEstoque (true na página de estoque). -#}
 {%- from "macros.njk" import cardVeiculo -%}
 {%- set filtros = veiculos | opcoesFiltros %}
-{%- set tipos = [
-  { valor: "hatch", nome: "Hatch" },
-  { valor: "seda", nome: "Sedã" },
-  { valor: "suv", nome: "SUV" },
-  { valor: "picape", nome: "Picape" }
-] %}
 <form class="filtros{% if modoEstoque %} filtros--estoque{% endif %}" id="filtros-vitrine" action="/estoque/" method="get" data-filtros aria-label="Filtrar carros">
   {%- if modoEstoque %}
   <label class="campo campo--busca">
@@ -15,17 +9,16 @@
   </label>
   {%- endif %}
   <fieldset class="filtros__tipos">
-    <legend class="vh">Carroceria</legend>
-    <label class="chip"><input type="radio" name="carroceria" value="" checked><span>Todos<small>{{ veiculos.length }}</small></span></label>
-    {%- for t in tipos %}
-    {%- set qtd = veiculos | contarCarroceria(t.valor) %}
-    <label class="chip{% if not qtd %} chip--vazio{% endif %}"><input type="radio" name="carroceria" value="{{ t.valor }}"><span>{{ t.nome }}<small>{{ qtd }}</small></span></label>
+    <legend class="vh">Marca</legend>
+    <label class="chip"><input type="radio" name="marca" value="" checked><span>Todas<small>{{ veiculos.length }}</small></span></label>
+    {%- for m in filtros.marcas %}
+    <label class="chip"><input type="radio" name="marca" value="{{ m.valor }}"><span>{{ m.nome }}<small>{{ m.qtd }}</small></span></label>
     {%- endfor %}
   </fieldset>
   <div class="filtros__campos">
     <label class="campo">
-      <span class="campo__rotulo">Marca</span>
-      <select name="marca"><option value="">Todas</option>{% for m in filtros.marcas %}<option value="{{ m.valor }}">{{ m.nome }}</option>{% endfor %}</select>
+      <span class="campo__rotulo">Carroceria</span>
+      <select name="carroceria"><option value="">Todas</option>{% for c in filtros.carrocerias %}<option value="{{ c.valor }}">{{ c.nome }}</option>{% endfor %}</select>
     </label>
     <label class="campo">
       <span class="campo__rotulo">Ano a partir de</span>
@@ -72,7 +65,7 @@
     <a class="card-fim" href="/estoque/">
       {{ tracos("card-fim__tracos") | safe }}
       <span class="card-fim__titulo">Ver todo o estoque</span>
-      <span class="card-fim__texto">Hatch, sedã, SUV e picape, do popular ao premium.</span>
+      <span class="card-fim__texto">Várias marcas, do popular ao premium.</span>
       <span class="card-fim__seta">{{ icone("arrow-right") | safe }}</span>
     </a>
     {%- endif %}
