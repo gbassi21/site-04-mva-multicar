@@ -646,8 +646,10 @@ address { font-style: normal; }
 }
 .marca input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
 .marca__circulo {
+  --cor-logo-marca: #000;
   display: grid; place-items: center; width: 64px; height: 64px;
-  border: 1.5px solid var(--borda-forte); border-radius: 50%; background: #fff; color: #1D1E22;
+  border: 1.5px solid var(--borda-forte); border-radius: 50%; background: #fff;
+  color: var(--cor-logo-marca); /* todas as logos na mesma cor (teste: preto) */
   transition: border-color .15s, box-shadow .15s, transform .2s var(--suave);
 }
 .marca__circulo svg { width: 58%; height: 58%; }
@@ -660,7 +662,7 @@ address { font-style: normal; }
 .marca input:checked ~ .marca__nome { color: var(--acento); }
 .marca input:focus-visible ~ .marca__circulo { outline: 3px solid var(--vermelho); outline-offset: 3px; }
 .marca--zerada { opacity: .4; }
-.marca__texto { padding: 6px; color: #1D1E22; font-size: .625rem; font-weight: 800; line-height: 1.05; letter-spacing: .02em; text-transform: uppercase; }
+.marca__texto { padding: 6px; font-size: .625rem; font-weight: 800; line-height: 1.05; letter-spacing: .02em; text-transform: uppercase; }
 /* Home: as marcas do estoque; no celular, duas linhas que correm para o lado */
 .marcas--home { display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: 92px; gap: 18px 12px; }
 .marcas--home .marca { width: auto; }
