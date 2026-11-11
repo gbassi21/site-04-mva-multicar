@@ -81,7 +81,7 @@
     }
   });
 
-  // Filtros da vitrine (specs/site.md §3.2): preço, carroceria, marca, ano e câmbio, com o estado na URL.
+  // Filtros da vitrine (specs/site.md §3.2): marca (chips), carroceria, ano, câmbio e preço, com o estado na URL.
   const filtros = document.querySelector("[data-filtros]");
   if (filtros) {
     const campos = ["q", "carroceria", "marca", "ano", "cambio", "preco_max", "ordem"];
@@ -107,16 +107,16 @@
     filtros.append(ativos);
     const rotulos = {
       q: (v) => `“${v}”`,
-      carroceria: () => filtros.querySelector("[name=carroceria]:checked + span")?.firstChild.textContent.trim(),
-      marca: () => filtros.elements.marca.selectedOptions[0].text,
+      marca: () => filtros.querySelector("[name=marca]:checked + span")?.firstChild.textContent.trim(),
+      carroceria: () => filtros.elements.carroceria.selectedOptions[0].text,
       ano: (v) => `A partir de ${v}`,
       cambio: () => filtros.elements.cambio.selectedOptions[0].text,
       preco_max: () => `Até ${filtros.elements.preco_max.selectedOptions[0].text}`,
     };
 
     const passa = (d, f, termos, ignorar) =>
-      (ignorar === "carroceria" || !f.carroceria || d.carroceria === f.carroceria) &&
-      (!f.marca || d.marca === f.marca) &&
+      (ignorar === "marca" || !f.marca || d.marca === f.marca) &&
+      (!f.carroceria || d.carroceria === f.carroceria) &&
       (!f.ano || Number(d.ano) >= Number(f.ano)) &&
       (!f.cambio || d.cambio === f.cambio) &&
       (!f.preco_max || Number(d.preco) <= Number(f.preco_max)) &&
@@ -140,10 +140,10 @@
       }
       vazio.hidden = total > 0;
 
-      // Contagem de cada carroceria com os outros filtros aplicados; a que zeraria o resultado fica apagada.
+      // Contagem de cada marca com os outros filtros aplicados; a que zeraria o resultado fica apagada.
       for (const chip of chips) {
         const valor = chip.querySelector("input").value;
-        const qtd = cards.filter((c) => (!valor || c.dataset.carroceria === valor) && passa(c.dataset, f, termos, "carroceria")).length;
+        const qtd = cards.filter((c) => (!valor || c.dataset.marca === valor) && passa(c.dataset, f, termos, "marca")).length;
         const contador = chip.querySelector("small");
         if (contador.textContent !== String(qtd)) contador.textContent = qtd;
         chip.classList.toggle("chip--zerado", qtd === 0);

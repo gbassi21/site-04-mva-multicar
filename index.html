@@ -221,17 +221,22 @@
     
 <form class="filtros" id="filtros-vitrine" action="/site-04-mva-multicar/estoque/" method="get" data-filtros="" aria-label="Filtrar carros">
   <fieldset class="filtros__tipos">
-    <legend class="vh">Carroceria</legend>
-    <label class="chip"><input type="radio" name="carroceria" value="" checked=""><span>Todos<small>12</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="hatch"><span>Hatch<small>4</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="seda"><span>Sedã<small>2</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="suv"><span>SUV<small>3</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="picape"><span>Picape<small>3</small></span></label>
+    <legend class="vh">Marca</legend>
+    <label class="chip"><input type="radio" name="marca" value="" checked=""><span>Todas<small>12</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="chevrolet"><span>Chevrolet<small>2</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="fiat"><span>Fiat<small>2</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="ford"><span>Ford<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="honda"><span>Honda<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="hyundai"><span>Hyundai<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="jeep"><span>Jeep<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="renault"><span>Renault<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="toyota"><span>Toyota<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="volkswagen"><span>Volkswagen<small>2</small></span></label>
   </fieldset>
   <div class="filtros__campos">
     <label class="campo">
-      <span class="campo__rotulo">Marca</span>
-      <select name="marca"><option value="">Todas</option><option value="chevrolet">Chevrolet</option><option value="fiat">Fiat</option><option value="ford">Ford</option><option value="honda">Honda</option><option value="hyundai">Hyundai</option><option value="jeep">Jeep</option><option value="renault">Renault</option><option value="toyota">Toyota</option><option value="volkswagen">Volkswagen</option></select>
+      <span class="campo__rotulo">Carroceria</span>
+      <select name="carroceria"><option value="">Todas</option><option value="hatch">Hatch</option><option value="seda">Sedã</option><option value="suv">SUV</option><option value="picape">Picape</option></select>
     </label>
     <label class="campo">
       <span class="campo__rotulo">Ano a partir de</span>
@@ -723,7 +728,7 @@
     <a class="card-fim" href="/site-04-mva-multicar/estoque/">
       <svg class="tracos card-fim__tracos" viewBox="0 0 120 64" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false"><g transform="skewX(-12) translate(14 0)" fill="currentColor"><rect x="0" y="4" width="106" height="12"></rect><rect x="26" y="26" width="80" height="12"></rect><rect x="52" y="48" width="54" height="12"></rect></g></svg>
       <span class="card-fim__titulo">Ver todo o estoque</span>
-      <span class="card-fim__texto">Hatch, sedã, SUV e picape, do popular ao premium.</span>
+      <span class="card-fim__texto">Várias marcas, do popular ao premium.</span>
       <span class="card-fim__seta"><svg class="icone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
   <path d="m12 5 7 7-7 7"></path></svg></span>
     </a>
@@ -746,7 +751,7 @@
     
 <div class="secao__topo">
   <div class="secao__titulos">
-    <h2 class="titulo-secao" id="titulo-tipos"><svg class="tracos titulo-secao__tracos" viewBox="0 0 120 64" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false"><g transform="skewX(-12) translate(14 0)" fill="currentColor"><rect x="0" y="4" width="106" height="12"></rect><rect x="26" y="26" width="80" height="12"></rect><rect x="52" y="48" width="54" height="12"></rect></g></svg><span class="titulo-secao__texto">Explore por tipo</span></h2>
+    <h2 class="titulo-secao" id="titulo-tipos"><svg class="tracos titulo-secao__tracos" viewBox="0 0 120 64" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false"><g transform="skewX(-12) translate(14 0)" fill="currentColor"><rect x="0" y="4" width="106" height="12"></rect><rect x="26" y="26" width="80" height="12"></rect><rect x="52" y="48" width="54" height="12"></rect></g></svg><span class="titulo-secao__texto">Explore por marca</span></h2>
     
   </div>
   
@@ -754,33 +759,75 @@
 
     <ul class="tipos">
       <li>
-        <a class="tipo" href="/site-04-mva-multicar/estoque/?carroceria=hatch">
-          <svg class="tipo__silhueta" viewBox="0 0 64 32" width="64" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 24H8v-8l6-7h20l8 6 11 1.5 3 2.5v5h-7M41 24H21"></path><circle cx="17" cy="24" r="4"></circle><circle cx="45" cy="24" r="4"></circle></svg>
-          <span class="tipo__nome">Hatch</span>
-          <span class="tipo__qtd">4 carros</span>
-          
-        </a>
-      </li>
-      <li>
-        <a class="tipo" href="/site-04-mva-multicar/estoque/?carroceria=seda">
-          <svg class="tipo__silhueta" viewBox="0 0 64 32" width="64" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 24H6v-6l4-2 8-1 6-6h14l8 6 10 1.5 3 2.5v5h-7M44 24H20"></path><circle cx="16" cy="24" r="4"></circle><circle cx="48" cy="24" r="4"></circle></svg>
-          <span class="tipo__nome">Sedã</span>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=chevrolet">
+          <span class="tipo__nome">Chevrolet</span>
           <span class="tipo__qtd">2 carros</span>
-          
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
         </a>
       </li>
       <li>
-        <a class="tipo" href="/site-04-mva-multicar/estoque/?carroceria=suv">
-          <svg class="tipo__silhueta" viewBox="0 0 64 32" width="64" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12.5 24H6V13l3-5h31l7 6 10 1 2 3v6h-6.5M43.5 24h-22"></path><circle cx="17" cy="24" r="4.5"></circle><circle cx="48" cy="24" r="4.5"></circle></svg>
-          <span class="tipo__nome">SUV</span>
-          <span class="tipo__qtd">3 carros</span>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=fiat">
+          <span class="tipo__nome">Fiat</span>
+          <span class="tipo__qtd">2 carros</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
         </a>
       </li>
       <li>
-        <a class="tipo" href="/site-04-mva-multicar/estoque/?carroceria=picape">
-          <svg class="tipo__silhueta" viewBox="0 0 64 32" width="64" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 24H5v-9h24l1-7h10l6 6 11 1 2 3v6h-7M44 24H20"></path><circle cx="16" cy="24" r="4"></circle><circle cx="48" cy="24" r="4"></circle></svg>
-          <span class="tipo__nome">Picape</span>
-          <span class="tipo__qtd">3 carros</span>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=ford">
+          <span class="tipo__nome">Ford</span>
+          <span class="tipo__qtd">1 carro</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </li>
+      <li>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=honda">
+          <span class="tipo__nome">Honda</span>
+          <span class="tipo__qtd">1 carro</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </li>
+      <li>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=hyundai">
+          <span class="tipo__nome">Hyundai</span>
+          <span class="tipo__qtd">1 carro</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </li>
+      <li>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=jeep">
+          <span class="tipo__nome">Jeep</span>
+          <span class="tipo__qtd">1 carro</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </li>
+      <li>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=renault">
+          <span class="tipo__nome">Renault</span>
+          <span class="tipo__qtd">1 carro</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </li>
+      <li>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=toyota">
+          <span class="tipo__nome">Toyota</span>
+          <span class="tipo__qtd">1 carro</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </li>
+      <li>
+        <a class="tipo" href="/site-04-mva-multicar/estoque/?marca=volkswagen">
+          <span class="tipo__nome">Volkswagen</span>
+          <span class="tipo__qtd">2 carros</span>
+          <svg class="icone tipo__seta" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path>
+  <path d="m12 5 7 7-7 7"></path></svg>
         </a>
       </li>
     </ul>

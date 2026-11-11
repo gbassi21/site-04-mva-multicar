@@ -638,24 +638,26 @@ address { font-style: normal; }
 .card-fim:hover .card-fim__seta { transform: translateX(6px); }
 .card-fim:focus-visible { outline-color: var(--vermelho); }
 
-/* Explore por tipo */
+/* Explore por marca */
 .tipos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .tipo {
-  display: grid; justify-items: start; align-content: start; gap: 2px; height: 100%; padding: 18px 18px 20px;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 12px; height: 100%; padding: 16px 16px 18px;
   border: 1.5px solid var(--borda); border-radius: var(--raio);
   background: var(--branco); color: var(--texto); text-decoration: none;
   transition: border-color .15s, background-color .15s, color .15s;
 }
-.tipo__silhueta { width: 100%; max-width: 150px; height: auto; margin-bottom: 14px; color: var(--acento); stroke-width: 2.25; transition: transform .3s var(--suave); }
-.tipo__nome { font-size: 1.375rem; font-weight: 800; letter-spacing: -.025em; }
-.tipo__qtd { color: var(--texto-2); font-size: .9375rem; }
+.tipo__nome { grid-column: 1 / -1; font-size: 1.125rem; font-weight: 800; letter-spacing: -.025em; }
+.tipo__qtd { grid-column: 1; color: var(--texto-2); font-size: .9375rem; }
+.tipo__seta { grid-column: 2; grid-row: 2; width: 22px; height: 22px; color: var(--acento); transition: transform .3s var(--suave); }
 .tipo:hover { border-color: var(--preto); background: var(--preto); color: #fff; }
 .tipo:hover .tipo__qtd { color: var(--prata); }
-.tipo:hover .tipo__silhueta { color: var(--vermelho-no-preto); transform: translateX(8px); }
+.tipo:hover .tipo__seta { color: var(--vermelho-no-preto); transform: translateX(6px); }
 @media (min-width: 768px) {
-  .tipos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-  .tipo { padding: 24px 24px 26px; }
+  .tipos { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+  .tipo { padding: 22px 22px 24px; }
+  .tipo__nome { font-size: 1.375rem; }
 }
+@media (prefers-reduced-motion: reduce) { .tipo:hover .tipo__seta { transform: none; } }
 
 /* Oficina (faixa preta) */
 .oficina__grade { display: grid; gap: 36px; }

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Estoque de seminovos e usados · MVA Multicar (projeto de demonstração)</title>
-  <meta name="description" content="Seminovos e usados multimarcas à venda em Jacaraípe, Serra (ES). Filtre por preço, carroceria, marca, ano e câmbio.">
+  <meta name="description" content="Seminovos e usados multimarcas à venda em Jacaraípe, Serra (ES). Filtre por marca, carroceria, ano, câmbio e preço.">
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#0C0C0E">
@@ -107,17 +107,22 @@
   <circle cx="11" cy="11" r="8"></circle></svg><input type="search" name="q" placeholder="Ex.: Ranger, Volkswagen" autocomplete="off" enterkeyhint="search"></span>
   </label>
   <fieldset class="filtros__tipos">
-    <legend class="vh">Carroceria</legend>
-    <label class="chip"><input type="radio" name="carroceria" value="" checked=""><span>Todos<small>12</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="hatch"><span>Hatch<small>4</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="seda"><span>Sedã<small>2</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="suv"><span>SUV<small>3</small></span></label>
-    <label class="chip"><input type="radio" name="carroceria" value="picape"><span>Picape<small>3</small></span></label>
+    <legend class="vh">Marca</legend>
+    <label class="chip"><input type="radio" name="marca" value="" checked=""><span>Todas<small>12</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="chevrolet"><span>Chevrolet<small>2</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="fiat"><span>Fiat<small>2</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="ford"><span>Ford<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="honda"><span>Honda<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="hyundai"><span>Hyundai<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="jeep"><span>Jeep<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="renault"><span>Renault<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="toyota"><span>Toyota<small>1</small></span></label>
+    <label class="chip"><input type="radio" name="marca" value="volkswagen"><span>Volkswagen<small>2</small></span></label>
   </fieldset>
   <div class="filtros__campos">
     <label class="campo">
-      <span class="campo__rotulo">Marca</span>
-      <select name="marca"><option value="">Todas</option><option value="chevrolet">Chevrolet</option><option value="fiat">Fiat</option><option value="ford">Ford</option><option value="honda">Honda</option><option value="hyundai">Hyundai</option><option value="jeep">Jeep</option><option value="renault">Renault</option><option value="toyota">Toyota</option><option value="volkswagen">Volkswagen</option></select>
+      <span class="campo__rotulo">Carroceria</span>
+      <select name="carroceria"><option value="">Todas</option><option value="hatch">Hatch</option><option value="seda">Sedã</option><option value="suv">SUV</option><option value="picape">Picape</option></select>
     </label>
     <label class="campo">
       <span class="campo__rotulo">Ano a partir de</span>
