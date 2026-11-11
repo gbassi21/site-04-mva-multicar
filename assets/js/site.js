@@ -96,7 +96,7 @@
     };
     const resultado = filtros.querySelector("[data-resultado]");
     const vazio = document.querySelector("[data-vazio]");
-    const chips = [...filtros.querySelectorAll(".chip")];
+    const chips = [...filtros.querySelectorAll("[data-opcao-marca]")];
     const iconeFechar = document.querySelector(".icone-fechar svg");
 
     // Etiquetas dos filtros ativos: cada uma remove o seu filtro.
@@ -107,7 +107,7 @@
     filtros.append(ativos);
     const rotulos = {
       q: (v) => `“${v}”`,
-      marca: () => filtros.querySelector("[name=marca]:checked + span")?.firstChild.textContent.trim(),
+      marca: () => filtros.querySelector("[name=marca]:checked")?.closest("label").querySelector(".marca__nome").textContent.trim(),
       carroceria: () => filtros.elements.carroceria.selectedOptions[0].text,
       ano: (v) => `A partir de ${v}`,
       cambio: () => filtros.elements.cambio.selectedOptions[0].text,
@@ -146,7 +146,7 @@
         const qtd = cards.filter((c) => (!valor || c.dataset.marca === valor) && passa(c.dataset, f, termos, "marca")).length;
         const contador = chip.querySelector("small");
         if (contador.textContent !== String(qtd)) contador.textContent = qtd;
-        chip.classList.toggle("chip--zerado", qtd === 0);
+        chip.classList.toggle("marca--zerada", qtd === 0);
       }
 
       const atuais = Object.keys(rotulos).filter((campo) => f[campo]);

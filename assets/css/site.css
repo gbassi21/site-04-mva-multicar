@@ -552,16 +552,15 @@ address { font-style: normal; }
 .filtros__resultado { color: var(--texto-2); font-size: .9375rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 @media (min-width: 768px) {
   .filtros { padding: 20px 24px; }
-  .filtros__tipos { flex-wrap: wrap; margin: 0; padding: 0; overflow: visible; }
+  .filtros__tipos { margin: 0; padding: 4px 0 6px; }
   .filtros__campos { grid-template-columns: repeat(4, minmax(0, 1fr)) auto; }
   .filtros__enviar { grid-column: auto; }
 }
 @media (min-width: 1024px) {
-  .filtros { grid-template-columns: auto 1fr; grid-template-areas: "tipos resultado" "campos campos"; align-items: center; }
+  .filtros { grid-template-columns: 1fr auto; grid-template-areas: "tipos tipos" "campos campos" "ativos resultado"; align-items: center; }
   .filtros__tipos { grid-area: tipos; }
   .filtros__resultado { grid-area: resultado; justify-self: end; }
   .filtros__campos { grid-area: campos; }
-  .filtros:has(.filtros__ativos:not(:empty)) { grid-template-areas: "tipos resultado" "campos campos" "ativos ativos"; }
   .filtros__ativos { grid-area: ativos; }
 }
 
@@ -638,26 +637,43 @@ address { font-style: normal; }
 .card-fim:hover .card-fim__seta { transform: translateX(6px); }
 .card-fim:focus-visible { outline-color: var(--vermelho); }
 
-/* Explore por marca */
-.tipos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.tipo {
-  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 12px; height: 100%; padding: 16px 16px 18px;
-  border: 1.5px solid var(--borda); border-radius: var(--raio);
-  background: var(--branco); color: var(--texto); text-decoration: none;
-  transition: border-color .15s, background-color .15s, color .15s;
+/* Marcas: logo num círculo branco e o nome embaixo (filtro da vitrine e Explore por marca) */
+.marcas { display: flex; gap: 12px; margin: 0 -16px; padding: 4px 16px 6px; overflow-x: auto; scrollbar-width: none; list-style: none; }
+.marcas::-webkit-scrollbar { display: none; }
+.marca {
+  position: relative; display: flex; flex: none; flex-direction: column; align-items: center; gap: 6px; width: 76px;
+  color: var(--texto); text-align: center; text-decoration: none; cursor: pointer;
 }
-.tipo__nome { grid-column: 1 / -1; font-size: 1.125rem; font-weight: 800; letter-spacing: -.025em; }
-.tipo__qtd { grid-column: 1; color: var(--texto-2); font-size: .9375rem; }
-.tipo__seta { grid-column: 2; grid-row: 2; width: 22px; height: 22px; color: var(--acento); transition: transform .3s var(--suave); }
-.tipo:hover { border-color: var(--preto); background: var(--preto); color: #fff; }
-.tipo:hover .tipo__qtd { color: var(--prata); }
-.tipo:hover .tipo__seta { color: var(--vermelho-no-preto); transform: translateX(6px); }
+.marca input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.marca__circulo {
+  display: grid; place-items: center; width: 64px; height: 64px;
+  border: 1.5px solid var(--borda-forte); border-radius: 50%; background: #fff; color: #1D1E22;
+  transition: border-color .15s, box-shadow .15s, transform .2s var(--suave);
+}
+.marca__circulo svg { width: 58%; height: 58%; }
+.marca__circulo b { font-size: 1.5rem; font-weight: 800; }
+.marca__circulo--todas .icone { width: 28px; height: 28px; }
+.marca__nome { font-size: .75rem; font-weight: 700; line-height: 1.2; letter-spacing: .02em; text-transform: uppercase; }
+.marca__qtd { margin-top: -4px; color: var(--texto-2); font-size: .75rem; font-variant-numeric: tabular-nums; }
+.marca:hover .marca__circulo { border-color: var(--texto); transform: translateY(-2px); }
+.marca input:checked ~ .marca__circulo { border-color: var(--vermelho); box-shadow: 0 0 0 2px var(--vermelho); }
+.marca input:checked ~ .marca__nome { color: var(--acento); }
+.marca input:focus-visible ~ .marca__circulo { outline: 3px solid var(--vermelho); outline-offset: 3px; }
+.marca--zerada { opacity: .4; }
+.marca__texto { padding: 6px; color: #1D1E22; font-size: .625rem; font-weight: 800; line-height: 1.05; letter-spacing: .02em; text-transform: uppercase; }
+/* Home: as marcas do estoque; no celular, duas linhas que correm para o lado */
+.marcas--home { display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: 92px; gap: 18px 12px; }
+.marcas--home .marca { width: auto; }
+.marcas--home .marca__circulo { width: 80px; height: 80px; }
+.marcas--home .marca__texto { font-size: .75rem; }
+.marcas--home .marca__nome { font-size: .75rem; }
 @media (min-width: 768px) {
-  .tipos { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
-  .tipo { padding: 22px 22px 24px; }
-  .tipo__nome { font-size: 1.375rem; }
+  .marcas--home { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px 20px; margin: 0; padding: 4px 0 0; overflow: visible; }
+  .marcas--home .marca { width: 104px; }
+  .marcas--home .marca__circulo { width: 92px; height: 92px; }
+  .marcas--home .marca__texto { font-size: .8125rem; }
 }
-@media (prefers-reduced-motion: reduce) { .tipo:hover .tipo__seta { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .marca:hover .marca__circulo { transform: none; } }
 
 /* Oficina (faixa preta) */
 .oficina__grade { display: grid; gap: 36px; }
@@ -1311,9 +1327,8 @@ html:not(.js) .favoritar, html:not(.js) .cabecalho__favoritos { display: none; }
 }
 @media (min-width: 1024px) {
   .vitrine--grade { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-  .filtros--estoque { grid-template-areas: "busca busca" "tipos resultado" "campos campos"; }
+  .filtros--estoque { grid-template-areas: "busca busca" "tipos tipos" "campos campos" "ativos resultado"; }
   .filtros--estoque .campo--busca { grid-area: busca; }
-  .filtros--estoque:has(.filtros__ativos:not(:empty)) { grid-template-areas: "busca busca" "tipos resultado" "campos campos" "ativos ativos"; }
   .filtros--estoque .filtros__campos { grid-template-columns: repeat(5, minmax(0, 1fr)) auto; }
 }
 
