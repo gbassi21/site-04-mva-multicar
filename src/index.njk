@@ -7,6 +7,7 @@ carroHero: ford-ranger-limited-2018
 {% from "macros.njk" import tituloSecao, cardServico %}
 {%- set veiculos = collections.veiculos %}
 {%- set carro = veiculos | buscarVeiculo(carroHero) %}
+{#- Só as marcas que têm carro no estoque: a lista sai dos próprios carros (src/veiculos/*.md). -#}
 {%- set marcas = (veiculos | opcoesFiltros).marcas %}
 
 <section class="hero" aria-labelledby="titulo-hero">
@@ -93,13 +94,14 @@ carroHero: ford-ranger-limited-2018
 <section class="faixa faixa--branca" aria-labelledby="titulo-tipos">
   <div class="envoltorio">
     {{ tituloSecao("titulo-tipos", "Explore por marca") }}
-    <ul class="tipos">
+    <ul class="marcas marcas--home">
       {%- for m in marcas %}
+      {%- set logo = logosMarcas[m.valor] %}
       <li>
-        <a class="tipo" href="/estoque/?marca={{ m.valor }}">
-          <span class="tipo__nome">{{ m.nome }}</span>
-          <span class="tipo__qtd">{{ m.qtd }} {{ "carro" if m.qtd == 1 else "carros" }}</span>
-          {{ icone("arrow-right", "tipo__seta") | safe }}
+        <a class="marca" href="/estoque/?marca={{ m.valor }}">
+          <span class="marca__circulo">{% if logo %}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="{{ logo.cor }}" d="{{ logo.d }}"/></svg>{% else %}<span class="marca__texto">{{ m.nome }}</span>{% endif %}</span>
+          <span class="marca__nome">{{ m.nome }}</span>
+          <span class="marca__qtd">{{ m.qtd }} {{ "carro" if m.qtd == 1 else "carros" }}</span>
         </a>
       </li>
       {%- endfor %}

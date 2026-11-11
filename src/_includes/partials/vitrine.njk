@@ -8,11 +8,12 @@
     <span class="campo__busca">{{ icone("search") | safe }}<input type="search" name="q" placeholder="Ex.: Ranger, Volkswagen" autocomplete="off" enterkeyhint="search"></span>
   </label>
   {%- endif %}
-  <fieldset class="filtros__tipos">
+  <fieldset class="filtros__tipos marcas">
     <legend class="vh">Marca</legend>
-    <label class="chip"><input type="radio" name="marca" value="" checked><span>Todas<small>{{ veiculos.length }}</small></span></label>
+    <label class="marca" data-opcao-marca><input type="radio" name="marca" value="" checked><span class="marca__circulo marca__circulo--todas">{{ icone("car-front") | safe }}</span><span class="marca__nome">Todas</span><small class="marca__qtd">{{ veiculos.length }}</small></label>
     {%- for m in filtros.marcas %}
-    <label class="chip"><input type="radio" name="marca" value="{{ m.valor }}"><span>{{ m.nome }}<small>{{ m.qtd }}</small></span></label>
+    {%- set logo = logosMarcas[m.valor] %}
+    <label class="marca" data-opcao-marca><input type="radio" name="marca" value="{{ m.valor }}"><span class="marca__circulo">{% if logo %}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="{{ logo.cor }}" d="{{ logo.d }}"/></svg>{% else %}<span class="marca__texto">{{ m.nome }}</span>{% endif %}</span><span class="marca__nome">{{ m.nome }}</span><small class="marca__qtd">{{ m.qtd }}</small></label>
     {%- endfor %}
   </fieldset>
   <div class="filtros__campos">
