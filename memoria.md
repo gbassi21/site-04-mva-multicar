@@ -136,6 +136,12 @@ Registro curto: data, decisão e motivo. Decisão substituída fica riscada com 
 - Ficam fora do site, como antes, os 7 carros reais sem fotos padronizadas.
 - **Mesmo dia, a pedido:** saiu o selo "Exemplo" do card e da galeria. Ficaram o aviso na página do carro e o aviso no início da mensagem de WhatsApp, para os dados inventados continuarem marcados (regra "nada inventado, só EXEMPLO marcado") e a loja real não receber pedido de carro que não existe. Tirar também esses avisos faria preços e km inventados parecerem anúncios reais: só com decisão do Paulo.
 
+### 11/11/2026: vitrine por marca e publicação automática (pedido)
+
+- Pedido: trocar o segmento por tipo (hatch, sedã, SUV, picape) por **marca**. Os chips da vitrine viraram círculos com o logo e o nome da marca (estilo pedido com print de referência); a carroceria virou uma lista ("Carroceria"), no lugar do select de marca. Os cinco filtros da regra continuam (preço, carroceria, marca, ano, câmbio). Na home, "Explore por tipo" virou "Explore por marca".
+- **Só marcas com estoque:** a lista sai dos próprios carros (`opcoesFiltros`), então marca nova entra e marca sem carro some sozinha. Ficam guardados em `src/_data/logosMarcas.json` os logos de 25 marcas do Brasil (Simple Icons, CC0; licença já em `licencas/`); marca sem logo mostra o nome escrito no círculo. As marcas pertencem às montadoras; o uso é só para indicar o que a loja vende.
+- **Publicação automática:** `.github/workflows/publicar.yml` monta o site no GitHub Actions a cada envio ao `main` do repositório gbassi21 e publica no branch `gh-pages`, mantendo o histórico. Substitui a cópia de teste ajustada à mão (`img-teste/`). Não muda o `npm run publicar` para o repositório do Paulo.
+
 ## Assumidos (a revisar)
 
 - ~~Catálogo = 10 veículos com pasta~~ e ~~ordem por ano~~: confirmados pelo Paulo na v1 (ver acima).
