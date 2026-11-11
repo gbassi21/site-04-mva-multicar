@@ -7,6 +7,7 @@ Atualizado em 11/11/2026.
 - **O site agora é montado de verdade e publicado sozinho:** `.github/workflows/publicar.yml` roda o Eleventy no GitHub Actions a cada envio ao `main` de https://github.com/gbassi21/site-04-mva-multicar e publica no branch `gh-pages` (https://gbassi21.github.io/site-04-mva-multicar/). Para mudar o estoque, basta enviar o `.md` do carro e as fotos; vitrine, filtros, marcas e páginas se atualizam em 2 a 3 minutos. O andamento aparece na aba Actions.
 - Primeiro build real em 11/11/2026 (run 43028281384, sucesso): 12 carros, 9 marcas, todas as páginas com 200, sem erros de console. Com isso, os itens "conferir no primeiro build" de 10/11 abaixo foram conferidos no site montado (logo, favoritos, `<dialog>`, faixa de demonstração).
 - Vitrine por marca (círculos com logo) e "Explore por marca" na home: detalhes em `memoria.md`, 11/11/2026.
+- Logos das marcas numa cor só (teste: preto, em `--cor-logo-marca` no `site.css`), conferidos no Simple Icons 16.37.0; Fiat com o letreiro FIAT atual. Para testar outra cor, mudar só essa variável.
 
 ## Estado em 10/11/2026 (leia primeiro)
 
