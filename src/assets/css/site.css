@@ -1138,6 +1138,7 @@ html { overflow-x: clip; }
   .rodape__links a, .rodape__dados a, .rodape__redes a, .unidade__dados a {
     display: inline-flex; align-items: center; min-height: 44px;
   }
+  .rodape__redes a { justify-content: center; } /* mantém o ícone no centro do círculo */
   .rodape__links { gap: 0; }
   .trilha a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -13px; }
   .rodape__dados li:has(a), .unidade__dados li:has(a) { align-items: center; }
